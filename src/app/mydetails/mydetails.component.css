@@ -1,0 +1,27 @@
+form label {
+    color: white;
+    text-transform: capitalize;
+}
+
+.myno {
+    padding-right: 0px;
+}
+
+.nocode {
+    width: 40px;
+    padding-left: 5px;
+    padding-right: 3px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .myno {
+        padding-right: 15px;
+        padding-left: 0px;
+    }
+    .nocode {
+        width: 100%;
+        padding-left: 15px;
+        text-align: unset;
+    }
+}

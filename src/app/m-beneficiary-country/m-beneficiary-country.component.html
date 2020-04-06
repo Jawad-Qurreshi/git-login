@@ -1,0 +1,96 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+      <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block">Beneficiary Country</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/m-dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">Beneficiary Country
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+          <div class="card pull-up bg-zipco">
+            <div class="card-header card-header-transparent">
+              <h6 class="card-title">Country</h6>
+            </div>
+            <div class="card-content">
+              <div class="card-body">
+                <form class="row col-12" #bnicountry="ngForm" (ngSubmit)="bcountrydata(bnicountry.value)">
+                  <div class="col-12">
+                    <fieldset class="form-group">
+                      <label for="bcountry">Benificiary Country</label>
+                      <select *ngIf="errbcountry" class="custom-select" id="bcountry" name="bcountry" [(ngModel)]="bcountry" ngModel>
+                        <option value="">Select Country</option>
+                        <option *ngFor="let list of country" value="{{list.c_id}}">{{list.country_name}}</option>
+                      </select>
+                      <select *ngIf="!errbcountry" style="border: 1px solid red;" class="custom-select" id="bcountry" name="bcountry" [(ngModel)]="bcountry"
+                        ngModel>
+                        <option value="">Select Country</option>
+                        <option *ngFor="let list of country" value="{{list.c_id}}">{{list.country_name}}</option>
+                      </select>
+                    </fieldset>
+                  </div>
+                  <div style="text-align: center;padding-left: 37%;">
+                    <button type="submit" style="width: auto;" class="btn btn-zipco btn-round btn-min-width ourfont" id="btn_search"> Add Country </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-2"></div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="card pull-up bg-zipco">
+            <div class="card-content collapse show">
+              <div class="card-body text-white">
+                <form class="form-horizontal form-purchase-token row">
+                  <div id="recent-transactions" class="col-12">
+                    <h6 class="my-2 text-white" style="float: left;">Benificiary Country Details</h6>
+                    <div class="table-responsive">
+                      <table id="tbl_users" class="table table-hover table-xl mb-0">
+                        <thead>
+                          <tr>
+                            <th class="border-top-0 text-center myheadcolor">COUNTRY NAME</th>
+                            <th class="border-top-0 text-center myheadcolor">COUNTRY CODE</th>
+                            <th class="border-top-0 text-center myheadcolor">COUNTRY ISO</th>
+                            <th class="border-top-0 text-center myheadcolor">DELETE</th>
+                          </tr>
+                        </thead>
+                        <tbody class="text-center">
+                          <tr class="pull-up" *ngFor="let list of b_dis_country">
+                            <td class="text-truncate p-1">{{list.country_name}}</td>
+                            <td class="text-truncate">{{list.country_code}}</td>
+                            <td class="text-truncate">{{list.country_iso}}</td>
+                            <td>
+                              <i class="fas fa-edit btn btn-success" (click)="edit_data(list.bc_id)" style="padding: 9px;font-size: 15px;"></i>
+                              &nbsp;
+                              <i class="fas fa-trash-alt btn btn-danger" (click)="delete_data(list.bc_id)" style="padding: 9px;font-size: 15px;"></i>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

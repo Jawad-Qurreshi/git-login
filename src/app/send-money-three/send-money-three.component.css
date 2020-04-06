@@ -1,0 +1,132 @@
+.myprebtn {
+    background: white;
+    border: 1px solid white;
+    color: black;
+    float: right;
+    padding: 10px;
+    border-radius: 3px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.mynextbtn {
+    background: rgb(184, 115, 43);
+    border: 1px solid rgb(184, 115, 43);
+    color: white;
+    float: right;
+    padding: 10px;
+    border-radius: 3px;
+    margin-right: 25px;
+    cursor: pointer;
+}
+
+.rdoformate {
+    background: white !important;
+    padding-left: 7px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+}
+
+.myshow {
+    padding-right: 17px;
+    display: block;
+}
+
+form label {
+    color: white;
+}
+
+.flagediv {
+    float: left;
+    padding: 4px;
+    border-radius: 4px 0px 0px 4px;
+    border-left: 1px solid #d3d5d8;
+    border-top: 1px solid #d3d5d8;
+    border-bottom: 1px solid #d3d5d8;
+}
+
+.countryselect {
+    border-radius: 0px 4px 4px 0px !important;
+    border-right: 1px solid #d3d5d8 !important;
+    border-top: 1px solid #d3d5d8 !important;
+    border-bottom: 1px solid #d3d5d8 !important;
+}
+
+/* The container */
+
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #ccc;
+}
+
+/* On mouse-over, add a grey background color */
+
+.container:hover input~.checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+
+.container input:checked~.checkmark {
+    background-color: #c48941;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+
+.container input:checked~.checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+
+.container .checkmark:after {
+    left: 7px;
+    top: 2px;
+    width: 7px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+@media (min-width: 768px) {
+    .mypadd {
+        padding-right: 0px;
+    }
+}

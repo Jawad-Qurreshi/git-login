@@ -1,0 +1,296 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+      <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block pathffont">Send Money</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb pathsfont">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">Send Money
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+      <div class="row justify-content-center">
+        <div class="col-12" style="max-width: 1110px;">
+          <div class="card bg-zipco text-white">
+            <div class="card-content">
+              <div class="card-header card-header-transparent">
+                <h6 class="card-title" style="font-size: 18px;">Send Money Now</h6>
+              </div>
+              <div style="margin-top: 25px;">
+                <img src="assets/plate/plate_1.png" style="margin-left: 10%;width: 80%;" />
+              </div>
+              <div class="card-body">
+
+                <form *ngIf="!view" class="number-tab-steps wizard-circle" #sendmoneyone="ngForm"
+                  (ngSubmit)="sendmoney(sendmoneyone.value)">
+                  <fieldset>
+                    <div class="row mt-2 justify-content-center">
+                      <div class="col-md-6 col-xs-12">
+                        <h4 class="text-center text-gold text-bold-700" style="text-transform: uppercase;">How much
+                          would
+                          you like to transfer?</h4>
+
+                        <fieldset class="mb-2">
+                          <label style="font-weight: bold;font-size: 20px;">You Send</label>
+                          <div class="input-group">
+
+                            <input type="text" *ngIf="errsendamount" class="form-control" name="send_amount"
+                              [(ngModel)]="send_amount" style="border-right: none;border: none;"
+                              (focusout)="setconvert()" ngModel>
+                            <input type="text" *ngIf="!errsendamount" class="form-control" name="send_amount"
+                              [(ngModel)]="send_amount"
+                              style="border-left: 1px solid red;border-top: 1px solid red;border-bottom: 1px solid red;border-right: none;"
+                              (focusout)="setconvert()" ngModel>
+
+
+                            <div *ngIf="errsendamount" style="background: white;">
+                              <img src="assets/flage/blank.gif" style="margin-top: 4px;margin-right: 5px;"
+                                class="flag flag-{{senddisflage}}" alt="Czech Republic" />
+                            </div>
+                            <div *ngIf="!errsendamount"
+                              style="background: white;border-top: 1px solid red;border-bottom: 1px solid red;border-right: 1px solid red;">
+                              <img src="assets/flage/blank.gif" style="margin-top: 4px;margin-right: 5px;"
+                                class="flag flag-{{senddisflage}}" alt="Czech Republic" />
+                            </div>
+
+
+                            <div
+                              style="background-image: linear-gradient(45deg,#e2b458,#c07e30);border-radius: 0px 3px 3px 0px;">
+                              <select class="form-control slct" name="sendcurrency" [(ngModel)]="sendcurrency"
+                                (ngModelChange)="sendchange($event)">
+                                <option class="opt" value="USD">USD</option>
+                                <option class="opt" value="CAD">CAD</option>
+                                <option class="opt" value="GBP">GBP</option>
+                                <option class="opt" value="EUR">EUR</option>
+                                <option class="opt" value="ZAR">ZAR</option>
+                              </select>
+                            </div>
+                          </div>
+                        </fieldset>
+
+                        <fieldset class="mb-2">
+                          <div class="row">
+                            <div class="col-md-3" style="font-weight: bold;font-size: 15px;">
+                              {{disfee}} {{sendcurrency}}
+                            </div>
+                            <div class="col-md-6">
+                              <select class="form-control" name="fee" [(ngModel)]="fee"
+                                (ngModelChange)="calculate($event)" ngModel>
+                                <!-- <option value="zipco">ZIPCO Payment Fee</option> -->
+                                <option value="card_visa">Credit Card ( Visa / Master Card ) Fee</option>
+                                <option value="card_amex">Credit Card ( American Express Card ) Fee</option>
+                              </select>
+                            </div>
+                            <div class="col-md-3" style="font-weight: bold;font-size: 15px;">
+                              Fee
+                            </div>
+                          </div>
+                        </fieldset>
+                        <fieldset class="mb-2">
+                          <div class="row" style="font-size: 15px;">
+                            <div class="col-md-3">
+                              {{totfee}} {{sendcurrency}}
+                            </div>
+                            <div class="col-md-4">
+                              Our Fee
+                            </div>
+                          </div>
+                        </fieldset>
+                        <fieldset class="mb-2">
+                          <div class="row" style="font-size: 15px;">
+                            <div class="col-md-3">
+                              {{totfee*1 + disfee*1}} {{sendcurrency}}
+                            </div>
+                            <div class="col-md-4">
+                              Total Fee
+                            </div>
+                          </div>
+                        </fieldset>
+                        <fieldset class="mb-2">
+                          <div class="row" style="font-size: 15px;color: silver;font-weight: bold;">
+                            <div class="col-md-3">
+                              {{totamount}} {{sendcurrency}}
+                            </div>
+                            <div class="col-md-6">
+                              <p>Amount We’ll Convert</p>
+                            </div>
+                          </div>
+                        </fieldset>
+
+                        <fieldset class="mb-2">
+                          <label style="font-weight: bold;font-size: 20px;">Beneficiary gets</label>
+                          <div class="input-group">
+
+                            <input type="text" *ngIf="errgetamount" class="form-control" name="get_amount"
+                              [(ngModel)]="get_amount" style="border-right: none;border: none;" ngModel>
+                            <input type="text" *ngIf="!errgetamount" class="form-control" name="get_amount"
+                              [(ngModel)]="get_amount"
+                              style="border-left: 1px solid red;border-top: 1px solid red;border-bottom: 1px solid red;border-right: none;"
+                              ngModel>
+
+                            <div *ngIf="errgetamount" style="background: white;">
+                              <img src="assets/flage/blank.gif" style="margin-top: 4px;margin-right: 5px;"
+                                class="flag flag-{{getdisflage}}" alt="Czech Republic" />
+                            </div>
+                            <div *ngIf="!errgetamount"
+                              style="background: white;border-top: 1px solid red;border-bottom: 1px solid red;border-right: 1px solid red;">
+                              <img src="assets/flage/blank.gif" style="margin-top: 4px;margin-right: 5px;"
+                                class="flag flag-{{getdisflage}}" alt="Czech Republic" />
+                            </div>
+
+
+                            <div
+                              style="background-image: linear-gradient(45deg,#e2b458,#c07e30);border-radius: 0px 3px 3px 0px;">
+                              <select class="form-control slct" name="getcurrency" [(ngModel)]="getcurrency"
+                                (ngModelChange)="getchange($event)">
+                                <option class="opt" value="USD">USD</option>
+                                <option class="opt" value="CAD">CAD</option>
+                                <option class="opt" value="GBP">GBP</option>
+                                <option class="opt" value="EUR">EUR</option>
+                                <option class="opt" value="ZAR">ZAR</option>
+                              </select>
+                            </div>
+                          </div>
+                        </fieldset>
+
+                      </div>
+                    </div>
+                    <div style="text-align: right;">
+                      <button type="submit" class="btn btn-zipco btn-round btn-min-width ourfont">Next</button>
+                    </div>
+                  </fieldset>
+                </form>
+
+                <form *ngIf="view" class="number-tab-steps wizard-circle" #upsendmoneyone="ngForm"
+                  (ngSubmit)="upsendmoney(upsendmoneyone.value)">
+                  <fieldset>
+                    <div class="row mt-2 justify-content-center">
+                      <div class="col-md-6 col-xs-12">
+                        <h4 class="text-center text-gold text-bold-700" style="text-transform: uppercase;">How much
+                          would
+                          you like to transfer?</h4>
+
+                        <fieldset class="mb-2">
+                          <label style="font-weight: bold;font-size: 20px;">You Send</label>
+                          <div class="input-group">
+                            <input type="text" *ngIf="errsendamount" class="form-control" name="send_amount"
+                              [(ngModel)]="send_amount" style="border-right: none;border: none;"
+                              (ngModelChange)="setconvert()" ngModel>
+                            <input type="text" *ngIf="!errsendamount" class="form-control" name="send_amount"
+                              [(ngModel)]="send_amount" style="border: 1px solid red;" (ngModelChange)="setconvert()"
+                              ngModel>
+                            <div style="background-image: linear-gradient(45deg, #e2b458, #d2a957);">
+                              <img src="assets/flage/blank.gif" style="margin-top: 4px;margin-left: 10px;"
+                                class="flag flag-{{senddisflage}}" alt="Czech Republic" />
+                            </div>
+                            <div
+                              style="background-image: linear-gradient(45deg,#e2b458,#c07e30);border-radius: 0px 3px 3px 0px;">
+                              <select class="form-control slct" name="sendcurrency" [(ngModel)]="sendcurrency"
+                                (ngModelChange)="sendchange($event)">
+                                <option class="opt" value="USD">USD</option>
+                                <option class="opt" value="CAD">CAD</option>
+                                <option class="opt" value="GBP">GBP</option>
+                                <option class="opt" value="EUR">EUR</option>
+                                <option class="opt" value="ZAR">ZAR</option>
+                              </select>
+                            </div>
+                          </div>
+                        </fieldset>
+
+                        <fieldset class="mb-2">
+                          <div class="row">
+                            <div class="col-md-3" style="font-weight: bold;font-size: 15px;">
+                              {{disfee}} {{sendcurrency}}
+                            </div>
+                            <div class="col-md-6">
+                              <select class="form-control" name="fee" [(ngModel)]="fee"
+                                (ngModelChange)="calculate($event)" ngModel>
+                                <!-- <option value="zipco">ZIPCO Payment Fee</option> -->
+                                <option value="card_visa">Credit Card ( Visa / Master Card ) Fee</option>
+                                <option value="card_amex">Credit Card ( American Express Card ) Fee</option>
+                              </select>
+                            </div>
+                            <div class="col-md-3" style="font-weight: bold;font-size: 15px;">
+                              Fee
+                            </div>
+                          </div>
+                        </fieldset>
+                        <fieldset class="mb-2">
+                          <div class="row" style="font-size: 15px;">
+                            <div class="col-md-3">
+                              {{totfee}} {{sendcurrency}}
+                            </div>
+                            <div class="col-md-4">
+                              Our Fee
+                            </div>
+                          </div>
+                        </fieldset>
+                        <fieldset class="mb-2">
+                          <div class="row" style="font-size: 15px;">
+                            <div class="col-md-3">
+                              {{totfee*1 + disfee*1}} {{sendcurrency}}
+                            </div>
+                            <div class="col-md-4">
+                              Total Fee
+                            </div>
+                          </div>
+                        </fieldset>
+                        <fieldset class="mb-2">
+                          <div class="row" style="font-size: 15px;">
+                            <div class="col-md-3">
+                              {{totamount}} {{sendcurrency}}
+                            </div>
+                            <div class="col-md-6">
+                              <p>Amount We’ll Convert</p>
+                            </div>
+                          </div>
+                        </fieldset>
+
+                        <fieldset class="mb-2">
+                          <label style="font-weight: bold;font-size: 20px;">Beneficiary Gets</label>
+                          <div class="input-group">
+                            <input type="text" *ngIf="errgetamount" class="form-control" name="get_amount"
+                              [(ngModel)]="get_amount" style="border-right: none;border: none;" ngModel>
+                            <input type="text" *ngIf="!errgetamount" class="form-control" name="get_amount"
+                              [(ngModel)]="get_amount" style="border: 1px solid red;" ngModel>
+                            <div style="background-image: linear-gradient(45deg, #e2b458, #d2a957);">
+                              <img src="assets/flage/blank.gif" style="margin-top: 4px;margin-left: 10px;"
+                                class="flag flag-{{getdisflage}}" alt="Czech Republic" />
+                            </div>
+                            <div
+                              style="background-image: linear-gradient(45deg,#e2b458,#c07e30);border-radius: 0px 3px 3px 0px;">
+                              <select class="form-control slct" name="getcurrency" [(ngModel)]="getcurrency"
+                                (ngModelChange)="getchange($event)">
+                                <option class="opt" value="USD">USD</option>
+                                <option class="opt" value="CAD">CAD</option>
+                                <option class="opt" value="GBP">GBP</option>
+                                <option class="opt" value="EUR">EUR</option>
+                                <option class="opt" value="ZAR">ZAR</option>
+                              </select>
+                            </div>
+                          </div>
+                        </fieldset>
+
+                      </div>
+                    </div>
+                    <div style="text-align: right;">
+                      <button type="submit" class="btn btn-zipco btn-round btn-min-width ourfont">Next</button>
+                    </div>
+                  </fieldset>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

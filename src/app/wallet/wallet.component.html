@@ -1,0 +1,80 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row" style="max-width: 1140px;">
+      <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block pathffont">My Wallet</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb pathsfont">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">My Wallet
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-xs-12 breadcrumb-item" style="max-width: 285px;">
+        <div class="card pull-up bg-zipco">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex">
+                <div class="media-body text-left">
+                  <h3 class="white">${{total_wallet_amount}}</h3>
+                  <h6 class="text-white">USD Balance</h6>
+                </div>
+                <div>
+                  <i class="icon-wallet white font-large-2 float-right"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+      <div class="row justify-content-center">
+        <div class="col-3" style="max-width: 285px;"></div>
+        <div class="col-6" style="max-width: 570px;">
+          <div class="card pull-up bg-zipco">
+            <div class="card-content collapse show text-white">
+              <div class="card-body">
+                <a [routerLink]="['/add-money']" class="btn-zipco btn btn-glow btn-round ourfont">
+                  <i class="la la-plus"></i>
+                  Add Money
+                </a>
+                <form class="form-horizontal form-purchase-token row" action="">
+                  <div id="recent-transactions" class="col-12">
+                    <br>
+                    <div class="card bg-zipco">
+                      <div class="card-content text-white">
+                        <div class="table-responsive">
+                          <table id="tbl_transaction" class="table table-hover table-xl mb-0">
+                            <thead>
+                              <tr>
+                                <th class="border-top-0 text-center">Date</th>
+                                <th class="border-top-0 text-center">Amount</th>
+                              </tr>
+                            </thead>
+                            <tbody class="text-center">
+                              <tr class="pull-up" *ngFor="let list of alltrans">
+                                <td class="text-truncate">{{list.date | date: "dd/MM/yyyy hh:mm a"}}</td>
+                                <td class="text-truncate">${{list.amount}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3" style="max-width: 285px;"></div>
+      </div>
+    </div>
+  </div>
+</div>

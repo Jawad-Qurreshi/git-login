@@ -1,0 +1,76 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+      <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block">Agent Transaction History</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">Agent Transaction History
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+      <div class="row justify-content-center">
+        <div class="col-12" style="max-width: 1140px;">
+          <div class="card pull-up bg-zipco">
+            <div class="card-content collapse show">
+              <div class="card-body">
+                <form class="form-horizontal form-purchase-token row" action="">
+                  <div class="col-12 col-md-12">
+                    <div class="row">
+                      <div id="recent-transactions" class="col-12">
+                        <h6 class="my-2 text-white" style="font-size: 18px;">Transaction</h6>
+                        <div class="card bg-zipco">
+                          <div class="card-content text-white">
+                            <div class="table-responsive">
+                              <table id="tbl_transaction" class="table table-hover table-xl mb-0">
+                                <thead>
+                                  <tr>
+                                    <th class="border-top-0 text-center">Date</th>
+                                    <th class="border-top-0 text-center">ZRMT</th>
+                                    <th class="border-top-0 text-center">Sender</th>
+                                    <th class="border-top-0 text-center">Beneficiary Name</th>
+                                    <th class="border-top-0 text-center">Beneficiary Status</th>
+                                  </tr>
+                                </thead>
+                                <tbody class="text-center">
+                                  <tr class="pull-up" *ngFor="let list of alltrans">
+                                    <td class="text-truncate">{{list.date | date: "dd/MM/yyyy hh:mm a"}}</td>
+                                    <td class="text-truncate">{{list.zrmt_no}}</td>
+                                    <td class="text-truncate">
+                                      <a [routerLink]="['/agent-single-transaction', list.atid]"
+                                        style="text-transform: capitalize;">{{list.sname}}</a>
+                                    </td>
+                                    <td class="text-truncate" style="text-transform: capitalize;">{{list.recname}}</td>
+                                    <td class="text-truncate p-1">
+                                      <label *ngIf="list.status == 0"
+                                        class="mb-0 btn-sm btn btn-outline-warning round">Pending</label>
+                                      <label *ngIf="list.status == 1"
+                                        class="mb-0 btn-sm btn btn-outline-success round">Paid</label>
+                                      <label *ngIf="list.status == 2"
+                                        class="mb-0 btn-sm btn btn-outline-danger round">Rejected</label>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="content-wrapper">
+  <div class="content-header row">
+  </div>
+  <div class="content-body">
+    <div style="background: #17191d;">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5 d-none d-sm-none d-xs-none d-md-block">
+            <img src="app-assets/images/img_2.png" style="position: fixed;left:0;width: 43%;height: auto" />
+          </div>
+          <div class="col-md-7" style="background-color:#17191d; background-image: url(https://zipcx.io/assets/images/01.png); background-repeat: no-repeat;background-position: top left;">
+
+            <div class="container" style="padding-top: 155px;padding-bottom: 155px;">
+              <div class="row">
+                <div class="col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-12 col-sm-12 col-12">
+                  <div class="login_wrapper">
+                    <div class="row">
+                      <div class="col-md-12">
+                      </div>
+                    </div>
+                    <br>
+                    <p class="text-center h5 text-capitalize subtitle" style="color: #c88c39;">WELCOME TO ZIPCOIN</p>
+                    <p class="text-center h5 text-capitalize subtitle">Verification code 2FA Authantication</p>
+                    <br>
+                    <form class="form-horizontal form-signin" #authdata="ngForm" (ngSubmit)="two_auth(authdata.value)">
+                      <fieldset class="form-group">
+                        <input type="text" *ngIf="errtoken" class="form-control" placeholder="Enter Your Token" name="token" ngModel>
+                        <input type="text" *ngIf="!errtoken" style="border: 1px solid red;" class="form-control" placeholder="Enter Your Token" name="token"
+                          ngModel>
+                      </fieldset>
+                      <div style="text-align: center;">
+                        <button type="submit" class="custom_btn_css" id="btn_forgotpassword">VERIFY TOKEN</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

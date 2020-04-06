@@ -1,0 +1,78 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+      <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block pathffont">Beneficiary</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb pathsfont">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">Beneficiary
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+      <div class="row justify-content-center">
+        <!-- <div class="col-2" style="max-width: 190px;"></div> -->
+        <div class="col-12" style="max-width: 1140px;">
+          <div class="card pull-up bg-zipco">
+            <div class="card-content collapse show text-white">
+              <div class="card-body">
+                <a [routerLink]="['/add-benificiary']" class="btn-zipco btn btn-glow btn-round ourfont">
+                  <i class="la la-plus"></i>
+                  Add New Beneficiary
+                </a>
+                <form class="form-horizontal form-purchase-token row" action="">
+                  <div id="recent-transactions" class="col-12">
+                    <br>
+                    <div class="card bg-zipco">
+                      <div class="card-content text-white">
+                        <div class="table-responsive">
+                          <table id="tbl_transaction" class="table table-hover table-xl mb-0">
+                            <thead>
+                              <tr>
+                                <th class="border-top-0 text-center">Name</th>
+                                <th class="border-top-0 text-center">Country</th>
+                                <th class="border-top-0 text-center">Action</th>
+                                <th class="border-top-0 text-center">Option</th>
+                                <th class="border-top-0 text-center">IP</th>
+                                <th class="border-top-0 text-center">OS/Browser</th>
+                              </tr>
+                            </thead>
+                            <tbody class="text-center">
+                              <tr class="pull-up" *ngFor="let list of benificiary_details">
+                                <td class="text-truncate">{{list.name_business}}</td>
+                                <td class="text-truncate">{{list.country_name}}</td>
+                                <td class="text-truncate">
+                                  <a [routerLink]="" (click)="edit(list.bid)">
+                                    <i class="ft ft-edit"></i> Edit</a> |
+                                  <a [routerLink]="" (click)="delete(list.bid)">
+                                    <i class="ft ft-trash-2"></i> Delete</a>
+                                </td>
+                                <td class="text-truncate">
+                                  <a [routerLink]="['/send-money']" class="btn btn-primary btn-sm">Send Money</a>
+                                </td>
+                                <td class="text-truncate">{{list.ip_address}}</td>
+                                <td class="text-truncate">{{list.os}} / {{list.browser}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-2" style="max-width: 190px;"></div> -->
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+      <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block pathffont">Promocode</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb pathsfont">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/m-promocode']">Promocode</a>
+              </li>
+              <li class="breadcrumb-item active">Add Promocode
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+      <div class="row justify-content-center">
+        <div class="col-md-3" style="max-width: 285px;"></div>
+        <div class="col-xs-12 col-sm-12 col-md-6" style="max-width: 570px;">
+          <div class="card pull-up bg-zipco">
+            <div class="card-content collapse show text-white">
+              <div class="card-body">
+                <form class="form-horizontal form-user-profile row mt-2" #promodata="ngForm"
+                  (ngSubmit)="promocode(promodata.value)">
+
+                  <div class="col-12">
+                    <fieldset class="form-group">
+                      <label for="currency" style="color: white;">Currency</label>
+                      <select class="custom-select" id="currency" name="currency" [(ngModel)]="currency" ngModel>
+                        <option value="">Select Currency</option>
+                        <option value="usd">USD</option>
+                        <option value="cad">CAD</option>
+                        <option value="gbp">GBP</option>
+                        <option value="eur">EUR</option>
+                        <option value="zar">ZAR</option>
+                      </select>
+                    </fieldset>
+                  </div>
+
+                  <div class="col-12">
+                    <fieldset class="form-group">
+                      <label for="pvalue" style="color: white;">Promocode Value</label>
+                      <input type="text" class="form-control" id="pvalue" name="pvalue" [(ngModel)]="pvalue"
+                        placeholder="Please Enter Promocode Value" ngModel>
+                    </fieldset>
+                  </div>
+
+                  <div class="col-12 text-center" style="margin-top: 10px;">
+                    <button type="submit" class="btn-zipco btn btn-glow btn-round ourfont">Add Promocode</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3" style="max-width: 285px;"></div>
+      </div>
+    </div>
+  </div>
+</div>

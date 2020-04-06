@@ -1,0 +1,83 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+      <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block pathffont">EOS Address</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb pathsfont">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/m-dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">EOS Address
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+      <div class="row justify-content-center">
+        <div class="col-3" style="max-width: 285px;"></div>
+        <div class="col-6" style="max-width: 570px;">
+          <div class="card pull-up bg-zipco">
+            <div class="card-header card-header-transparent">
+              <h6 class="card-title" style="font-size: 18px;">Edit EOS Address</h6>
+            </div>
+            <div class="card-content">
+              <div class="card-body ">
+                <form class="row col-12" #addeos="ngForm" (ngSubmit)="eosdata(addeos.value)">
+                  <div class="col-md-12">
+
+                    <fieldset class="form-group text-white">
+                      <label class="text-white" for="eos_address">EOS Address</label>
+                      <input type="text" name="eos_address" [(ngModel)]="eos_address" id="eos_address"
+                        class="form-control" placeholder="Enter EOS Address" ngModel>
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                      <label for="rateusd" style="color: white;">ZIPCO Rate in USD</label>
+                      <input type="text" class="form-control" id="rateusd" placeholder="Enter USD Rate"
+                        [(ngModel)]="rateusd" name="rateusd">
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                      <label for="ratecad" style="color: white;">ZIPCO Rate in CAD</label>
+                      <input type="text" class="form-control" id="ratecad" placeholder="Enter CAD Rate"
+                        [(ngModel)]="ratecad" name="ratecad">
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                      <label for="rategbp" style="color: white;">ZIPCO Rate in GBP</label>
+                      <input type="text" class="form-control" id="rategbp" placeholder="Enter GBP Rate"
+                        [(ngModel)]="rategbp" name="rategbp">
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                      <label for="rateeur" style="color: white;">ZIPCO Rate in EUR</label>
+                      <input type="text" class="form-control" id="rateeur" placeholder="Enter EUR Rate"
+                        [(ngModel)]="rateeur" name="rateeur">
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                      <label for="ratezar" style="color: white;">ZIPCO Rate in ZAR</label>
+                      <input type="text" class="form-control" id="ratezar" placeholder="Enter ZAR Rate"
+                        [(ngModel)]="ratezar" name="ratezar">
+                    </fieldset>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group" style="text-align: center;">
+                      <button type="submit" class="btn btn-round btn-zipco ourfont" id="btn_search"> UPDATE
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3" style="max-width: 285px;"></div>
+      </div>
+    </div>
+  </div>
+</div>

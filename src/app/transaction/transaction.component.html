@@ -1,0 +1,208 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+      <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block pathffont">Transfer History</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb pathsfont">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">Transfer History
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+      <div class="row justify-content-center">
+        <div class="col-12" style="max-width: 1140px;">
+          <div class="card pull-up bg-zipco">
+            <div class="card-header card-header-transparent">
+              <h6 class="card-title" style="font-size: 18px;">Advance Search</h6>
+            </div>
+            <div class="card-content">
+              <div class="card-body ">
+
+
+                <form class="row col-12" #finddata="ngForm" (ngSubmit)="searchdata(finddata.value)">
+                  <div class="col-md-6">
+                    <div class="form-group  text-white">
+                      <label class=" text-white">Date</label>
+                      <div class="input-group">
+                        <ng-datepicker name="start_date" [(ngModel)]="start_date" id="start_date" [options]="options">
+                        </ng-datepicker>
+                        <span class="input-group-addon" style="background: none;">to</span>
+                        <ng-datepicker name="end_date" [(ngModel)]="end_date" id="end_date" [options]="options">
+                        </ng-datepicker>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="status" class=" text-white">Status</label>
+                      <select class="form-control" [(ngModel)]="status" name="status" id="status" ngModel>
+                        <option value="">Select Status</option>
+                        <option value="1">Sent</option>
+                        <option value="0">Pending</option>
+                        <option value="2">Rejected</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-2 pt-2">
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-block btn-round btn-zipco ourfont" id="btn_search"> Search
+                      </button>
+                    </div>
+                  </div>
+                </form>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-12" style="max-width: 1140px;">
+          <div class="card pull-up bg-zipco">
+            <div class="card-content collapse show">
+              <div class="card-body text-white">
+                <form class="form-horizontal form-purchase-token row" action="">
+                  <div class="col-12 col-md-12">
+                    <div class="row">
+                      <div id="recent-transactions" class="col-12">
+                        <h6 class="my-2 text-white" style="font-size: 18px;">Transaction</h6>
+                        <div class="card bg-zipco text-white">
+                          <div class="card-content">
+                            <div class="table-responsive">
+                              <table id="tbl_transaction" class="table table-hover table-xl mb-0">
+                                <thead>
+                                  <tr>
+                                    <th class="border-top-0 text-center">Date</th>
+                                    <th class="border-top-0 text-center">Method</th>
+                                    <th class="border-top-0 text-center">Card No.</th>
+                                    <th class="border-top-0 text-center">Transaction No.</th>
+                                    <th class="border-top-0 text-center">Reference No.</th>
+                                    <th class="border-top-0 text-center">ZRMT No.</th>
+                                    <th class="border-top-0 text-center">EOS Address</th>
+                                    <th class="border-top-0 text-center">Account ID</th>
+                                    <th class="border-top-0 text-center">Beneficiary Name</th>
+                                    <th class="border-top-0 text-center">Currency</th>
+                                    <th class="border-top-0 text-center">Amount</th>
+                                    <th class="border-top-0 text-center">Status</th>
+                                    <th class="border-top-0 text-center">Verify</th>
+                                    <th class="border-top-0 text-center">IP</th>
+                                    <th class="border-top-0 text-center">OS/Browser</th>
+                                  </tr>
+                                </thead>
+                                <tbody class="text-center">
+                                  <tr class="pull-up"
+                                    *ngFor="let list of alltrans | paginate: { itemsPerPage: 10, currentPage: p }">
+                                    <td class="text-truncate">{{list.date | date: "dd/MM/yyyy hh:mm a"}}</td>
+
+                                    <td class="text-truncate" *ngIf="list.payment_type == 'wire_payment'">Wire Payment
+                                    </td>
+                                    <td class="text-truncate" *ngIf="list.payment_type == 'zipco_payment'">ZIPCO Payment
+                                    </td>
+                                    <td class="text-truncate" *ngIf="list.payment_type == 'cash'">Cash</td>
+                                    <td class="text-truncate" *ngIf="list.payment_type == 'debit_card'">Debit Card</td>
+                                    <td class="text-truncate" *ngIf="list.payment_type == 'enterac_transfer'">Enterac
+                                      Transfer</td>
+                                    <td class="text-truncate" *ngIf="list.payment_type == 'credit_card_vsmc'">Credit
+                                      Card ( Visa / Mastercard )
+                                    </td>
+                                    <td class="text-truncate" *ngIf="list.payment_type == 'credit_card_amex'">
+                                      Credit Card ( American Express )
+                                    </td>
+
+                                    <td class="text-truncate" *ngIf="list.cardno">#### #### ####
+                                      {{list.cardno | slice:-4}}</td>
+                                    <td class="text-truncate" *ngIf="!list.cardno">-</td>
+
+
+                                    <td class="text-truncate" *ngIf="list.transaction_number">
+                                      <a
+                                        [routerLink]="['/single-transaction', list.sid]">{{list.transaction_number}}</a>
+                                    </td>
+                                    <td class="text-truncate" *ngIf="!list.transaction_number">
+                                      -
+                                    </td>
+
+                                    <td class="text-truncate" *ngIf="list.referenceno">
+                                      {{list.referenceno}}
+                                    </td>
+                                    <td class="text-truncate" *ngIf="!list.referenceno">
+                                      -
+                                    </td>
+
+                                    <td class="text-truncate" *ngIf="list.zrmt_no">
+                                      {{list.zrmt_no}}
+                                    </td>
+                                    <td class="text-truncate" *ngIf="!list.zrmt_no">
+                                      -
+                                    </td>
+
+                                    <td class="text-truncate" *ngIf="list.eos_address">
+                                      {{list.eos_address}}
+                                    </td>
+                                    <td class="text-truncate" *ngIf="!list.eos_address">
+                                      -
+                                    </td>
+
+                                    <td class="text-truncate">{{list.account_id}}</td>
+
+                                    <td class="text-truncate" style="text-transform: capitalize;"
+                                      *ngIf="list.beificiary_name">{{list.beificiary_name}}</td>
+
+                                    <td class="text-truncate" *ngIf="list.self_account_holder"
+                                      style="text-transform: capitalize;">
+                                      {{list.self_account_holder}}</td>
+
+                                    <td class="text-truncate" *ngIf="list.else_account_holder"
+                                      style="text-transform: capitalize;">
+                                      {{list.else_account_holder}}</td>
+
+                                    <td class="text-truncate" *ngIf="list.recname" style="text-transform: capitalize;">
+                                      {{list.recname}}</td>
+
+                                    <td class="text-truncate p-1">{{list.get_currency}}</td>
+                                    <td class="text-truncate p-1">{{list.get_amount}}</td>
+                                    <td class="text-truncate">
+                                      <label class="mb-0 btn-sm btn btn-outline-warning round"
+                                        *ngIf="list.status == 0">Pending</label>
+                                      <label class="mb-0 btn-sm btn btn-outline-success round"
+                                        *ngIf="list.status == 1">Paid</label>
+                                      <label class="mb-0 btn-sm btn btn-outline-danger round"
+                                        *ngIf="list.status == 2">Reject</label>
+                                    </td>
+                                    <td class="text-truncate p-1" *ngIf="list.payment_screenshot">
+                                      <a href="{{payurl + custid}}/{{list.payment_screenshot}}" target="_blank">View
+                                        Attachment</a>
+                                    </td>
+                                    <td class="text-truncate p-1" *ngIf="!list.payment_screenshot">-</td>
+                                    <td class="text-truncate p-1">{{list.ip_address}}</td>
+                                    <td class="text-truncate p-1">{{list.os}} / {{list.browser}}</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                            <div style="text-align: end;padding-top: 15px;color: white;">
+                              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

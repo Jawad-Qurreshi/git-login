@@ -1,0 +1,327 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+      <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block pathffont">Send Money</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb pathsfont">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">Send Money
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+
+      <div class="row justify-content-center">
+        <div class="col-12" style="max-width: 1110px;">
+          <div class="card bg-zipco text-white">
+            <div class="card-content">
+              <div class="card-header card-header-transparent">
+                <h6 class="card-title" style="font-size: 18px;">Send Money Now</h6>
+              </div>
+              <div style="margin-top: 25px;">
+                <img src="assets/plate/plate_5.png" style="margin-left: 10%;width: 80%;" />
+              </div>
+              <div class="card-body">
+                <form class="number-tab-steps wizard-circle" #sendmoneyfive="ngForm"
+                  (ngSubmit)="sendmoney(sendmoneyfive.value)">
+                  <fieldset>
+                    <div class="row mt-2">
+                      <div class="col-md-12">
+                        <h4 class="text-center text-gold text-bold-700" style="text-transform: uppercase;">How would you
+                          like to pay?</h4>
+                      </div>
+                      <div class="row col-md-12">
+                        <div class="col-md-7">
+
+                          <div class="mb-1 col-12 icheck_minimal skin">
+                            <fieldset>
+                              <input type="radio" value="zipco_payment" name="pay_type"
+                                (click)="chkbutton('zipco_payment')" [(ngModel)]="pay_type" id="zipco_payment" ngModel>
+                              <label for="zipco_payment" style="font-size: 17px;">
+                                <strong>&nbsp;&nbsp;ZIPCO Payment</strong>
+                              </label>
+                            </fieldset>
+                          </div>
+
+                          <!-- <div class="mb-1 col-12 icheck_minimal skin">
+                                <fieldset>
+                                  <input type="radio" value="cash" name="pay_type" (click)="chkbutton('cash')"
+                                    [(ngModel)]="pay_type" id="cash" ngModel>
+                                  <label for="cash" style="font-size: 17px;">
+                                    <strong>&nbsp;&nbsp;Cash</strong>
+                                  </label>
+                                </fieldset>
+                              </div> -->
+
+                          <div class="mb-1 col-12 icheck_minimal skin">
+                            <fieldset>
+                              <input type="radio" value="debit_card" name="pay_type" (click)="chkbutton('debit_card')"
+                                [(ngModel)]="pay_type" id="debit_card" ngModel>
+                              <label for="debit_card" style="font-size: 17px;">
+                                <strong>&nbsp;&nbsp;Debit Card</strong>
+                              </label>
+                              <p style="font-size: 14px;color: yellow;">
+                                An additional fee will apply per your credit card terms. The Payee name must match both
+                                the account and the credit card.
+                              </p>
+                            </fieldset>
+                          </div>
+
+                          <div class="mb-1 col-12 icheck_minimal skin">
+                            <fieldset>
+                              <input type="radio" value="enterac_transfer" name="pay_type"
+                                (click)="chkbutton('enterac_transfer')" [(ngModel)]="pay_type" id="enterac_transfer"
+                                ngModel>
+                              <label for="enterac_transfer" style="font-size: 17px;">
+                                <strong>&nbsp;&nbsp;Enterac E-Transfer</strong>
+                              </label>
+                            </fieldset>
+                          </div>
+
+                          <div class="mb-1 col-12 icheck_minimal skin">
+                            <fieldset>
+                              <input type="radio" value="credit_card_vsmc" name="pay_type"
+                                (click)="chkbutton('credit_card_vsmc')" [(ngModel)]="pay_type" id="credit_card_vsmc"
+                                ngModel>
+                              <label for="credit_card_vsmc" style="font-size: 17px;">
+                                <strong>&nbsp;&nbsp;Credit Card ( Visa, Mastercard )</strong>
+                              </label>
+                              <p style="font-size: 14px;color: yellow;">
+                                An additional fee will apply per your credit card terms. The Payee name must match both
+                                the account and the credit card.
+                              </p>
+                            </fieldset>
+                          </div>
+
+                          <div class="mb-1 col-12 icheck_minimal skin">
+                            <fieldset>
+                              <input type="radio" value="credit_card_amex" name="pay_type"
+                                (click)="chkbutton('credit_card_amex')" [(ngModel)]="pay_type" id="credit_card_amex"
+                                ngModel>
+                              <label for="credit_card_amex" style="font-size: 17px;">
+                                <strong>&nbsp;&nbsp;Credit Card ( American Express )</strong>
+                              </label>
+                              <p style="font-size: 14px;color: yellow;">
+                                An additional fee will apply per your credit card terms. The Payee name must match both
+                                the account and the credit card.
+                              </p>
+                            </fieldset>
+                          </div>
+
+                          <div class="mb-1 col-12 icheck_minimal skin">
+                            <fieldset>
+                              <input type="radio" value="wire_payment" name="pay_type"
+                                (click)="chkbutton('wire_payment')" [(ngModel)]="pay_type" id="wire_payment" ngModel>
+                              <label for="wire_payment" style="font-size: 17px;">
+                                <strong>&nbsp;&nbsp;Wire Payment</strong>
+                              </label>
+                            </fieldset>
+                          </div>
+
+                        </div>
+                        <div class="col-md-5">
+                          <div class="card box-shadow-0 border-warning bg-transparent">
+                            <div class="card-content collapse show" style="background: none;">
+                              <div class="card-body">
+                                <div class="row">
+                                  <div class="col-md-7 text-left">
+                                    <p class="font-medium-2" style="color: #999999;font-weight: bold;">Transfer Details
+                                    </p>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-7 text-left">
+                                    <p class="font-medium-1">You Send</p>
+                                  </div>
+                                  <div class="col-md-5 text-right">
+                                    <p class="font-medium-4">{{sendamount}} {{sendcurrency}}</p>
+                                  </div>
+                                </div>
+
+                                <div class="row">
+                                  <div class="col-md-7 text-left">
+                                    <p class="font-medium-1">Fee (Included)</p>
+                                  </div>
+                                  <div class="col-md-5 text-right">
+                                    <p class="font-medium-2">{{totfee}} {{sendcurrency}}</p>
+                                  </div>
+                                </div>
+
+                                <div class="row" *ngIf="pay_type == 'credit_card_vsmc'">
+                                  <div class="col-md-7 text-left">
+                                    <p class="font-medium-1">Visa and Mastercard</p>
+                                  </div>
+                                  <div class="col-md-5 text-right">
+                                    <p class="font-medium-2">{{vtot}} {{sendcurrency}}</p>
+                                  </div>
+                                </div>
+
+                                <div class="row" *ngIf="pay_type == 'credit_card_amex'">
+                                  <div class="col-md-7 text-left">
+                                    <p class="font-medium-1">American Express</p>
+                                  </div>
+                                  <div class="col-md-5 text-right">
+                                    <p class="font-medium-2">{{atot}} {{sendcurrency}}</p>
+                                  </div>
+                                </div>
+
+                                <div class="row" *ngIf="promoval">
+                                  <div class="col-md-7 text-left">
+                                    <p class="font-medium-1">Apply Promocode</p>
+                                  </div>
+                                  <div class="col-md-5 text-right">
+                                    <p class="font-medium-2">{{promoval}} {{sendcurrency}}</p>
+                                  </div>
+                                </div>
+
+                                <div class="row" *ngIf="pay_type == 'credit_card_vsmc'">
+                                  <div class="col-md-7 text-left">
+                                    <p class="font-medium-1">Amount We'll Convert</p>
+                                  </div>
+                                  <div class="col-md-5 text-right">
+                                    <p class="font-medium-2">{{vfinaltotal}} {{sendcurrency}}</p>
+                                  </div>
+                                </div>
+
+                                <div class="row" *ngIf="pay_type == 'credit_card_amex'">
+                                  <div class="col-md-7 text-left">
+                                    <p class="font-medium-1">Amount We'll Convert</p>
+                                  </div>
+                                  <div class="col-md-5 text-right">
+                                    <p class="font-medium-2">{{afinaltotal}} {{sendcurrency}}</p>
+                                  </div>
+                                </div>
+
+                                <div class="row" *ngIf="pay_type == 'zipco_payment'">
+                                  <div class="col-md-7 text-left">
+                                    <p class="font-medium-1">Amount We'll Convert</p>
+                                  </div>
+                                  <div class="col-md-5 text-right">
+                                    <p class="font-medium-2">{{totamount}} {{sendcurrency}}</p>
+                                  </div>
+                                </div>
+
+                                <div class="row" *ngIf="pay_type == 'cash'">
+                                  <div class="col-md-7 text-left">
+                                    <p class="font-medium-1">Amount We'll Convert</p>
+                                  </div>
+                                  <div class="col-md-5 text-right">
+                                    <p class="font-medium-2">{{totamount}} {{sendcurrency}}</p>
+                                  </div>
+                                </div>
+
+                                <div class="row" *ngIf="pay_type == 'debit_card'">
+                                  <div class="col-md-7 text-left">
+                                    <p class="font-medium-1">Amount We'll Convert</p>
+                                  </div>
+                                  <div class="col-md-5 text-right">
+                                    <p class="font-medium-2">{{totamount}} {{sendcurrency}}</p>
+                                  </div>
+                                </div>
+
+                                <div class="row" *ngIf="pay_type == 'enterac_transfer'">
+                                  <div class="col-md-7 text-left">
+                                    <p class="font-medium-1">Amount We'll Convert</p>
+                                  </div>
+                                  <div class="col-md-5 text-right">
+                                    <p class="font-medium-2">{{totamount}} {{sendcurrency}}</p>
+                                  </div>
+                                </div>
+
+                                <div class="row" *ngIf="pay_type == 'wire_payment'">
+                                  <div class="col-md-7 text-left">
+                                    <p class="font-medium-1">Amount We'll Convert</p>
+                                  </div>
+                                  <div class="col-md-5 text-right">
+                                    <p class="font-medium-2">{{totamount}} {{sendcurrency}}</p>
+                                  </div>
+                                </div>
+
+                                <div class="row" *ngIf="always">
+                                  <div class="col-md-7 text-left">
+                                    <p class="font-medium-1">Amount We'll Convert</p>
+                                  </div>
+                                  <div class="col-md-5 text-right">
+                                    <p class="font-medium-2">{{totamount}} {{sendcurrency}}</p>
+                                  </div>
+                                </div>
+
+
+
+
+                                <div class="row">
+                                  <div class="col-md-6 text-left">
+                                    <p class="font-medium-1">You Get</p>
+                                  </div>
+                                  <div class="col-md-6 text-right">
+                                    <p class="font-medium-4">{{getamount}} {{getcurrency}}</p>
+                                  </div>
+                                </div>
+
+                                <div class="row">
+                                  <div class="col-md-6 text-left">
+                                    <p class="font-medium-1">Should Arrive</p>
+                                  </div>
+                                  <div class="col-md-6 text-right">
+                                    <p class="font-medium-2">Same Working Day</p>
+                                  </div>
+                                </div>
+                                <hr style="border-top: 1px solid rgba(202,207,231, 0.5);">
+                                <div class="row">
+                                  <div class="col-md-7 text-left">
+                                    <p class="font-medium-2" style="color: #999999;font-weight: bold;">Beneficiary
+                                      Details
+                                    </p>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-6 text-left">
+                                    <p class="font-medium-1">Name</p>
+                                  </div>
+                                  <div class="col-md-6 text-right">
+                                    <p class="font-medium-2" style="text-transform: capitalize;">{{name}}</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div style="text-align: right;">
+
+                      <button (click)="previous()" class="btn btn-zipco btn-round btn-min-width ourfont"
+                        style="background: white;color: black;">Go
+                        Back</button>
+                      &nbsp;&nbsp;
+
+                      <a (click)="payget()" *ngIf="btncredit"
+                        class="btn btn-zipco btn-round btn-min-width ourfont">Next</a>
+                      <button type="submit" *ngIf="btnshow"
+                        class="btn btn-zipco btn-round btn-min-width ourfont">Submit</button>
+                      <a (click)="wire_pay()" *ngIf="btnwire"
+                        class="btn btn-zipco btn-round btn-min-width ourfont">Next</a>
+                      <a (click)="entrec_pay()" *ngIf="btnentrac"
+                        class="btn btn-zipco btn-round btn-min-width ourfont">Next</a>
+                      <a (click)="zipco_pay()" *ngIf="btnzipco"
+                        class="btn btn-zipco btn-round btn-min-width ourfont">Next</a>
+                    </div>
+                  </fieldset>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>

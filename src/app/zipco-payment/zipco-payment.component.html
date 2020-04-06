@@ -1,0 +1,69 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+      <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block pathffont">Send Money</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb pathsfont">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">Send Money
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-body">
+      <div class="row justify-content-center">
+        <div class="col-md-3"></div>
+        <div class="col-md-6" style="max-width: 570px;">
+          <div class="card pull-up bg-zipco text-white">
+            <div class="card-body p-2">
+
+              <h4 style="color: #c88c39;text-transform: uppercase;font-weight: bold;font-size: 20px;">ZIPCO Payment
+              </h4>
+
+              <p class="text-silver" style="font-size: 16px;">Please Send {{finalrate}} ZIPCO to Below Address</p>
+              <p style="font-size: 16px;">
+                <b style="color: #c78b38;">•</b> EOS Address : &nbsp;&nbsp;{{eos_address}}
+              </p>
+
+              <div>
+                <div class="form-group" style="text-align: center;">
+
+                  <img src="https://chart.googleapis.com/chart?chs=150x150&amp;cht=qr&amp;chl=zipcointoken"
+                    alt="QR Code" style="width:40%;"><br>
+
+                </div>
+              </div>
+
+              <p style="font-size: 16px;">
+                <b style="color: #c78b38;">•</b> If you don't have ZIPCO token you can buy it from <a
+                  href="https://zipcx.io/" target="_blank">ZIPCX.IO</a>
+              </p>
+
+              <div class="col-md-12 text-center" style="margin-top:10px;">
+                <div class="form-group">
+
+                  <button (click)="previous()" class="btn btn-zipco btn-round btn-min-width ourfont"
+                    style="background: white;color: black;">Go
+                    Back</button>
+                  &nbsp;&nbsp;
+                  <button (click)="confirm()" class="btn btn-zipco btn-round btn-min-width ourfont">Click Here When Transfer
+                      is Complete</button>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    </div>
+  </div>
+</div>

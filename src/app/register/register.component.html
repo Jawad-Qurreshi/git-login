@@ -1,0 +1,201 @@
+<div class="content-wrapper">
+  <div class="content-header row">
+  </div>
+  <div class="content-body">
+    <div style="background: #17191d;background-image: url(https://zipcx.io/assets/images/01.png);">
+
+      <div class="left_align_logo" style="position: fixed;z-index: 99999;padding: 30px;">
+        <a href="https://zipcoinremit.com/" target="_blank">
+          <img class="brand-logo" alt="modern admin logo" style="width: 150px;" src="assets/images/zipcoin.png">
+        </a>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5 d-none d-sm-none d-xs-none d-md-block">
+            <img src="app-assets/images/img_2.png" style="position: fixed;left:0;width: 43%;height: auto" />
+          </div>
+          <div class="col-md-7"
+            style="background-color:#17191d; background-image: url(https://zipcx.io/assets/images/01.png); background-repeat: no-repeat;background-position: top left;">
+
+            <particles [params]="myParams" [style]="myStyle" [width]="width" [height]="height"></particles>
+
+            <div class="container" style="padding-top: 65px;padding-bottom: 49px;">
+              <div class="row">
+                <div class="col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-12 col-sm-12 col-12">
+                  <div class="login_wrapper" style="background: #131519;border-radius: 30px;">
+                    <div class="row">
+                      <div class="col-md-12">
+                      </div>
+                    </div>
+                    <br>
+                    <p style="font-size: 22px; font-weight:bold; color:#c88c39; text-align:center; line-height:normal;">
+                      WELCOME TO ZIPCOIN REMIT</p>
+                    <p class="mb-3 text-center" style="color: white;">Create your account</p>
+                    <form class="form-horizontal form-signin" #signupdata="ngForm"
+                      (ngSubmit)="addnew(signupdata.value)">
+
+                      <fieldset class="form-group">
+                        <label for="user-name">First Name</label>
+                        <input type="text" *ngIf="errfname" class="form-control" id="user-name" name="fname"
+                          placeholder="First Name" ngModel>
+                        <input type="text" *ngIf="!errfname" style="border: 1px solid red;" class="form-control"
+                          id="user-name" name="fname" placeholder="First Name" ngModel>
+                      </fieldset>
+
+                      <fieldset class="form-group">
+                        <label for="middle-name">Middle Name</label>
+                        <input type="text" *ngIf="errmname" class="form-control" id="middle-name" name="mname"
+                          placeholder="Middle Name" ngModel>
+                        <input type="text" *ngIf="!errmname" style="border: 1px solid red;" class="form-control"
+                          id="middle-name" name="mname" placeholder="Middle Name" ngModel>
+                      </fieldset>
+
+                      <fieldset class="form-group">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" *ngIf="errlname" class="form-control" id="last-name" name="lname"
+                          placeholder="Last Name" ngModel>
+                        <input type="text" *ngIf="!errlname" style="border: 1px solid red;" class="form-control"
+                          id="last-name" name="lname" placeholder="Last Name" ngModel>
+                      </fieldset>
+
+                      <fieldset class="form-group">
+                        <label for="country">Country</label>
+                        <select *ngIf="errcountry" class="custom-select" id="country" [(ngModel)]="countryname"
+                          (ngModelChange)="change($event)" name="countryname" ngModel>
+                          <option value="">Select Country</option>
+                          <option *ngFor="let list of country" value="{{list.c_id}}">{{list.country_name}}</option>
+                        </select>
+
+                        <select *ngIf="!errcountry" style="border: 1px solid red;" class="custom-select" id="country"
+                          [(ngModel)]="countryname" (ngModelChange)="change($event)" name="countryname" ngModel>
+                          <option value="">Select Country</option>
+                          <option *ngFor="let list of country" value="{{list.c_id}}">{{list.country_name}}</option>
+                        </select>
+                      </fieldset>
+
+                      <fieldset class="form-group">
+                        <label for="phone-no">Phone Number</label>
+
+                        <div class="row">
+                          <div class="col-1">
+                            <input type="text" class="form-control"
+                              style="padding-left: 5px;padding-right: 0px;width: 34px;" name="phonecode"
+                              [(ngModel)]="phonecode" ngModel disabled />
+                          </div>
+                          <div class="col-11">
+                            <input type="text" *ngIf="errphoneno" class="form-control" id="phone-no"
+                              [(ngModel)]="phoneno" name="phoneno" placeholder="Your Phone Number ( With Country Code )"
+                              (ngModelChange)="checkvalid_phone($event)" ngModel>
+                            <input type="text" *ngIf="!errphoneno" style="border: 1px solid red;" class="form-control"
+                              id="phone-no" [(ngModel)]="phoneno" name="phoneno"
+                              placeholder="Your Phone Number ( With Country Code )"
+                              (ngModelChange)="checkvalid_phone($event)" ngModel>
+                          </div>
+                          <p class="font-small-3 text-info" *ngIf="errphoneno" style="padding-left: 15px;">
+                            <i class="la la-info-circle"></i>
+                            Ex: Nigeria, 2347018858XXX [Here 234 is Country code and rest are your mobile numbers]. Do
+                            not add the preceding zero before your actual number. Good Example +234 7784....... Bad
+                            Example +234 07784......Do not enter the landline phone number.
+                            <br>
+                            <b style="color: red;font-weight: bold;">Do not enter the landline phone number; you will
+                              not get the OTP.</b>
+                          </p>
+                          <p class="font-small-3 text-info" *ngIf="!errphoneno" style="color: red;padding-left: 15px;">
+                            <i class="la la-info-circle"></i>
+                            Ex: Nigeria, 2347018858XXX [Here 234 is Country code and rest are your mobile numbers]. Do
+                            not add the preceding zero before your actual number. Good Example +234 7784....... Bad
+                            Example +234 07784......Do not enter the landline phone number.
+                            <br>
+                            <b style="color: red;font-weight: bold;">Do not enter the landline phone number; you will
+                              not get the OTP.</b>
+                          </p>
+                        </div>
+                      </fieldset>
+
+                      <fieldset class="form-group">
+                        <label for="user-email">Email</label>
+                        <input type="email" *ngIf="erremail" class="form-control" id="user-email" name="email"
+                          placeholder="Your Email" ngModel>
+                        <input type="email" *ngIf="!erremail" style="border: 1px solid red;" class="form-control"
+                          id="user-email" name="email" placeholder="Your Email" ngModel>
+                      </fieldset>
+
+                      <fieldset class="form-group">
+                        <label for="user-password">Password</label>
+
+                        <input type="password" *ngIf="errpassword" style="margin-bottom: 5px;" class="form-control"
+                          id="user-password" name="password" placeholder="Password" ngModel>
+                        <input type="password" *ngIf="!errpassword" style="margin-bottom: 5px;border: 1px solid red;"
+                          class="form-control" id="user-password" name="password" placeholder="Password" ngModel>
+
+                        <p class="font-small-3 text-info" *ngIf="errpassword">
+                          <i class="la la-info-circle"></i>
+                          Must be a minimum of 8 characters and include lower and uppercase and a special character.
+                        </p>
+                        <p class="font-small-3" *ngIf="!errpassword" style="color: red;">
+                          <i class="la la-info-circle"></i>
+                          Must be a minimum of 8 characters and include lower and uppercase and a special character.
+                        </p>
+                      </fieldset>
+
+                      <fieldset class="form-group">
+                        <label for="user-cnf-password">Confirm Password</label>
+                        <input type="password" *ngIf="errrepassword" style="margin-bottom: 5px;" class="form-control"
+                          id="user-cnf-password" name="repassword" placeholder="Password" ngModel>
+                        <input type="password" *ngIf="!errrepassword" style="margin-bottom: 5px;border: 1px solid red;"
+                          class="form-control" id="user-cnf-password" name="repassword" placeholder="Password" ngModel>
+                        <p class="font-small-3" *ngIf="errmsg" style="color: red;">
+                          <i class="fas fa-exclamation-triangle"></i>
+                          Confirm password is not match to password
+                        </p>
+                      </fieldset>
+
+                      <fieldset class="form-group">
+                        <label for="referral-code">Referral Code</label>
+                        <input type="text" class="form-control" id="referral-code" name="refcode"
+                          placeholder="Referral Code" ngModel>
+                      </fieldset>
+
+                      <div class="form-group row">
+                        <div class="col-12 text-center text-sm-left">
+                          <fieldset>
+                            <input type="checkbox" id="terms-conditions" (click)="checkfirst($event)"
+                              class="chk-remember">
+                            <label for="terms-conditions">&nbsp; I Accept <a
+                                href="https://zipcoinremit.com/images/docs/ZipCoinRemit_TermsofUse_Conditions.pdf"
+                                target="_blank">Terms and Conditions</a></label>
+                          </fieldset>
+                        </div>
+                        <div class="col-12 text-center text-sm-left ">
+                          <fieldset>
+                            <input type="checkbox" id="confirm" (click)="checksecond($event)" class="chk-remember"
+                              style="vertical-align: top;">
+                            <label for="confirm" style="width: 95%;">&nbsp; I agree to receive system notification and
+                              newsletters from ZipCoin</label>
+                          </fieldset>
+                        </div>
+                      </div>
+
+                      <div class="text-center">
+                        <button type="submit" class="custom_btn_css">Sign Up</button>
+                        <br>
+                        <br>
+                        <p class="text-center" style="color: white;">Already have an account?
+                          <a [routerLink]="['/login']" class="card-link"
+                            style="color:#c88c39; background: none;font-size: 18px;font-weight: bold;padding: 5px;">Login</a>
+                        </p>
+                      </div>
+
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

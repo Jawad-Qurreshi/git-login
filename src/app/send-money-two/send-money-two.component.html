@@ -1,0 +1,323 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+      <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block pathffont">Send Money</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb pathsfont">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">Send Money
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+
+      <div class="row justify-content-center">
+        <div class="col-12" style="max-width: 1110px;">
+          <div class="card bg-zipco text-white">
+            <div class="card-content">
+              <div class="card-header card-header-transparent">
+                <h6 class="card-title" style="font-size: 18px;">Send Money Now</h6>
+              </div>
+              <div style="margin-top: 25px;">
+                <img src="assets/plate/plate_2.png" style="margin-left: 10%;width: 80%;" />
+              </div>
+              <div class="card-body">
+                <form class="number-tab-steps wizard-circle" #sendmoneytwo="ngForm"
+                  (ngSubmit)="sendmoney(sendmoneytwo.value)">
+                  <fieldset>
+                    <div class="row mt-2 justify-content-center">
+                      <div class="col-md-6 col-xs-12">
+                        <h4 class="text-center text-gold text-bold-700" style="text-transform: uppercase;">Choose
+                          transfer
+                          type?</h4>
+
+                        <!-- START ZIPCO Wallet -->
+                        <div *ngIf="errrdotype" class="card text-white bg-blue-grey bg-darken-4"
+                          style="background-image: none;">
+                          <div class="card-content">
+                            <div class="card-body">
+                              <div class="row skin skin-polaris">
+                                <div class="col-md-6 col-sm-12">
+                                  <fieldset>
+                                    <input type="radio" name="rdotype" [(ngModel)]="rdotype" value="zipco wallet"
+                                      id="zipco-wallet" ngModel>
+                                    <label class="white" for="zipco-wallet" style="font-size: 15px;"> &nbsp;&nbsp;ZIPCO
+                                      Wallet</label>
+                                  </fieldset>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div *ngIf="!errrdotype" class="card text-white bg-blue-grey bg-darken-4"
+                          style="background-image: none;border: 1px solid red;">
+                          <div class="card-content">
+                            <div class="card-body">
+                              <div class="row skin skin-polaris">
+                                <div class="col-md-6 col-sm-12">
+                                  <fieldset>
+                                    <input type="radio" name="rdotype" [(ngModel)]="rdotype" value="zipco wallet"
+                                      id="zipco-wallet" ngModel>
+                                    <label class="white" for="zipco-wallet" style="font-size: 15px;"> &nbsp;&nbsp;ZIPCO
+                                      Wallet</label>
+                                  </fieldset>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- END ZIPCO Wallet -->
+
+                        <!-- START Bank Transfer -->
+                        <div *ngIf="errrdotype" class="card text-white bg-blue-grey bg-darken-4"
+                          style="background-image: none;">
+                          <div class="card-content">
+                            <div class="card-body">
+                              <div class="row skin skin-polaris">
+                                <div class="col-md-6 col-sm-12">
+                                  <fieldset>
+                                    <input type="radio" name="rdotype" [(ngModel)]="rdotype" value="bank transfer"
+                                      id="input-radio-21" ngModel>
+                                    <label class="white" for="input-radio-21" style="font-size: 15px;"> &nbsp;&nbsp;Bank
+                                      Transfer</label>
+                                  </fieldset>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div *ngIf="!errrdotype" class="card text-white bg-blue-grey bg-darken-4"
+                          style="background-image: none;border: 1px solid red;">
+                          <div class="card-content">
+                            <div class="card-body">
+                              <div class="row skin skin-polaris">
+                                <div class="col-md-6 col-sm-12">
+                                  <fieldset>
+                                    <input type="radio" name="rdotype" [(ngModel)]="rdotype" value="bank transfer"
+                                      id="input-radio-21" ngModel>
+                                    <label class="white" for="input-radio-21" style="font-size: 15px;"> &nbsp;&nbsp;Bank
+                                      Transfer</label>
+                                  </fieldset>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- END Bank Transfer -->
+
+                        <!-- START Cash pick-up -->
+                        <div *ngIf="errrdotype" class="card text-white bg-blue-grey bg-darken-4"
+                          style="background-image: none;">
+                          <div class="card-content">
+                            <div class="card-body">
+                              <div class="row skin skin-polaris">
+                                <div class="col-md-6 col-sm-12">
+                                  <fieldset>
+                                    <input type="radio" name="rdotype" [(ngModel)]="rdotype" value="cash pick-up"
+                                      id="input-radio-22" ngModel>
+                                    <label class="white" for="input-radio-22"> &nbsp;&nbsp;Cash Pick-up</label>
+                                  </fieldset>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div *ngIf="!errrdotype" class="card text-white bg-blue-grey bg-darken-4"
+                          style="background-image: none;border: 1px solid red;">
+                          <div class="card-content">
+                            <div class="card-body">
+                              <div class="row skin skin-polaris">
+                                <div class="col-md-6 col-sm-12">
+                                  <fieldset>
+                                    <input type="radio" name="rdotype" [(ngModel)]="rdotype" value="cash pick-up"
+                                      id="input-radio-22" ngModel>
+                                    <label class="white" for="input-radio-22"> &nbsp;&nbsp;Cash Pick-up</label>
+                                  </fieldset>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- END Cash pick-up -->
+
+                        <!-- START Cash pick-up temparary-->
+                        <!-- <div *ngIf="errrdotype" class="card text-white bg-blue-grey bg-darken-4"
+                              style="background-image: none;">
+                              <div class="card-content">
+                                <div class="card-body">
+                                  <div class="row skin skin-polaris">
+                                    <div class="col-md-6 col-sm-12">
+                                      <fieldset>
+                                        <input type="radio" name="rdotype" [(ngModel)]="rdotype" value="cash pickup"
+                                          id="input-radio-22" ngModel>
+                                        <label class="white" for="input-radio-22"> &nbsp;&nbsp;Cash Pick-up</label>
+                                      </fieldset>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div *ngIf="!errrdotype" class="card text-white bg-blue-grey bg-darken-4"
+                              style="background-image: none;border: 1px solid red;">
+                              <div class="card-content">
+                                <div class="card-body">
+                                  <div class="row skin skin-polaris">
+                                    <div class="col-md-6 col-sm-12">
+                                      <fieldset>
+                                        <input type="radio" name="rdotype" [(ngModel)]="rdotype" value="cash pickup"
+                                          id="input-radio-22" ngModel>
+                                        <label class="white" for="input-radio-22"> &nbsp;&nbsp;Cash Pick-up</label>
+                                      </fieldset>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div> -->
+                        <!-- END Cash pick-up temparary-->
+
+                        <!-- START Mobile top-up -->
+                        <div *ngIf="errrdotype" class="card text-white bg-blue-grey bg-darken-4"
+                          style="background-image: none;">
+                          <div class="card-content">
+                            <div class="card-body">
+                              <div class="row skin skin-polaris">
+                                <div class="col-md-6 col-sm-12">
+                                  <fieldset>
+                                    <input type="radio" name="rdotype" [(ngModel)]="rdotype" value="mobile top-up"
+                                      id="mobile-top-up" ngModel>
+                                    <label class="white" for="mobile-top-up" style="font-size: 15px;">
+                                      &nbsp;&nbsp;Mobile
+                                      Money</label>
+                                  </fieldset>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div *ngIf="!errrdotype" class="card text-white bg-blue-grey bg-darken-4"
+                          style="background-image: none;border: 1px solid red;">
+                          <div class="card-content">
+                            <div class="card-body">
+                              <div class="row skin skin-polaris">
+                                <div class="col-md-6 col-sm-12">
+                                  <fieldset>
+                                    <input type="radio" name="rdotype" [(ngModel)]="rdotype" value="mobile top-up"
+                                      id="mobile-top-up" ngModel>
+                                    <label class="white" for="mobile-top-up" style="font-size: 15px;">
+                                      &nbsp;&nbsp;Mobile
+                                      Money</label>
+                                  </fieldset>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- END Mobile top-up -->
+
+                        <!-- START Airtime Top-up -->
+                        <div *ngIf="errrdotype" class="card text-white bg-blue-grey bg-darken-4"
+                          style="background-image: none;">
+                          <div class="card-content">
+                            <div class="card-body">
+                              <div class="row skin skin-polaris">
+                                <div class="col-md-6 col-sm-12">
+                                  <fieldset>
+                                    <input type="radio" name="rdotype" [(ngModel)]="rdotype" value="airtime top-up"
+                                      id="airtime-top-up" ngModel>
+                                    <label class="white" for="airtime-top-up" style="font-size: 15px;">
+                                      &nbsp;&nbsp;Airtime
+                                      Top-up</label>
+                                  </fieldset>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div *ngIf="!errrdotype" class="card text-white bg-blue-grey bg-darken-4"
+                          style="background-image: none;border: 1px solid red;">
+                          <div class="card-content">
+                            <div class="card-body">
+                              <div class="row skin skin-polaris">
+                                <div class="col-md-6 col-sm-12">
+                                  <fieldset>
+                                    <input type="radio" name="rdotype" [(ngModel)]="rdotype" value="airtime top-up"
+                                      id="airtime-top-up" ngModel>
+                                    <label class="white" for="airtime-top-up" style="font-size: 15px;">
+                                      &nbsp;&nbsp;Airtime
+                                      Top-up</label>
+                                  </fieldset>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- END Airtime top-up -->
+
+                        <!-- START Gift Card -->
+                        <div *ngIf="errrdotype" class="card text-white bg-blue-grey bg-darken-4"
+                          style="background-image: none;">
+                          <div class="card-content">
+                            <div class="card-body">
+                              <div class="row skin skin-polaris">
+                                <div class="col-md-6 col-sm-12">
+                                  <fieldset>
+                                    <input type="radio" name="rdotype" [(ngModel)]="rdotype" value="gift card"
+                                      id="gift-card" ngModel>
+                                    <label class="white" for="gift-card" style="font-size: 15px;"> &nbsp;&nbsp;Gift
+                                      Card</label>
+                                  </fieldset>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div *ngIf="!errrdotype" class="card text-white bg-blue-grey bg-darken-4"
+                          style="background-image: none;border: 1px solid red;">
+                          <div class="card-content">
+                            <div class="card-body">
+                              <div class="row skin skin-polaris">
+                                <div class="col-md-6 col-sm-12">
+                                  <fieldset>
+                                    <input type="radio" name="rdotype" [(ngModel)]="rdotype" value="gift card"
+                                      id="gift-card" ngModel>
+                                    <label class="white" for="gift-card" style="font-size: 15px;"> &nbsp;&nbsp;Gift
+                                      Card</label>
+                                  </fieldset>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- END Gift Card -->
+
+
+
+
+                      </div>
+                    </div>
+                    <div style="text-align: right;">
+                      <button (click)="previous()" class="btn btn-zipco btn-round btn-min-width ourfont"
+                        style="background: white;color: black;">Go
+                        Back</button>
+                      &nbsp;&nbsp;
+                      <button type="submit" class="btn btn-zipco btn-round btn-min-width ourfont">Next</button>
+                    </div>
+                  </fieldset>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>

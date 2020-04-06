@@ -1,0 +1,10 @@
+.social_footer li {
+    list-style: none;
+    padding: 5px;
+}
+
+@media (max-width: 768px) {
+    .social_footer li{
+        padding: 2px;
+    }
+}

@@ -1,0 +1,67 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+      <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block pathffont">Promocode</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb pathsfont">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/m-dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">Promocode
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+      <div class="row justify-content-center">
+        <div class="col-1" style="max-width: 95px;"></div>
+        <div class="col-10" style="max-width: 950px;">
+          <div class="card pull-up bg-zipco">
+            <div class="card-content collapse show text-white">
+              <div class="card-body">
+                <a [routerLink]="['/m-add-promocode']" class="btn-zipco btn btn-glow btn-round ourfont">
+                  <i class="la la-plus"></i>
+                  Add New Promocode
+                </a>
+                <form class="form-horizontal form-purchase-token row" action="">
+                  <div id="recent-transactions" class="col-12">
+                    <br>
+                    <div class="card bg-zipco">
+                      <div class="card-content text-white">
+                        <div class="table-responsive">
+                          <table id="tbl_transaction" class="table table-hover table-xl mb-0">
+                            <thead>
+                              <tr>
+                                <th class="border-top-0 text-center">Date</th>
+                                <th class="border-top-0 text-center">Currency</th>
+                                <th class="border-top-0 text-center">Promocode Value</th>
+                                <th class="border-top-0 text-center">Promocode</th>
+                              </tr>
+                            </thead>
+                            <tbody class="text-center">
+                              <tr class="pull-up" *ngFor="let list of m_promocode">
+                                <td class="text-truncate">{{list.date | date: "dd/MM/yyyy hh:mm a"}}</td>
+                                <td class="text-truncate">{{list.currency | uppercase}}</td>
+                                <td class="text-truncate">{{list.promocode_value}}</td>
+                                <td class="text-truncate">{{list.pcode}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-1" style="max-width: 95px;"></div>
+      </div>
+    </div>
+  </div>
+</div>

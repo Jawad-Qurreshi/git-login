@@ -1,0 +1,133 @@
+<div class="content-wrapper">
+  <div class="content-header row">
+  </div>
+  <div class="content-body">
+    <div>
+
+      <div class="left_align_logo" style="position: fixed;z-index: 99999;padding: 30px;">
+        <a href="https://zipcoinremit.com/" target="_blank">
+          <img class="brand-logo" alt="modern admin logo" style="width: 150px;" src="assets/images/zipcoin.png">
+        </a>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5 d-none d-sm-none d-xs-none d-md-block">
+            <img src="app-assets/images/img_2.png" style="position: fixed;left:0;width: 43%;height: auto" />
+          </div>
+          <div class="col-md-7"
+            style="background-color:#17191d; background-image: url(https://zipcx.io/assets/images/01.png); background-repeat: no-repeat;background-position: top left;">
+
+            <particles [params]="myParams" [style]="myStyle" [width]="width" [height]="height"></particles>
+
+            <div class="container mylogdiv" style="padding-top: 70px;padding-bottom: 200%;">
+              <div class="row">
+                <div class="col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-12 col-sm-12 col-12">
+                  <form class="form-horizontal form-signin" #logindata="ngForm" (ngSubmit)="login(logindata.value)">
+                    <div class="login_wrapper" style="background: #131519;border-radius: 30px;">
+                      <div class="row">
+                        <div class="col-md-12" style="text-align: center;">
+                          <!-- <img class="brand-logo" alt="modern admin logo" style="width: 150px;"
+                            src="assets/images/zipcoin.png"> -->
+                        </div>
+                      </div>
+                      <br>
+                      <p
+                        style="font-size: 22px; font-weight:bold; color:#c88c39; text-align:center; line-height:normal;">
+                        Welcome to Money Without Borders</p>
+                      <p style="font-size: 16px; font-weight:bold; color:white; text-align:center; line-height:normal;">
+                        A True P2P service with ZERO e-transfer fees</p>
+                      <p style="text-align: center;color: white;">New to ZIPCOIN Remit?
+                        <br>
+                        <a [routerLink]="['/register']"
+                          style="color:#c88c39; background: none;font-size: 18px;font-weight: bold;padding: 5px;"> Sign
+                          up </a>
+                      </p>
+                      <br>
+                      <fieldset class="form-group">
+                        <label for="user-name">Email</label>
+                        <input type="text" *ngIf="erremail" class="form-control" id="user-name" name="email"
+                          [(ngModel)]="email" placeholder="Enter Email" ngModel>
+                        <input type="text" *ngIf="!erremail" style="border: 1px solid red;" class="form-control"
+                          id="user-name" name="email" [(ngModel)]="email" placeholder="Enter Email" ngModel>
+                      </fieldset>
+
+                      <fieldset class="form-group">
+                        <label for="user-password">Password</label>
+                        <input type="password" *ngIf="errpassword" class="form-control" id="user-password"
+                          name="password" [(ngModel)]="password" placeholder="Enter Password" ngModel>
+                        <input type="password" *ngIf="!errpassword" style="border: 1px solid red;" class="form-control"
+                          id="user-password" name="password" [(ngModel)]="password" placeholder="Enter Password"
+                          ngModel>
+                      </fieldset>
+
+                      <div class="form-group row">
+                        <div class="col-md-6">
+                          <div class="col-md-12 col-12 pb-1" style="padding: 0px;">
+                            <fieldset>
+                              <input type="checkbox" id="terms-conditions" (click)="checkremember($event)"
+                                class="chk-remember">
+                              <label for="terms-conditions">&nbsp;Remember Me</label>
+                            </fieldset>
+                          </div>
+                        </div>
+                        <div class="col-md-6 text-right">
+                          <div class="col-md-12 col-12 pb-1" style="padding: 0px;">
+                            <a [routerLink]="['/forgotpassword']" class="card-link">Forgot Password</a>
+                          </div>
+                          <div class="col-md-12 col-12" style="padding: 0px;">
+                            <a [routerLink]="['/reactivate']" class="card-link">Resend Activation Email</a>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group text-center">
+                        <button type="submit" class="custom_btn_css">SIGN IN</button>
+                      </div>
+
+                      <p class="text-center" style="margin-bottom: 10px;color: white;">Sign In with your accounts</p>
+                      <div class="form-group row">
+                        <a style="text-align: center;margin: auto;" (click)="socialSignIn('google')">
+                          <img style="width: 200px;" src="app-assets/images/google.png">
+                        </a>
+                      </div>
+                      <div class="text-center">
+                        <p class="text-center" style="color: white;">
+                          <a href="https://zipcoinremit.com/images/docs/ZipCoinRemit_TermsofUse_Conditions.pdf"
+                            class="card-link" style="margin-left: 0px;color: white;" target="_blank">
+                            Terms & Conditions
+                          </a>
+                          |
+                          <a href="https://zipcoinremit.com/images/docs/ZipCoinRemit-CustomerAcceptancePolicy.pdf"
+                            class="card-link" style="margin-left: 0px;color: white;" target="_blank">
+                            Acceptance Policy
+                          </a>
+                          |<br>
+                          <a href="https://zipcoinremit.com/images/docs/ZipCoinRemit-AML-KYCCompliancePolicy.pdf"
+                            class="card-link" style="margin-left: 0px;color: white;" target="_blank">
+                            KYC Compliance Policy
+                          </a>
+                          |
+                          <a href="https://zipcoinremit.com/images/docs/ZipCoinRemit_PrivacyPolicy.pdf"
+                            class="card-link" style="margin-left: 0px;color: white;" target="_blank">
+                            Privacy Policy
+                          </a>
+                          |
+                          <a href="https://zipcoinremit.com/images/docs/ZipCoinRemit_CookiePolicy.pdf" class="card-link"
+                            style="margin-left: 0px;color: white;" target="_blank">
+                            Cookie Policy
+                          </a>
+                        </p>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

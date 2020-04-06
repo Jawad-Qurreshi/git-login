@@ -1,0 +1,487 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+      <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block pathffont">Individual KYC</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb pathsfont">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">Individual KYC
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-body">
+
+      <!-- Title Section Start -->
+      <div class="row mb-2">
+        <div class="col-md-12 text-center" style="max-width: 1140px;">
+          <h1>Begin your ID-Verification</h1>
+          <p style="width: 60%;margin: auto;" class="text-center lead mt-2">
+            Verify your identity to participate in sending money to family.
+          </p>
+        </div>
+      </div>
+      <!-- Title Section End -->
+
+
+      <!-- Form Wizard -->
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10" style="max-width: 950px;">
+          <div class="card pull-up bg-zipco text-white">
+            <div style="text-align:center;margin-top:40px;">
+              <span class="step active"></span>
+              <span class="step"></span>
+              <span class="step"></span>
+            </div>
+            <div class="card-body p-2">
+              <div class="tab">
+                <h4 class="text-white text-bold-700">PERSONAL DETAILS</h4>
+                <br>
+                <p class="text-silver">
+                  Please type your information correctly. You will not able to change details once the form is
+                  submitted.</p>
+                <hr>
+
+                <form *ngIf="view" #kycfirst="ngForm" (ngSubmit)="kyc_first(kycfirst.value)">
+
+                  <div class="row mb-1">
+
+                    <div class="col-md-6 col-12">
+                      <fieldset class="form-group">
+                        <label for="first-name">First Name</label>
+                        <p class="font-small-3">Spell your name exactly as it's shown on your passport or ID card.</p>
+                        <input type="text" *ngIf="errfname" class="form-control"
+                          (focusout)="checkvalid_fname($event.target.value)" [(ngModel)]="fname" name="fname"
+                          id="first-name" placeholder="First Name" ngModel>
+                        <input type="text" *ngIf="!errfname" style="border: 1px solid red;"
+                          (focusout)="checkvalid_fname($event.target.value)" [(ngModel)]="fname" class="form-control"
+                          name="fname" id="first-name" placeholder="First Name" ngModel>
+                      </fieldset>
+                    </div>
+
+                    <div class="col-md-6 col-12">
+                      <fieldset class="form-group">
+                        <label for="middle-name">Middle Name</label>
+                        <p class="font-small-3">Spell your name exactly as it's shown on your passport or ID card.</p>
+                        <input type="text" *ngIf="errmname" class="form-control"
+                          (focusout)="checkvalid_mname($event.target.value)" [(ngModel)]="mname" name="mname"
+                          id="middle-name" placeholder="Middle Name" ngModel>
+                        <input type="text" *ngIf="!errmname" style="border: 1px solid red;"
+                          (focusout)="checkvalid_mname($event.target.value)" [(ngModel)]="mname" class="form-control"
+                          name="mname" id="middle-name" placeholder="Middle Name" ngModel>
+                      </fieldset>
+                    </div>
+
+
+                    <div class="col-md-6 col-12">
+                      <fieldset class="form-group">
+                        <label for="last-name">Last Name(s)</label>
+                        <p class="font-small-3">Spell your name exactly as it's shown on your passport or ID card.</p>
+                        <input type="text" *ngIf="errlname" class="form-control"
+                          (focusout)="checkvalid_lname($event.target.value)" [(ngModel)]="lname" name="lname"
+                          id="last-name" placeholder="Last Name" ngModel>
+                        <input type="text" *ngIf="!errlname" style="border: 1px solid red;"
+                          (focusout)="checkvalid_lname($event.target.value)" [(ngModel)]="lname" class="form-control"
+                          name="lname" id="last-name" placeholder="Last Name" ngModel>
+                      </fieldset>
+                    </div>
+
+                    <div class="col-md-6 col-12">
+                      <fieldset class="form-group">
+                        <label>Select Country</label>
+                        <select class="custom-select" id="country" *ngIf="errcountry" [(ngModel)]="country"
+                          (ngModelChange)="countrystate($event)" name="country" ngModel>
+                          <option value="">Select Country</option>
+                          <option *ngFor="let list of countryname" value="{{list.c_id}}">{{list.country_name}}</option>
+                        </select>
+                        <select class="custom-select" id="country" *ngIf="!errcountry" style="border: 1px solid red;"
+                          [(ngModel)]="country" (ngModelChange)="countrystate($event)" name="country" ngModel>
+                          <option value="">Select Country</option>
+                          <option *ngFor="let list of countryname" value="{{list.c_id}}">{{list.country_name}}</option>
+                        </select>
+                      </fieldset>
+                    </div>
+
+
+                    <div class="col-md-6 col-12">
+                      <fieldset class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" *ngIf="erremail" class="form-control"
+                          (focusout)="checkvalid_email($event.target.value)" [(ngModel)]="email" name="email" id="email"
+                          placeholder="Email" ngModel>
+                        <input type="email" *ngIf="!erremail" style="border: 1px solid red;"
+                          (focusout)="checkvalid_email($event.target.value)" [(ngModel)]="email" class="form-control"
+                          name="email" id="email" placeholder="Email" ngModel>
+                      </fieldset>
+                    </div>
+
+
+                    <div class="col-md-6 col-12">
+                      <fieldset class="form-group">
+                        <label for="phone-number">Phone Number</label>
+
+                        <div class="row">
+                          <div class="col-1">
+                            <input type="text" name="phonecode"
+                              style="padding-left: 5px;padding-right: 0px;width: 34px;" class="form-control"
+                              [(ngModel)]="phonecode" ngModel disabled />
+                          </div>
+                          <div class="col-11">
+                            <input type="text" *ngIf="errphone" class="form-control"
+                              (focusout)="checkvalid_phone($event.target.value)" [(ngModel)]="phone" name="phone"
+                              id="phone-number" placeholder="Phone" ngModel>
+                            <input type="text" *ngIf="!errphone" style="border: 1px solid red;"
+                              (focusout)="checkvalid_phone($event.target.value)" [(ngModel)]="phone"
+                              class="form-control" name="phone" id="phone-number" placeholder="Phone" ngModel>
+                          </div>
+                        </div>
+                        <p class="font-small-3 text-info" *ngIf="errphone">
+                          <i class="la la-info-circle"></i>
+                          Ex: Nigeria, 2347018858XXX [Here 234 is Country code and rest are your mobile numbers]. Do
+                          not add the preceding zero before your actual number. Good Example +234 7784....... Bad
+                          Example +234 07784......Do not enter the landline phone number.
+                          <br>
+                          <b style="color: red;font-weight: bold;">Do not enter the landline phone number; you will not
+                            get the OTP.</b>
+                        </p>
+                        <p class="font-small-3 text-info" *ngIf="!errphone" style="color: red;">
+                          <i class="la la-info-circle"></i>
+                          Ex: Nigeria, 2347018858XXX [Here 234 is Country code and rest are your mobile numbers]. Do
+                          not add the preceding zero before your actual number. Good Example +234 7784....... Bad
+                          Example +234 07784......Do not enter the landline phone number.
+                          <br>
+                          <b style="color: red;font-weight: bold;">Do not enter the landline phone number; you will not
+                            get the OTP.</b>
+                        </p>
+                      </fieldset>
+                    </div>
+
+                    <div class="col-md-6 col-12">
+                      <fieldset class="form-group">
+                        <label>Date of Birth</label>
+
+                        <ng-datepicker *ngIf="errdob" id="dob" [(ngModel)]="dob" name="dob" [options]="options">
+                        </ng-datepicker>
+
+                        <ng-datepicker *ngIf="!errdob" [(ngModel)]="dob" name="dob" [options]="options">
+                        </ng-datepicker>
+                        <b *ngIf="!errdob" style="color: red;font-weight: bold;">Please Choose Valid Date</b>
+
+                        <!-- <input type="date" *ngIf="errdob" class="form-control" id="dob" [(ngModel)]="dob" name="dob"
+                          placeholder="Date of Birth" ngModel>
+                        <input type="date" *ngIf="!errdob" style="border: 1px solid red;" [(ngModel)]="dob"
+                          class="form-control" id="dob" name="dob" placeholder="Date of Birth" ngModel> -->
+
+                      </fieldset>
+                    </div>
+
+                    <div class="col-md-6 col-12">
+                      <fieldset class="form-group">
+                        <label for="address2">Province/State/Region</label>
+                        <select *ngIf="errstate" [(ngModel)]="state" name="state" class="custom-select"
+                          (ngModelChange)="statecity($event)" ngModel>
+                          <option value="">Select Province/State/Region</option>
+                          <option *ngFor="let list of statename" value="{{list.id}}">{{list.state_name}}</option>
+                        </select>
+                        <select *ngIf="!errstate" style="border: 1px solid red;" [(ngModel)]="state"
+                          (ngModelChange)="statecity($event)" name="state" class="custom-select" ngModel>
+                          <option value="">Select Province/State/Region</option>
+                          <option *ngFor="let list of statename" value="{{list.id}}">{{list.state_name}}</option>
+                        </select>
+                      </fieldset>
+                    </div>
+
+
+                    <div class="col-md-6 col-12">
+                      <fieldset class="form-group">
+                        <label for="city">City</label>
+                        <select *ngIf="errcity" [(ngModel)]="city" name="city" id="city" class="custom-select" ngModel>
+                          <option value="">Select City</option>
+                          <option *ngFor="let list of cityname" value="{{list.id}}">{{list.city_name}}</option>
+                        </select>
+                        <select *ngIf="!errcity" style="border: 1px solid red;" [(ngModel)]="city" name="city" id="city"
+                          class="custom-select" ngModel>
+                          <option value="">Select City</option>
+                          <option *ngFor="let list of cityname" value="{{list.id}}">{{list.city_name}}</option>
+                        </select>
+                      </fieldset>
+                    </div>
+
+                    <div class="col-md-6 col-12">
+                      <fieldset class="form-group">
+                        <label for="streetaddress">Street Address</label>
+                        <input type="text" class="form-control" *ngIf="errsadd" [(ngModel)]="streetaddress"
+                          name="streetaddress" id="streetaddress" placeholder="Enter Street Address" ngModel>
+                        <input type="text" class="form-control" *ngIf="!errsadd" style="border: 1px solid red;"
+                          [(ngModel)]="streetaddress" name="streetaddress" id="streetaddress"
+                          placeholder="Enter Street Address" ngModel>
+                      </fieldset>
+                    </div>
+
+                    <div class="col-md-6 col-12">
+                      <fieldset class="form-group">
+                        <label for="occupation">Occupation</label>
+                        <input type="text" class="form-control" *ngIf="erroccu" [(ngModel)]="occupation"
+                          name="occupation" id="occupation" placeholder="Occupation" ngModel>
+                        <input type="text" class="form-control" *ngIf="!erroccu" style="border: 1px solid red;"
+                          [(ngModel)]="occupation" name="occupation" id="occupation" placeholder="Occupation" ngModel>
+                      </fieldset>
+                    </div>
+
+                    <div class="col-md-6 col-12">
+                      <fieldset class="form-group">
+                        <label for="postalcode">Postal Code / Zip Code</label>
+                        <input type="text" class="form-control" *ngIf="errpostcode"
+                          (focusout)="checkvalid_postcode($event.target.value)" [(ngModel)]="postalcode"
+                          name="postalcode" id="postalcode" placeholder="Postal Code" ngModel>
+                        <input type="text" class="form-control" *ngIf="!errpostcode" style="border: 1px solid red;"
+                          [(ngModel)]="postalcode" (focusout)="checkvalid_postcode($event.target.value)"
+                          name="postalcode" id="postalcode" placeholder="Postal Code" ngModel>
+                      </fieldset>
+                    </div>
+                  </div>
+                  <div style="overflow:auto;">
+                    <div style="float:right;">
+
+                      <button (click)="save_kyc_first()" *ngIf="swait"
+                        class="btn btn-zipco btn-round btn-min-width ourfont">Save</button>
+                      <button type="button" *ngIf="!swait" class="btn btn-zipco btn-round btn-min-width ourfont">Please
+                        Wait...!</button>
+
+                      &nbsp;
+
+                      <button type="submit" *ngIf="wait"
+                        class="btn btn-zipco btn-round btn-min-width ourfont">Next</button>
+                      <button type="button" *ngIf="!wait" class="btn btn-zipco btn-round btn-min-width ourfont">Please
+                        Wait...!</button>
+                    </div>
+                  </div>
+                </form>
+
+                <form *ngIf="!view" #upkycfirst="ngForm" (ngSubmit)="up_kyc_first(upkycfirst.value)">
+                  <div class="row mb-1">
+                    <div class="col-md-6 col-12">
+                      <fieldset class="form-group">
+                        <label for="first-name">First Name</label>
+                        <p class="font-small-3">Spell your name exactly as it's shown on your passport or ID card.</p>
+                        <input type="text" *ngIf="errfname" class="form-control"
+                          (focusout)="checkvalid_fname($event.target.value)" [(ngModel)]="fname" name="fname"
+                          id="first-name" placeholder="Full first and middle name" ngModel>
+                        <input type="text" *ngIf="!errfname" style="border: 1px solid red;"
+                          (focusout)="checkvalid_fname($event.target.value)" [(ngModel)]="fname" class="form-control"
+                          name="fname" id="first-name" placeholder="Full first and middle name" ngModel>
+                      </fieldset>
+                    </div>
+
+                    <div class="col-md-6 col-12">
+                      <fieldset class="form-group">
+                        <label for="middle-name">Middle Name</label>
+                        <p class="font-small-3">Spell your name exactly as it's shown on your passport or ID card.</p>
+                        <input type="text" *ngIf="errmname" class="form-control"
+                          (focusout)="checkvalid_mname($event.target.value)" [(ngModel)]="mname" name="mname"
+                          id="middle-name" placeholder="Middle Name" ngModel>
+                        <input type="text" *ngIf="!errmname" style="border: 1px solid red;"
+                          (focusout)="checkvalid_mname($event.target.value)" [(ngModel)]="mname" class="form-control"
+                          name="mname" id="middle-name" placeholder="Middle Name" ngModel>
+                      </fieldset>
+                    </div>
+
+                    <div class="col-md-6 col-12">
+                      <fieldset class="form-group">
+                        <label for="last-name">Last Name(s)</label>
+                        <p class="font-small-3">Spell your name exactly as it's shown on your passport or ID card.</p>
+                        <input type="text" *ngIf="errlname" class="form-control"
+                          (focusout)="checkvalid_lname($event.target.value)" [(ngModel)]="lname" name="lname"
+                          id="last-name" placeholder="Lastname" ngModel>
+                        <input type="text" *ngIf="!errlname" style="border: 1px solid red;"
+                          (focusout)="checkvalid_lname($event.target.value)" [(ngModel)]="lname" class="form-control"
+                          name="lname" id="last-name" placeholder="Lastname" ngModel>
+                      </fieldset>
+                    </div>
+
+
+                    <div class="col-md-6 col-12">
+                      <fieldset class="form-group">
+                        <label>Select Country</label>
+                        <select class="custom-select" id="country" *ngIf="errcountry" [(ngModel)]="country"
+                          (ngModelChange)="countrystate($event)" name="country" ngModel>
+                          <option value="">Select Country</option>
+                          <option *ngFor="let list of countryname" value="{{list.c_id}}">{{list.country_name}}</option>
+                        </select>
+                        <select class="custom-select" id="country" *ngIf="!errcountry" style="border: 1px solid red;"
+                          [(ngModel)]="country" (ngModelChange)="countrystate($event)" name="country" ngModel>
+                          <option value="">Select Country</option>
+                          <option *ngFor="let list of countryname" value="{{list.c_id}}">{{list.country_name}}</option>
+                        </select>
+                      </fieldset>
+                    </div>
+
+
+
+                    <div class="col-md-6 col-12">
+                      <fieldset class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" *ngIf="erremail" class="form-control"
+                          (focusout)="checkvalid_email($event.target.value)" [(ngModel)]="email" name="email" id="email"
+                          placeholder="Email" ngModel>
+                        <input type="email" *ngIf="!erremail" style="border: 1px solid red;"
+                          (focusout)="checkvalid_email($event.target.value)" [(ngModel)]="email" class="form-control"
+                          name="email" id="email" placeholder="Email" ngModel>
+                      </fieldset>
+                    </div>
+
+
+                    <div class="col-md-6 col-12">
+                      <fieldset class="form-group">
+                        <label for="phone-number">Phone number(Enter your phone number without dashes)</label>
+
+                        <div class="row">
+                          <div class="col-1">
+                            <input type="text" name="phonecode"
+                              style="padding-left: 5px;padding-right: 0px;width: 34px;" class="form-control"
+                              [(ngModel)]="phonecode" ngModel disabled />
+                          </div>
+                          <div class="col-11">
+                            <input type="text" *ngIf="errphone" (focusout)="checkvalid_phone($event.target.value)"
+                              class="form-control" [(ngModel)]="phone" name="phone" id="phone-number"
+                              placeholder="Phone" ngModel>
+                            <input type="text" *ngIf="!errphone" (focusout)="checkvalid_phone($event.target.value)"
+                              style="border: 1px solid red;" [(ngModel)]="phone" class="form-control" name="phone"
+                              id="phone-number" placeholder="Phone" ngModel>
+                          </div>
+                        </div>
+                        <p class="font-small-3 text-info" *ngIf="errphone">
+                          <i class="la la-info-circle"></i>
+                          Ex: Nigeria, 2347018858XXX [Here 234 is Country code and rest are your mobile numbers]. Do
+                          not add the preceding zero before your actual number. Good Example +234 7784....... Bad
+                          Example +234 07784......Do not enter the landline phone number.
+                          <br>
+                          <b style="color: red;font-weight: bold;">Do not enter the landline phone number; you will not
+                            get the OTP.</b>
+                        </p>
+                        <p class="font-small-3 text-info" *ngIf="!errphone" style="color: red;">
+                          <i class="la la-info-circle"></i>
+                          Ex: Nigeria, 2347018858XXX [Here 234 is Country code and rest are your mobile numbers]. Do
+                          not add the preceding zero before your actual number. Good Example +234 7784....... Bad
+                          Example +234 07784......Do not enter the landline phone number.
+                          <br>
+                          <b style="color: red;font-weight: bold;">Do not enter the landline phone number; you will not
+                            get the OTP.</b>
+                        </p>
+                      </fieldset>
+                    </div>
+
+                    <div class="col-md-6 col-12">
+                      <fieldset class="form-group">
+                        <label>Date of Birth</label>
+
+                        <ng-datepicker *ngIf="errdob" id="dob" [(ngModel)]="dob" name="dob" [options]="options">
+                        </ng-datepicker>
+
+                        <ng-datepicker *ngIf="!errdob" [(ngModel)]="dob" name="dob" [options]="options">
+                        </ng-datepicker>
+                        <b *ngIf="!errdob" style="color: red;font-weight: bold;">Please Choose Valid Date</b>
+
+                      </fieldset>
+                    </div>
+
+                    <div class="col-md-6 col-12">
+                      <fieldset class="form-group">
+                        <label for="address2">Province/State/Region</label>
+                        <select *ngIf="errstate" [(ngModel)]="state" name="state" class="custom-select"
+                          (ngModelChange)="statecity($event)" ngModel>
+                          <option value="">Select Province/State/Region</option>
+                          <option *ngFor="let list of statename" value="{{list.id}}">{{list.state_name}}</option>
+                        </select>
+                        <select *ngIf="!errstate" style="border: 1px solid red;" [(ngModel)]="state"
+                          (ngModelChange)="statecity($event)" name="state" class="custom-select" ngModel>
+                          <option value="">Select Province/State/Region</option>
+                          <option *ngFor="let list of statename" value="{{list.id}}">{{list.state_name}}</option>
+                        </select>
+                      </fieldset>
+                    </div>
+
+
+                    <div class="col-md-6 col-12">
+                      <fieldset class="form-group">
+                        <label for="city">City</label>
+                        <select *ngIf="errcity" [(ngModel)]="city" name="city" id="city" class="custom-select" ngModel>
+                          <option value="">Select City</option>
+                          <option *ngFor="let list of cityname" value="{{list.id}}">{{list.city_name}}</option>
+                        </select>
+                        <select *ngIf="!errcity" style="border: 1px solid red;" [(ngModel)]="city" name="city" id="city"
+                          class="custom-select" ngModel>
+                          <option value="">Select City</option>
+                          <option *ngFor="let list of cityname" value="{{list.id}}">{{list.city_name}}</option>
+                        </select>
+                      </fieldset>
+                    </div>
+
+
+
+                    <div class="col-md-6 col-12">
+                      <fieldset class="form-group">
+                        <label for="streetaddress">Street Address</label>
+                        <input type="text" class="form-control" *ngIf="errsadd" [(ngModel)]="streetaddress"
+                          name="streetaddress" id="streetaddress" placeholder="Enter street address" ngModel>
+                        <input type="text" class="form-control" *ngIf="!errsadd" style="border: 1px solid red;"
+                          [(ngModel)]="streetaddress" name="streetaddress" id="streetaddress"
+                          placeholder="Enter street address" ngModel>
+                      </fieldset>
+                    </div>
+
+                    <div class="col-md-6 col-12">
+                      <fieldset class="form-group">
+                        <label for="occupation">Occupation</label>
+                        <input type="text" class="form-control" *ngIf="erroccu" [(ngModel)]="occupation"
+                          name="occupation" id="occupation" placeholder="Occupation" ngModel>
+                        <input type="text" class="form-control" *ngIf="!erroccu" style="border: 1px solid red;"
+                          [(ngModel)]="occupation" name="occupation" id="occupation" placeholder="Occupation" ngModel>
+                      </fieldset>
+                    </div>
+
+                    <div class="col-md-6 col-12">
+                      <fieldset class="form-group">
+                        <label for="postalcode">Postal Code / Zip Code</label>
+                        <input type="text" class="form-control" *ngIf="errpostcode"
+                          (focusout)="checkvalid_postcode($event.target.value)" [(ngModel)]="postalcode"
+                          name="postalcode" id="postalcode" placeholder="Postal Code" ngModel>
+                        <input type="text" class="form-control" *ngIf="!errpostcode" style="border: 1px solid red;"
+                          [(ngModel)]="postalcode" (focusout)="checkvalid_postcode($event.target.value)" F
+                          name="postalcode" id="postalcode" placeholder="Postal Code" ngModel>
+                      </fieldset>
+                    </div>
+                  </div>
+                  <div style="overflow:auto;">
+                    <div style="float:right;">
+
+                      <button (click)="save_up_kyc_first()" *ngIf="swait"
+                        class="btn btn-zipco btn-round btn-min-width ourfont">Save</button>
+                      <button type="button" *ngIf="!swait" class="btn btn-zipco btn-round btn-min-width ourfont">Please
+                        Wait...!</button>
+                      &nbsp;
+                      <button type="submit" *ngIf="wait"
+                        class="btn btn-zipco btn-round btn-min-width ourfont">Next</button>
+                      <button type="button" *ngIf="!wait" class="btn btn-zipco btn-round btn-min-width ourfont">Please
+                        Wait...!</button>
+                    </div>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+.pdown tr td{
+    padding: 0.75rem 20px;
+}
+
+
+@media (min-width: 768px) {
+    .mytransdiv {
+        max-width: 380px;
+    }
+}

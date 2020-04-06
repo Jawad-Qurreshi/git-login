@@ -1,0 +1,345 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+      <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block pathffont">Individual KYC</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb pathsfont">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">Individual KYC
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-body">
+
+      <!-- Title Section Start -->
+      <div class="row mb-2">
+        <div class="col-md-12 text-center" style="max-width: 1140px;">
+          <h1>Begin your ID-Verification</h1>
+          <p style="width: 60%;margin: auto;" class="text-center lead mt-2">
+            Verify your identity to participate in sending money to family.
+          </p>
+        </div>
+      </div>
+      <!-- Title Section End -->
+
+
+      <!-- Form Wizard -->
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10" style="max-width: 950px;">
+          <div class="card pull-up bg-zipco text-white">
+            <div style="text-align:center;margin-top:40px;">
+              <span class="step"></span>
+              <span class="step"></span>
+              <span class="step active"></span>
+            </div>
+            <div class="card-body p-2">
+
+              <div class="tab">
+                <br>
+                <br>
+                <h4 class="text-white text-bold-700">Document Upload</h4>
+                <br />
+                <br>
+                <h5 class="text-white">Utility Bill</h5>
+                <p class="text-silver">This is your public service bill, telephone bill, bank account statement or
+                  similar. It must include your full name, address, document date and name of the issuer.</p>
+                <br>
+
+                <form *ngIf="view" #kycthird="ngForm" (ngSubmit)="kyc_third(kycthird.value)">
+
+                  <div class="col-md-6 col-12">
+                    <fieldset class="form-group">
+                      <label for="date">Utility Bill Date</label>
+
+                      <ng-datepicker *ngIf="errbilldate" id="date" [(ngModel)]="utilitybilldate" name="utilitybilldate"
+                        [options]="options">
+                      </ng-datepicker>
+                      <ng-datepicker *ngIf="!errbilldate" id="date" [(ngModel)]="utilitybilldate" name="utilitybilldate"
+                        [options]="options">
+                      </ng-datepicker>
+                      <b *ngIf="!errbilldate" style="color: red;font-weight: bold;">Please Choose Valid Date</b>
+
+                      <!-- <input type="date" id="date" *ngIf="errbilldate" [(ngModel)]="utilitybilldate"
+                        name="utilitybilldate" class="form-control" style="width: 48%;" ngModel />
+                      <input type="date" id="date" *ngIf="!errbilldate" [(ngModel)]="utilitybilldate"
+                        name="utilitybilldate" class="form-control" style="width: 48%;border: 1px solid red;" ngModel /> -->
+                    </fieldset>
+                  </div>
+
+                  <div class="row mb-2">
+                    <div class="col-md-6 col-12">
+                      <div class="drop-div" role="main">
+                        <div [ngClass]="[errubill? 'box has-advanced-upload' : 'box has-advanced-upload-error']">
+                          <div class="box__input">
+                            <svg [ngClass]="[errubill? 'box__icon' : 'box__icon__error']"
+                              xmlns="http://www.w3.org/2000/svg" width="50" height="43" viewBox="0 0 50 43">
+                              <path
+                                d="M48.4 26.5c-.9 0-1.7.7-1.7 1.7v11.6h-43.3v-11.6c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v13.2c0 .9.7 1.7 1.7 1.7h46.7c.9 0 1.7-.7 1.7-1.7v-13.2c0-1-.7-1.7-1.7-1.7zm-24.5 6.1c.3.3.8.5 1.2.5.4 0 .9-.2 1.2-.5l10-11.6c.7-.7.7-1.7 0-2.4s-1.7-.7-2.4 0l-7.1 8.3v-25.3c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v25.3l-7.1-8.3c-.7-.7-1.7-.7-2.4 0s-.7 1.7 0 2.4l10 11.6z">
+                              </path>
+                            </svg>
+                            <input type="file" name="utilitybill" id="utilitybill" placeholder="Please choose Frontside"
+                              class="box__file" (change)="upload_utilitybill($event)" #fileutilitybill>
+                            <br>
+                            <label for="utilitybill">
+                              <strong>Choose a file</strong>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-12 text-center">
+                      <img src="{{threeurl}}" style="width: 60%;">
+                    </div>
+                  </div>
+
+                  <br>
+                  <h5 class="text-white">Bank Statement</h5>
+                  <br>
+                  <div class="row mb-2">
+                    <div class="col-md-6 col-12">
+                      <div class="drop-div" role="main">
+                        <div [ngClass]="[errselfi? 'box has-advanced-upload' : 'box has-advanced-upload-error']">
+                          <div class="box__input">
+                            <svg [ngClass]="[errselfi? 'box__icon' : 'box__icon__error']"
+                              xmlns="http://www.w3.org/2000/svg" width="50" height="43" viewBox="0 0 50 43">
+                              <path
+                                d="M48.4 26.5c-.9 0-1.7.7-1.7 1.7v11.6h-43.3v-11.6c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v13.2c0 .9.7 1.7 1.7 1.7h46.7c.9 0 1.7-.7 1.7-1.7v-13.2c0-1-.7-1.7-1.7-1.7zm-24.5 6.1c.3.3.8.5 1.2.5.4 0 .9-.2 1.2-.5l10-11.6c.7-.7.7-1.7 0-2.4s-1.7-.7-2.4 0l-7.1 8.3v-25.3c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v25.3l-7.1-8.3c-.7-.7-1.7-.7-2.4 0s-.7 1.7 0 2.4l10 11.6z">
+                              </path>
+                            </svg>
+                            <input type="file" name="selfi" id="selfi" placeholder="Please choose selfi"
+                              class="box__file" (change)="upload_selfi($event)" #fileselfi>
+                            <br>
+                            <label for="selfi">
+                              <strong>Choose a file</strong>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-12 text-center">
+                      <img src="{{foururl}}" style="width: 60%">
+                    </div>
+                  </div>
+
+                  <fieldset class="form-group">
+                    <label for="first-name">Write some comments</label>
+                    <textarea *ngIf="errcomment" rows="5" cols="25" class="form-control" [(ngModel)]="comment"
+                      name="comment" style="width: 48%;" ngModel>
+                    </textarea>
+
+                    <textarea *ngIf="!errcomment" style="border: 1px solid red;width: 48%;" rows="5" cols="25"
+                      class="form-control" [(ngModel)]="comment" name="comment" ngModel>
+                    </textarea>
+                  </fieldset>
+
+                  <div style="overflow:auto;">
+                    <div style="float:right;">
+                      <button type="button" (click)="second()"
+                        class="btn btn-zipco btn-round btn-min-width ourfont">Previous</button>
+
+                      &nbsp;
+
+                      <button (click)="save_kyc_third()" *ngIf="swait"
+                        class="btn btn-zipco btn-round btn-min-width ourfont">Save</button>
+                      <button type="button" *ngIf="!swait" class="btn btn-zipco btn-round btn-min-width ourfont">Please
+                        Wait...!</button>
+
+                      &nbsp;
+
+                      <button type="submit" *ngIf="wait" class="btn btn-zipco btn-round btn-min-width ourfont">Submit
+                        For Review</button>
+                      <button type="button" *ngIf="!wait" class="btn btn-zipco btn-round btn-min-width ourfont">Please
+                        Wait...!</button>
+                    </div>
+                  </div>
+
+                </form>
+
+                <form *ngIf="!view" #upkycthird="ngForm" (ngSubmit)="up_kyc_third(upkycthird.value)">
+
+                  <div class="col-md-6 col-12" style="padding-left: 0px;">
+                    <fieldset class="form-group">
+                      <label for="date">Utility Bill Date</label>
+
+                      <ng-datepicker *ngIf="errbilldate" id="date" [(ngModel)]="utilitybilldate" name="utilitybilldate"
+                        [options]="options">
+                      </ng-datepicker>
+                      <ng-datepicker *ngIf="!errbilldate" id="date" [(ngModel)]="utilitybilldate" name="utilitybilldate"
+                        [options]="options">
+                      </ng-datepicker>
+                      <b *ngIf="!errbilldate" style="color: red;font-weight: bold;">Please Choose Valid Date</b>
+
+                    </fieldset>
+                  </div>
+
+                  <div class="row mb-2">
+                    <div class="col-md-6 col-12">
+                      <div class="drop-div" role="main">
+                        <div [ngClass]="[errubill? 'box has-advanced-upload' : 'box has-advanced-upload-error']">
+                          <div class="box__input">
+                            <svg [ngClass]="[errubill? 'box__icon' : 'box__icon__error']"
+                              xmlns="http://www.w3.org/2000/svg" width="50" height="43" viewBox="0 0 50 43">
+                              <path
+                                d="M48.4 26.5c-.9 0-1.7.7-1.7 1.7v11.6h-43.3v-11.6c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v13.2c0 .9.7 1.7 1.7 1.7h46.7c.9 0 1.7-.7 1.7-1.7v-13.2c0-1-.7-1.7-1.7-1.7zm-24.5 6.1c.3.3.8.5 1.2.5.4 0 .9-.2 1.2-.5l10-11.6c.7-.7.7-1.7 0-2.4s-1.7-.7-2.4 0l-7.1 8.3v-25.3c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v25.3l-7.1-8.3c-.7-.7-1.7-.7-2.4 0s-.7 1.7 0 2.4l10 11.6z">
+                              </path>
+                            </svg>
+                            <input type="file" name="utilitybill" id="utilitybill" placeholder="Please choose Frontside"
+                              class="box__file" (change)="upload_utilitybill($event)" #fileutilitybill>
+                            <br>
+                            <label for="utilitybill">
+                              <strong>Choose a file</strong>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-12 text-center" *ngIf="blastfront == 'jpeg'">
+                      <img *ngIf="billdata" src="{{docurl + billdata}}" style="width: 190px;height: 190px;">
+                      <img *ngIf="!billdata" src="assets/images/kyc/utilit-bill.png" style="width: 60%;">
+                    </div>
+                    <div class="col-md-6 col-12 text-center" *ngIf="blastfront == 'jpg'">
+                      <img *ngIf="billdata" src="{{docurl + billdata}}" style="width: 190px;height: 190px;">
+                      <img *ngIf="!billdata" src="assets/images/kyc/utilit-bill.png" style="width: 60%;">
+                    </div>
+                    <div class="col-md-6 col-12 text-center" *ngIf="blastfront == 'png'">
+                      <img *ngIf="billdata" src="{{docurl + billdata}}" style="width: 190px;height: 190px;">
+                      <img *ngIf="!billdata" src="assets/images/kyc/utilit-bill.png" style="width: 60%;">
+                    </div>
+                    <div class="col-md-6 col-12 text-center" *ngIf="blastfront == 'pdf'">
+                      <p *ngIf="billdata" style="padding-top: 35px;">
+                        <i class="fas fa-7x fa-file-pdf" style="color: #ff0000;"></i>
+                        <br>
+                        <br>{{billdata}}</p>
+                      <img *ngIf="!billdata" src="assets/images/kyc/utilit-bill.png" style="width: 60%;">
+                    </div>
+                    <div class="col-md-6 col-12 text-center" *ngIf="blastfront == 'docx'">
+                      <p *ngIf="billdata" style="padding-top: 35px;">
+                        <i class="far fa-7x fa-file-word" style="color: #1976d2;"></i>
+                        <br>
+                        <br>{{billdata}}</p>
+                      <img *ngIf="!billdata" src="assets/images/kyc/utilit-bill.png" style="width: 60%;">
+                    </div>
+                    <div class="col-md-6 col-12 text-center" *ngIf="blastfront == 'doc'">
+                      <p *ngIf="billdata" style="padding-top: 35px;">
+                        <i class="far fa-7x fa-file-word" style="color: #1976d2;"></i>
+                        <br>
+                        <br>{{billdata}}</p>
+                      <img *ngIf="!billdata" src="assets/images/kyc/utilit-bill.png" style="width: 60%;">
+                    </div>
+                  </div>
+
+                  <br>
+                  <h5 class="text-white">Bank Statement</h5>
+                  <br>
+                  <div class="row mb-2">
+                    <div class="col-md-6 col-12">
+                      <div class="drop-div" role="main">
+                        <div [ngClass]="[errselfi? 'box has-advanced-upload' : 'box has-advanced-upload-error']">
+                          <div class="box__input">
+                            <svg [ngClass]="[errselfi? 'box__icon' : 'box__icon__error']"
+                              xmlns="http://www.w3.org/2000/svg" width="50" height="43" viewBox="0 0 50 43">
+                              <path
+                                d="M48.4 26.5c-.9 0-1.7.7-1.7 1.7v11.6h-43.3v-11.6c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v13.2c0 .9.7 1.7 1.7 1.7h46.7c.9 0 1.7-.7 1.7-1.7v-13.2c0-1-.7-1.7-1.7-1.7zm-24.5 6.1c.3.3.8.5 1.2.5.4 0 .9-.2 1.2-.5l10-11.6c.7-.7.7-1.7 0-2.4s-1.7-.7-2.4 0l-7.1 8.3v-25.3c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v25.3l-7.1-8.3c-.7-.7-1.7-.7-2.4 0s-.7 1.7 0 2.4l10 11.6z">
+                              </path>
+                            </svg>
+                            <input type="file" name="selfi" id="selfi" placeholder="Please choose selfi"
+                              class="box__file" (change)="upload_selfi($event)" #fileselfi>
+                            <br>
+                            <label for="selfi">
+                              <strong>Choose a file</strong>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-12 text-center" *ngIf="slastfront == 'jpeg'">
+                      <img *ngIf="selfidata" src="{{docurl + selfidata}}" style="width: 190px;height: 190px;">
+                      <img *ngIf="!selfidata" src="assets/images/kyc/statement.png" style="width: 60%">
+                    </div>
+                    <div class="col-md-6 col-12 text-center" *ngIf="slastfront == 'jpg'">
+                      <img *ngIf="selfidata" src="{{docurl + selfidata}}" style="width: 190px;height: 190px;">
+                      <img *ngIf="!selfidata" src="assets/images/kyc/statement.png" style="width: 60%">
+                    </div>
+                    <div class="col-md-6 col-12 text-center" *ngIf="slastfront == 'png'">
+                      <img *ngIf="selfidata" src="{{docurl + selfidata}}" style="width: 190px;height: 190px;">
+                      <img *ngIf="!selfidata" src="assets/images/kyc/statement.png" style="width: 60%">
+                    </div>
+                    <div class="col-md-6 col-12 text-center" *ngIf="slastfront == 'pdf'">
+                      <p *ngIf="selfidata" style="padding-top: 35px;">
+                        <i class="fas fa-7x fa-file-pdf" style="color: #ff0000;"></i>
+                        <br>
+                        <br>{{selfidata}}</p>
+                      <img *ngIf="!selfidata" src="assets/images/kyc/statement.png" style="width: 60%">
+                    </div>
+                    <div class="col-md-6 col-12 text-center" *ngIf="slastfront == 'docx'">
+                      <p *ngIf="selfidata" style="padding-top: 35px;">
+                        <i class="far fa-7x fa-file-word" style="color: #1976d2;"></i>
+                        <br>
+                        <br>{{selfidata}}</p>
+                      <img *ngIf="!selfidata" src="assets/images/kyc/statement.png" style="width: 60%">
+                    </div>
+                    <div class="col-md-6 col-12 text-center" *ngIf="slastfront == 'doc'">
+                      <p *ngIf="selfidata" style="padding-top: 35px;">
+                        <i class="far fa-7x fa-file-word" style="color: #1976d2;"></i>
+                        <br>
+                        <br>{{selfidata}}</p>
+                      <img *ngIf="!selfidata" src="assets/images/kyc/statement.png" style="width: 60%">
+                    </div>
+
+                  </div>
+
+                  <fieldset class="form-group">
+                    <label for="first-name">Write some comments</label>
+                    <textarea *ngIf="errcomment" rows="5" cols="25" class="form-control mytext" [(ngModel)]="comment"
+                      name="comment" ngModel>
+                    </textarea>
+
+                    <textarea *ngIf="!errcomment" style="border: 1px solid red;" rows="5" cols="25"
+                      class="form-control mytext" [(ngModel)]="comment" name="comment" ngModel>
+                    </textarea>
+                  </fieldset>
+
+                  <div style="overflow:auto;">
+                    <div style="float:right;">
+                      <button type="button" (click)="second()"
+                        class="btn btn-zipco btn-round btn-min-width ourfont">Previous</button>
+                      &nbsp;
+
+                      <button (click)="save_up_kyc_third()" *ngIf="swait"
+                        class="btn btn-zipco btn-round btn-min-width ourfont">Save</button>
+                      <button type="button" *ngIf="!swait" class="btn btn-zipco btn-round btn-min-width ourfont">Please
+                        Wait...!</button>
+
+                      &nbsp;
+
+                      <button type="submit" *ngIf="wait" class="btn btn-zipco btn-round btn-min-width ourfont">Submit
+                        For Review</button>
+                      <button type="button" *ngIf="!wait" class="btn btn-zipco btn-round btn-min-width ourfont">Please
+                        Wait...!</button>
+                    </div>
+                  </div>
+
+                </form>
+
+
+              </div>
+
+
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+    </div>
+  </div>
+</div>

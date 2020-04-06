@@ -1,0 +1,142 @@
+import { ModuleWithProviders } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+import { AppComponent } from './app.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { KycDocumentComponent } from './kyc-document/kyc-document.component';
+import { OneKycComponent } from './one-kyc/one-kyc.component';
+import { TwoKycComponent } from './two-kyc/two-kyc.component';
+import { ThreeKycComponent } from './three-kyc/three-kyc.component';
+import { SendMoneyComponent } from './send-money/send-money.component';
+import { SendMoneyTwoComponent } from './send-money-two/send-money-two.component';
+import { SendMoneyThreeComponent } from './send-money-three/send-money-three.component';
+import { SendMoneyFourComponent } from './send-money-four/send-money-four.component';
+import { SendMoneyFiveComponent } from './send-money-five/send-money-five.component';
+import { ReferComponent } from './refer/refer.component';
+import { TransactionComponent } from './transaction/transaction.component';
+import { SingleTransactionComponent } from './single-transaction/single-transaction.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { LogoutComponent } from './logout/logout.component';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { ChangepasswordComponent } from './changepassword/changepassword.component';
+import { ReactivateComponent } from './reactivate/reactivate.component';
+import { ActiveComponent } from './active/active.component';
+import { MDashboardComponent } from './m-dashboard/m-dashboard.component';
+import { TwoAuthComponent } from './two-auth/two-auth.component';
+import { AuthComponent } from './auth/auth.component';
+import { MUserComponent } from './m-user/m-user.component';
+import { MTransactionComponent } from './m-transaction/m-transaction.component';
+import { MSingleTransactionComponent } from './m-single-transaction/m-single-transaction.component';
+import { MIkycComponent } from './m-ikyc/m-ikyc.component';
+import { MSingleIkycComponent } from './m-single-ikyc/m-single-ikyc.component';
+import { MTwoAuthComponent } from './m-two-auth/m-two-auth.component';
+import { MAuthComponent } from './m-auth/m-auth.component';
+import { MydetailsComponent } from './mydetails/mydetails.component';
+import { MybeneficiaryComponent } from './mybeneficiary/mybeneficiary.component';
+import { EditBenificiaryComponent } from './edit-benificiary/edit-benificiary.component';
+import { AddBenificiaryComponent } from './add-benificiary/add-benificiary.component';
+import { StripeFormComponent } from './stripe-form/stripe-form.component';
+import { MBeneficiaryCountryComponent } from './m-beneficiary-country/m-beneficiary-country.component';
+import { MEditBcountryComponent } from './m-edit-bcountry/m-edit-bcountry.component';
+import { RefComponent } from './ref/ref.component';
+import { SettingComponent } from './setting/setting.component';
+import { RechargeComponent } from './recharge/recharge.component';
+import { MAddStateComponent } from './m-add-state/m-add-state.component';
+import { MAddCityComponent } from './m-add-city/m-add-city.component';
+import { MEditUserComponent } from './m-edit-user/m-edit-user.component';
+import { AgentTransactionComponent } from './agent-transaction/agent-transaction.component';
+import { AgentSingleTransactionComponent } from './agent-single-transaction/agent-single-transaction.component';
+import { AgentComponent } from './agent/agent.component';
+import { FaqComponent } from './faq/faq.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { MLoginHistoryComponent } from './m-login-history/m-login-history.component';
+import { LoginHistoryComponent } from './login-history/login-history.component';
+import { MChangePasswordComponent } from './m-change-password/m-change-password.component';
+import { WirePaymentComponent } from './wire-payment/wire-payment.component';
+import { EnteracTransferComponent } from './enterac-transfer/enterac-transfer.component';
+import { MGraphSettingComponent } from './m-graph-setting/m-graph-setting.component';
+import { MEditChartComponent } from './m-edit-chart/m-edit-chart.component';
+import { VsmcCheckoutComponent } from './vsmc-checkout/vsmc-checkout.component';
+import { AmexCheckoutComponent } from './amex-checkout/amex-checkout.component';
+import { ZipcoPaymentComponent } from './zipco-payment/zipco-payment.component';
+import { MEosaddressComponent } from './m-eosaddress/m-eosaddress.component';
+import { MEditEosaddressComponent } from './m-edit-eosaddress/m-edit-eosaddress.component';
+import { WalletComponent } from './wallet/wallet.component';
+import { AddMoneyComponent } from './add-money/add-money.component';
+import { MoneyCheckoutComponent } from './money-checkout/money-checkout.component';
+import { MPromocodeComponent } from './m-promocode/m-promocode.component';
+import { MAddPromocodeComponent } from './m-add-promocode/m-add-promocode.component';
+
+
+export const router: Routes = [
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
+    { path: 'login', component: LoginComponent },
+    { path: 'dashboard', component: DashboardComponent },
+    { path: 'kyc-document', component: KycDocumentComponent },
+    { path: 'kyc-document-one', component: OneKycComponent },
+    { path: 'kyc-document-two', component: TwoKycComponent },
+    { path: 'kyc-document-three', component: ThreeKycComponent },
+    { path: 'send-money', component: SendMoneyComponent },
+    { path: 'send-money-two', component: SendMoneyTwoComponent },
+    { path: 'send-money-three', component: SendMoneyThreeComponent },
+    { path: 'send-money-four', component: SendMoneyFourComponent },
+    { path: 'send-money-five', component: SendMoneyFiveComponent },
+    { path: 'refer', component: ReferComponent },
+    { path: 'transaction', component: TransactionComponent },
+    { path: 'register', component: RegisterComponent },
+    { path: 'logout', component: LogoutComponent },
+    { path: 'forgotpassword', component: ForgotpasswordComponent },
+    { path: 'changepassword/:code', component: ChangepasswordComponent },
+    { path: 'reactivate', component: ReactivateComponent },
+    { path: 'active/:code', component: ActiveComponent },
+    { path: 'single-transaction/:tno', component: SingleTransactionComponent },
+    { path: 'm-dashboard', component: MDashboardComponent },
+    { path: 'two-auth', component: TwoAuthComponent },
+    { path: 'auth', component: AuthComponent },
+    { path: 'm-user', component: MUserComponent },
+    { path: 'm-transaction', component: MTransactionComponent },
+    { path: 'm-single-transaction/:transno', component: MSingleTransactionComponent },
+    { path: 'm-ikyc', component: MIkycComponent },
+    { path: 'm-single-ikyc/:kycid', component: MSingleIkycComponent },
+    { path: 'm-two-auth', component: MTwoAuthComponent },
+    { path: 'm-auth', component: MAuthComponent },
+    { path: 'my-details', component: MydetailsComponent },
+    { path: 'benificiary', component: MybeneficiaryComponent },
+    { path: 'edit-benificiary', component: EditBenificiaryComponent },
+    { path: 'add-benificiary', component: AddBenificiaryComponent },
+    { path: 'stripe', component: StripeFormComponent },
+    { path: 'm-beneficiary-country', component: MBeneficiaryCountryComponent },
+    { path: 'm-edit-bcountry/:bcid', component: MEditBcountryComponent },
+    { path: 'ref/:refcode', component: RefComponent },
+    { path: 'setting', component: SettingComponent },
+    { path: 'recharge', component: RechargeComponent },
+    { path: 'm-addstate', component: MAddStateComponent },
+    { path: 'm-addcity', component: MAddCityComponent },
+    { path: 'm-edit-user/:cid', component: MEditUserComponent },
+    { path: 'agent-transaction', component: AgentTransactionComponent },
+    { path: 'agent-single-transaction/:atid', component: AgentSingleTransactionComponent },
+    { path: 'agent', component: AgentComponent },
+    { path: 'faq', component: FaqComponent },
+    { path: 'checkout', component: CheckoutComponent },
+    { path: 'm-login-history', component: MLoginHistoryComponent },
+    { path: 'login-history', component: LoginHistoryComponent },
+    { path: 'm-change-password', component: MChangePasswordComponent },
+    { path: 'wire-payment', component: WirePaymentComponent },
+    { path: 'enterac-transfer', component: EnteracTransferComponent },
+    { path: 'm-graph-setting', component: MGraphSettingComponent },
+    { path: 'm-edit-graph/:chartid', component: MEditChartComponent },
+    { path: 'vsmc_checkout', component: VsmcCheckoutComponent },
+    { path: 'amex_checkout', component: AmexCheckoutComponent },
+    { path: 'zipco_checkout', component: ZipcoPaymentComponent },
+    { path: 'm-eosaddress', component: MEosaddressComponent },
+    { path: 'm-edit-eosaddress/:eosid', component: MEditEosaddressComponent },
+    { path: 'my-wallet', component: WalletComponent },
+    { path: 'add-money', component: AddMoneyComponent },
+    { path: 'money-checkout', component: MoneyCheckoutComponent },
+    { path: 'm-promocode', component: MPromocodeComponent },
+    { path: 'm-add-promocode', component: MAddPromocodeComponent },
+
+];
+
+export const routes: ModuleWithProviders = RouterModule.forRoot(router);

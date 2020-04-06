@@ -1,0 +1,931 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+      <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block pathffont">Send Money</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb pathsfont">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">Send Money
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+
+      <div class="row justify-content-center">
+        <div class="col-12" style="max-width: 1110px;">
+          <div class="card bg-zipco text-white">
+            <div class="card-content">
+              <div class="card-header card-header-transparent">
+                <h6 class="card-title" style="font-size: 18px;">Send Money Now</h6>
+              </div>
+              <div style="margin-top: 25px;">
+                <img src="assets/plate/plate_3.png" style="margin-left: 10%;width: 80%;" />
+              </div>
+              <div class="card-body">
+                <form class="number-tab-steps wizard-circle" #sendmoneythree="ngForm"
+                  (ngSubmit)="sendmoney(sendmoneythree.value)">
+
+                  <fieldset>
+                    <div class="row mt-2 justify-content-center">
+                      <div class="col-md-8 col-xs-12">
+
+                        <!-- <h4 class="text-center text-gold text-bold-700" style="text-transform: uppercase;">Who are you sending money to?</h4>
+                            <p>New Beneficiary</p>
+                            <hr style="border-top: 1px solid rgba(255, 255, 255, 1);">
+      
+                            <div class="row">
+                              <div class="col-lg-6">
+                                <a (click)="recipient('self')" data-toggle="modal" data-target="#my_self">
+                                  <div class="card bg-info new_recipient" style="background: #1E9FF2 !important;">
+                                    <div class="card-content">
+                                      <div class="card-body pb-1">
+                                        <div class="row text-center">
+                                          <div class="col-12">
+                                            <h4 class="text-white mb-1">AT</h4>
+                                          </div>
+                                          <div class="col-12">
+                                            <p class="text-white mb-1">Myself</p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </a>
+                              </div>
+                              <div class="col-lg-6">
+                                <a (click)="recipient('someelse')" data-toggle="modal" data-target="#someone_else">
+                                  <div class="card bg-info new_recipient" style="background: #1E9FF2 !important;">
+                                    <div class="card-content">
+                                      <div class="card-body pb-1">
+                                        <div class="row text-center">
+                                          <div class="col-12">
+                                            <h4 class="text-white mb-1">
+                                              <i class="la la-user"></i>
+                                            </h4>
+                                          </div>
+                                          <div class="col-12">
+                                            <p class="text-white mb-1">Someone Else</p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </a>
+                              </div>
+                            </div>
+      
+                            <p *ngIf="showres">My Beneficiary</p>
+                            <hr *ngIf="showres" style="border-top: 1px solid rgba(255, 255, 255, 1);">
+                            <div class="rdoformate" *ngFor="let list of recipientdata">
+                              <input (click)="recipient('myrecipient')" type="radio" name="rdobenificiary" [(ngModel)]="rdobenificiary" [value]="list.bid"
+                                id="{{list.name_business}}" style="margin-top: 10px;" ngModel/>
+                              <label style="color: #0a0a0a !important;margin-bottom: 7px;" for="{{list.name_business}}"> &nbsp;&nbsp;{{list.name_business}}</label>
+                            </div> -->
+
+                        <div *ngIf="bank_transfer">
+                          <h4 class="text-center text-gold text-bold-700" style="text-transform: uppercase;">Who are you
+                            sending money to?</h4><br>
+                          <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4" style="text-align: center;">
+                              <a data-toggle="modal" data-target="#addbeni"
+                                style="background: #1E9FF2;padding: 7px;border-radius: 3px;">Add New
+                                Beneficiary</a>
+                            </div>
+                            <div class="col-md-4"></div>
+                          </div>
+                          <br>
+                          <p *ngIf="showres">My Beneficiary</p>
+                          <hr *ngIf="showres" style="border-top: 1px solid rgba(255, 255, 255, 1);">
+                          <div class="rdoformate" *ngFor="let list of recipientdata">
+                            <input (click)="recipient('myrecipient')" type="radio" name="rdobenificiary"
+                              [(ngModel)]="rdobenificiary" [value]="list.bid" id="{{list.name_business}}"
+                              style="margin-top: 10px;" ngModel />
+                            <label style="color: #0a0a0a !important;margin-bottom: 7px;text-transform: capitalize;"
+                              for="{{list.name_business}}">
+                              &nbsp;&nbsp;{{list.name_business}}</label>
+                          </div>
+                        </div>
+
+                        <div *ngIf="cash_pick_up">
+
+                          <h4 class="text-center text-gold text-bold-700" style="text-transform: uppercase;">Who are you
+                            sending money to?</h4>
+                          <p *ngIf="showagent">Select Agent</p>
+                          <hr *ngIf="showagent" style="border-top: 1px solid rgba(255, 255, 255, 1);">
+
+                          <table id="tbl_transaction" class="table mb-0" style="border: 1px solid;">
+                            <thead>
+                              <tr style="background: white;color: black;">
+                                <th class="text-center">Name</th>
+                                <th class="text-center">Country</th>
+                              </tr>
+                            </thead>
+                            <tbody class="text-center">
+                              <tr *ngFor="let list of agentdetails">
+                                <td>
+                                  <input (click)="recipient('agent')" type="radio" name="rdoagent"
+                                    [(ngModel)]="rdoagent" [value]="list.cust_id" id="{{list.first_name}}" ngModel />
+                                  <label style="color: white !important;margin-bottom: 7px;text-transform: capitalize;"
+                                    for="{{list.first_name}}">
+                                    &nbsp;&nbsp;{{list.first_name}}</label>
+                                </td>
+                                <td>{{list.country_name}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <br>
+
+                          <p *ngIf="showagent">Beneficiary Details</p>
+                          <hr *ngIf="showagent" style="border-top: 1px solid rgba(255, 255, 255, 1);">
+
+                          <fieldset class="form-group">
+                            <label for="user-name">Full Name</label>
+                            <input type="text" *ngIf="errrecname" class="form-control" id="user-name" name="recname"
+                              [(ngModel)]="recname" placeholder="Enter Beneficiary Full Name" ngModel>
+                            <input type="text" *ngIf="!errrecname" style="border: 1px solid red;" class="form-control"
+                              id="user-name" name="recname" [(ngModel)]="recname"
+                              placeholder="Enter Beneficiary Full Name" ngModel>
+                          </fieldset>
+
+                          <fieldset class="form-group">
+                            <label for="address">Address</label>
+                            <textarea id="address" *ngIf="errrecaddress" rows="3" cols="25" class="form-control"
+                              name="recaddress" [(ngModel)]="recaddress" ngModel>
+                                    </textarea>
+                            <textarea id="address" *ngIf="!errrecaddress" style="border: 1px solid red;" rows="3"
+                              cols="25" class="form-control" name="recaddress" [(ngModel)]="recaddress" ngModel>
+                                      </textarea>
+                          </fieldset>
+
+                          <fieldset class="form-group">
+                            <label>Select Country</label>
+                            <select *ngIf="errreccountry" class="custom-select" id="country" [(ngModel)]="reccountry"
+                              (ngModelChange)="countrystate($event)" name="reccountry" ngModel>
+                              <option value="">Select Country</option>
+                              <option *ngFor="let list of countryname" value="{{list.c_id}}">{{list.country_name}}
+                              </option>
+                            </select>
+                            <select *ngIf="!errreccountry" style="border: 1px solid red;" class="custom-select"
+                              id="country" [(ngModel)]="reccountry" (ngModelChange)="countrystate($event)"
+                              name="reccountry" ngModel>
+                              <option value="">Select Country</option>
+                              <option *ngFor="let list of countryname" value="{{list.c_id}}">{{list.country_name}}
+                              </option>
+                            </select>
+                          </fieldset>
+
+                          <fieldset class="form-group">
+                            <label for="address2">Select Province/State/Region</label>
+                            <select *ngIf="errrecstate" name="recstate" [(ngModel)]="recstate" class="custom-select"
+                              (ngModelChange)="statecity($event)" ngModel>
+                              <option value="">Select Province/State/Region</option>
+                              <option *ngFor="let list of statename" value="{{list.id}}">{{list.state_name}}</option>
+                            </select>
+                            <select *ngIf="!errrecstate" style="border: 1px solid red;" name="recstate"
+                              [(ngModel)]="recstate" class="custom-select" (ngModelChange)="statecity($event)" ngModel>
+                              <option value="">Select Province/State/Region</option>
+                              <option *ngFor="let list of statename" value="{{list.id}}">{{list.state_name}}</option>
+                            </select>
+                          </fieldset>
+
+                          <fieldset class="form-group">
+                            <label for="city">Select City</label>
+                            <select *ngIf="errreccity" [(ngModel)]="reccity" name="reccity" id="city"
+                              class="custom-select" ngModel>
+                              <option value="">Select City</option>
+                              <option *ngFor="let list of cityname" value="{{list.id}}">{{list.city_name}}</option>
+                            </select>
+                            <select *ngIf="!errreccity" style="border: 1px solid red;" [(ngModel)]="reccity"
+                              name="reccity" id="city" class="custom-select" ngModel>
+                              <option value="">Select City</option>
+                              <option *ngFor="let list of cityname" value="{{list.id}}">{{list.city_name}}</option>
+                            </select>
+                          </fieldset>
+
+                          <fieldset class="form-group">
+                            <label for="phone-number">Phone number</label>
+                            <div class="row">
+                              <div class="col-md-1 col-xs-1 col-sm-1 mypadd">
+                                <input type="text" name="phonecode" style="padding-left: 5px;padding-right: 0px;"
+                                  class="form-control" [(ngModel)]="phonecode" ngModel disabled />
+                              </div>
+                              <div class="col-md-11 col-xs-11 col-sm-11">
+                                <input type="text" class="form-control" *ngIf="errrecphone" [(ngModel)]="recphone"
+                                  name="recphone" id="phone-number" placeholder="Phone" ngModel>
+                                <input type="text" class="form-control" style="border: 1px solid red;"
+                                  *ngIf="!errrecphone" [(ngModel)]="recphone" name="recphone" id="phone-number"
+                                  placeholder="Phone" ngModel>
+
+                                <p class="font-small-3 text-info">
+                                  <i class="la la-info-circle"></i>
+                                  Ex: Nigeria, 2347018858XXX [Here 234 is Country code and rest are your mobile
+                                  numbers].
+                                  Do
+                                  not add the preceding zero before your actual number. Good Example +234 7784.......
+                                  Bad
+                                  Example +234 07784......Do not enter the landline phone number.
+                                  <br>
+                                  <b style="color: red;font-weight: bold;">Do not enter the landline phone number; you
+                                    will not
+                                    get the OTP.</b>
+                                </p>
+
+                              </div>
+                            </div>
+                          </fieldset>
+
+                          <fieldset class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" *ngIf="errrecemail" name="recemail"
+                              [(ngModel)]="recemail" id="email" placeholder="Email" ngModel>
+                            <input type="email" class="form-control" *ngIf="!errrecemail" style="border: 1px solid red;"
+                              name="recemail" [(ngModel)]="recemail" id="email" placeholder="Email" ngModel>
+                          </fieldset>
+
+
+                        </div>
+
+                        <div *ngIf="mobile_top_up">
+                          <h4 class="text-center text-gold text-bold-700" style="text-transform: uppercase;">Who are you
+                            sending money to?</h4>
+
+                          <div class="row" style="margin-top: 20px;">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4" style="text-align: center;">
+                              <a data-toggle="modal" data-target="#addbeni"
+                                style="background: #1E9FF2;padding: 7px;border-radius: 3px;">Add New
+                                Beneficiary</a>
+                            </div>
+                            <div class="col-md-4"></div>
+                          </div>
+
+                          <br>
+                          <p *ngIf="showres">My Beneficiary</p>
+                          <hr *ngIf="showres" style="border-top: 1px solid rgba(255, 255, 255, 1);">
+                          <div class="rdoformate" *ngFor="let list of recipientdata">
+                            <input (click)="recipient('myrecipient')" type="radio" name="rdobenificiary"
+                              [(ngModel)]="rdobenificiary" [value]="list.bid" id="{{list.name_business}}"
+                              style="margin-top: 10px;" ngModel />
+                            <label style="color: #0a0a0a !important;margin-bottom: 7px;text-transform: capitalize;"
+                              for="{{list.name_business}}">
+                              &nbsp;&nbsp;{{list.name_business}}</label>
+                          </div>
+                        </div>
+
+                        <div *ngIf="airtime_top_up">
+                          <h4 class="text-center text-gold text-bold-700" style="text-transform: uppercase;">Who are you
+                            sending money to?</h4>
+
+                          <div class="row" style="margin-top: 20px;">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4" style="text-align: center;">
+                              <a data-toggle="modal" data-target="#addbeni"
+                                style="background: #1E9FF2;padding: 7px;border-radius: 3px;">Add New
+                                Beneficiary</a>
+                            </div>
+                            <div class="col-md-4"></div>
+                          </div>
+                          <br>
+                          <p *ngIf="showres">My Beneficiary</p>
+                          <hr *ngIf="showres" style="border-top: 1px solid rgba(255, 255, 255, 1);">
+                          <div class="rdoformate" *ngFor="let list of recipientdata">
+                            <input (click)="recipient('myrecipient')" type="radio" name="rdobenificiary"
+                              [(ngModel)]="rdobenificiary" [value]="list.bid" id="{{list.name_business}}"
+                              style="margin-top: 10px;" ngModel />
+                            <label style="color: #0a0a0a !important;margin-bottom: 7px;text-transform: capitalize;"
+                              for="{{list.name_business}}">
+                              &nbsp;&nbsp;{{list.name_business}}</label>
+                          </div>
+                        </div>
+
+                        <div *ngIf="gift_card">
+                          <h4 class="text-center text-gold text-bold-700" style="text-transform: uppercase;">Who are you
+                            sending money to?</h4>
+
+                          <div class="row" style="margin-top: 20px;">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4" style="text-align: center;">
+                              <a data-toggle="modal" data-target="#addbeni"
+                                style="background: #1E9FF2;padding: 7px;border-radius: 3px;">Add New
+                                Beneficiary</a>
+                            </div>
+                            <div class="col-md-4"></div>
+                          </div>
+
+                          <p *ngIf="showres">My Beneficiary</p>
+                          <hr *ngIf="showres" style="border-top: 1px solid rgba(255, 255, 255, 1);">
+                          <div class="rdoformate" *ngFor="let list of recipientdata">
+                            <input (click)="recipient('myrecipient')" type="radio" name="rdobenificiary"
+                              [(ngModel)]="rdobenificiary" [value]="list.bid" id="{{list.name_business}}"
+                              style="margin-top: 10px;" ngModel />
+                            <label style="color: #0a0a0a !important;margin-bottom: 7px;text-transform: capitalize;"
+                              for="{{list.name_business}}">
+                              &nbsp;&nbsp;{{list.name_business}}</label>
+                          </div>
+                        </div>
+
+                        <div *ngIf="zipco_wallet">
+                          <h4 class="text-center text-gold text-bold-700" style="text-transform: uppercase;">Who are you
+                            sending money to?</h4>
+
+                          <div class="row" style="margin-top: 20px;">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4" style="text-align: center;">
+                              <a data-toggle="modal" data-target="#addbeni"
+                                style="background: #1E9FF2;padding: 7px;border-radius: 3px;">Add New
+                                Beneficiary</a>
+                            </div>
+                            <div class="col-md-4"></div>
+                          </div>
+
+                          <p *ngIf="showres">My Beneficiary</p>
+                          <hr *ngIf="showres" style="border-top: 1px solid rgba(255, 255, 255, 1);">
+                          <div class="rdoformate" *ngFor="let list of recipientdata">
+                            <input (click)="recipient('myrecipient')" type="radio" name="rdobenificiary"
+                              [(ngModel)]="rdobenificiary" [value]="list.bid" id="{{list.name_business}}"
+                              style="margin-top: 10px;" ngModel />
+                            <label style="color: #0a0a0a !important;margin-bottom: 7px;text-transform: capitalize;"
+                              for="{{list.name_business}}">
+                              &nbsp;&nbsp;{{list.name_business}}</label>
+                          </div>
+                        </div>
+
+                        <h4 class="text-center text-gold text-bold-700" style="font-size: 20px;">What's the reason for
+                          your transfer?</h4>
+                        <p class="text-center text-silver">To help us keep ZIPCO Remit safe and secure, please let us
+                          know why you're making this transfer.</p>
+                        <fieldset class="mb-2">
+                          <label for="transfer_reason" style="color: white;">Reason For Your Transfer</label>
+                          <select *ngIf="errtransreason" class="form-control" name="transfer_reason"
+                            [(ngModel)]="transfer_reason" id="transfer_reason" ngModel>
+                            <option value="">Select reason...</option>
+                            <option value="Family maintenance">Family maintenance</option>
+                            <option value="Savings">Savings</option>
+                            <option value="Deposit to Non-Resident Rupee (NRE) accounts">Deposit to Non-Resident Rupee
+                              (NRE) accounts</option>
+                            <option value="Payments to friends">Payments to friends</option>
+                            <option value="Other personal expense">Other personal expense</option>
+                            <option value="Education related expenses for family">Education related expenses for family
+                            </option>
+                            <option value="Medical treatment for family">Medical treatment for family</option>
+                            <option value="Purchase of property">Purchase of property</option>
+                            <option value="Compensation for a contracted employee">Compensation for a contracted
+                              employee
+                            </option>
+                          </select>
+                          <select *ngIf="!errtransreason" style="border: 1px solid red;" class="form-control"
+                            name="transfer_reason" [(ngModel)]="transfer_reason" id="transfer_reason" ngModel>
+                            <option value="">Select reason...</option>
+                            <option value="Family maintenance">Family maintenance</option>
+                            <option value="Savings">Savings</option>
+                            <option value="Deposit to Non-Resident Rupee (NRE) accounts">Deposit to Non-Resident Rupee
+                              (NRE) accounts</option>
+                            <option value="Payments to friends">Payments to friends</option>
+                            <option value="Other personal expense">Other personal expense</option>
+                            <option value="Education related expenses for family">Education related expenses for family
+                            </option>
+                            <option value="Medical treatment for family">Medical treatment for family</option>
+                            <option value="Purchase of property">Purchase of property</option>
+                            <option value="Compensation for a contracted employee">Compensation for a contracted
+                              employee
+                            </option>
+                          </select>
+                        </fieldset>
+
+                      </div>
+                    </div>
+                    <div style="text-align: right;">
+                      <button (click)="previous()" class="btn btn-zipco btn-round btn-min-width ourfont"
+                        style="background: white;color: black;">Go
+                        Back</button>
+                      &nbsp;&nbsp;
+                      <button type="submit" class="btn btn-zipco btn-round btn-min-width ourfont">Next</button>
+                    </div>
+                  </fieldset>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- <div [ngClass]="beni? 'modal animated zoomIn text-left show myshow' : 'modal animated zoomIn text-left'" id="my_self"
+  tabindex="-1" role="dialog" aria-labelledby="myModalLabel69" aria-hidden="true"> -->
+
+<div class="modal animated zoomIn text-left" id="addbeni" tabindex="-1" role="dialog" aria-labelledby="myModalLabel69"
+  aria-hidden="true">
+
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1">Add New Beneficiary</h4>
+        <!-- <button type="button" class="close" (click)="close()"> -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal form-user-profile row mt-2" #benidata="ngForm"
+          (ngSubmit)="benificiary(benidata.value)">
+
+          <div class="col-12">
+            <fieldset class="form-group">
+              <label for="currency" style="color: black;">Beneficiary Country:</label>
+              <br>
+
+              <div class="flagediv">
+                <img *ngIf="disflage" src="assets/flage/blank.gif" class="flag flag-{{disflage}}"
+                  alt="Czech Republic" />
+                <i *ngIf="!disflage" class="fas fa-globe-asia" style="color: #d6a24a;padding: 4px;font-size: 22px;"></i>
+              </div>
+
+              <div style="float: left;width: 91%;">
+                <select *ngIf="errcurrency" class="custom-select countryselect" id="currency" name="currency"
+                  [(ngModel)]="currency" (ngModelChange)="change($event)" ngModel>
+                  <option value="">Select Currency</option>
+                  <option *ngFor="let list of benifcountry" value="{{list.bc_id}}">
+                    {{list.country_name}}
+                  </option>
+                </select>
+
+                <select *ngIf="!errcurrency" style="border: 1px solid red;" class="custom-select countryselect"
+                  id="currency" name="currency" [(ngModel)]="currency" (ngModelChange)="change($event)" ngModel>
+                  <option value="">Select Currency</option>
+                  <option *ngFor="let list of benifcountry" value="{{list.bc_id}}">{{list.country_name}}
+                  </option>
+                </select>
+              </div>
+
+            </fieldset>
+          </div>
+
+          <div class="mb-1 col-12 icheck_minimal skin">
+            <label for="currency" style="color: black;">Select Beneficiary Type:</label>
+            <fieldset>
+              <div class="row">
+                <div style="width: 3%;"></div>
+                <div class="col-md-5 mydiv" *ngIf="errrectype">
+                  <input type="radio" class="recipient_type" value="personal" (click)="changeval('personal')"
+                    name="recipientType" id="input-radio-5" ngModel>
+                  <label for="input-radio-5" style="color:black;">&nbsp;Personal</label>
+                </div>
+                <div class="col-md-5 mydiv" *ngIf="!errrectype" style="border: 1px solid red;">
+                  <input type="radio" class="recipient_type" value="personal" (click)="changeval('personal')"
+                    name="recipientType" id="input-radio-5" ngModel>
+                  <label for="input-radio-5" style="color:black;">&nbsp;Personal</label>
+                </div>
+                <div style="width: 11%;"></div>
+                <div class="col-md-5 mydiv" *ngIf="errrectype">
+                  <input type="radio" class="recipient_type" value="business" (click)="changeval('business')"
+                    name="recipientType" id="input-radio-6" ngModel>
+                  <label for="input-radio-6" style="color:black;">&nbsp;Business</label>
+                </div>
+                <div class="col-md-5 mydiv" *ngIf="!errrectype" style="border: 1px solid red;">
+                  <input type="radio" class="recipient_type" value="business" (click)="changeval('business')"
+                    name="recipientType" id="input-radio-6" ngModel>
+                  <label for="input-radio-6" style="color:black;">&nbsp;Business</label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="col-12">
+            <fieldset class="form-group">
+              <label for="currency" style="color: black;">{{text}}</label>
+              <input type="text" *ngIf="errholder" (focusout)="checkvalid_holdername($event.target.value)"
+                name="account_holder" class="form-control" ngModel>
+              <input type="text" *ngIf="!errholder" (focusout)="checkvalid_holdername($event.target.value)"
+                style="border: 1px solid red;" name="account_holder" class="form-control" ngModel>
+            </fieldset>
+          </div>
+
+          <div class="col-12">
+            <fieldset class="form-group">
+              <label for="phone-no" style="color: black;">Phone Number</label>
+
+              <div class="row">
+                <div class="col-1">
+                  <input type="text" class="form-control" style="padding-left: 5px;padding-right: 0px;width: 34px;"
+                    name="phone_code" [(ngModel)]="phone_code" ngModel disabled />
+                </div>
+                <div class="col-11">
+                  <input type="text" *ngIf="errphone" class="form-control" id="phone-no" [(ngModel)]="phone"
+                    name="phone" placeholder="Your Phone Number ( With Country Code )"
+                    (ngModelChange)="checkvalid_phone($event)" ngModel>
+                  <input type="text" *ngIf="!errphone" style="border: 1px solid red;" class="form-control" id="phone-no"
+                    [(ngModel)]="phone" name="phone" placeholder="Your Phone Number ( With Country Code )"
+                    (ngModelChange)="checkvalid_phone($event)" ngModel>
+                </div>
+                <p class="font-small-3 text-info" *ngIf="errphone" style="padding-left: 15px;">
+                  <i class="la la-info-circle"></i>
+                  Ex: Nigeria, 2347018858XXX [Here 234 is Country code and rest are your mobile numbers]. Do
+                  not add the preceding zero before your actual number. Good Example +234 7784....... Bad
+                  Example +234 07784......Do not enter the landline phone number.
+                  <br>
+                  <b style="color: red;font-weight: bold;">Do not enter the landline phone number; you will
+                    not get the OTP.</b>
+                </p>
+                <p class="font-small-3 text-info" *ngIf="!errphone" style="color: red;padding-left: 15px;">
+                  <i class="la la-info-circle"></i>
+                  Ex: Nigeria, 2347018858XXX [Here 234 is Country code and rest are your mobile numbers]. Do
+                  not add the preceding zero before your actual number. Good Example +234 7784....... Bad
+                  Example +234 07784......Do not enter the landline phone number.
+                  <br>
+                  <b style="color: red;font-weight: bold;">Do not enter the landline phone number; you will
+                    not get the OTP.</b>
+                </p>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="col-12">
+            <fieldset class="form-group">
+              <label for="comemail" style="color: black;">Email</label>
+              <input type="email" id="comemail" *ngIf="errcomemail" name="comemail" [(ngModel)]="comemail"
+                class="form-control" ngModel>
+              <input type="email" id="comemail" *ngIf="!errcomemail" style="border: 1px solid red;" name="comemail"
+                [(ngModel)]="comemail" class="form-control" ngModel>
+            </fieldset>
+          </div>
+
+          <div class="col-12">
+            <fieldset class="form-group"
+              style="background: white;padding: 7px;padding-bottom: 0px;border-radius: 3px;border: 1px solid #cacfe7;">
+              <label class="container" style="margin-bottom: 4px;color: black;text-transform: none;">
+                <input type="checkbox" name="chkverify" [(ngModel)]="chkverify" data-md-icheck
+                  (change)="toggleVisibility($event)" ngModel />
+                I know their bank details
+                <span class="checkmark"></span>
+              </label>
+            </fieldset>
+          </div>
+
+          <div class="col-12" *ngIf="!chkverify">
+            <p style="font-size: 16px;color: black;">
+              Please enter their email address in the required field above. We'll send an email to request
+              their bank details once you've paid for your transfer.
+              <br><br>
+              Make sure they respond to our email or the money will be refunded to you.
+            </p>
+          </div>
+
+          <div class="col-12 mb-1">
+            <h4 style="color: black;">Beneficiary Bank Details</h4>
+          </div>
+
+          <div class="col-12 recipient_div" *ngIf="us">
+
+            <fieldset class="form-group">
+              <label for="routing-number" style="color: black;">Routing Number</label>
+              <input type="text" *ngIf="errroutingno" (focusout)="checkvalid_routingno($event.target.value)"
+                class="form-control" id="routing-number" name="routingno" placeholder="Enter Routing Number" ngModel>
+              <input type="text" *ngIf="!errroutingno" (focusout)="checkvalid_routingno($event.target.value)"
+                style="border: 1px solid red;" class="form-control" id="routing-number" name="routingno"
+                placeholder="Enter Routing Number" ngModel>
+            </fieldset>
+
+            <fieldset class="form-group">
+              <label for="account-number" style="color: black;">Account Number</label>
+              <input type="text" *ngIf="errus_accountno" (focusout)="checkvalid_accountno($event.target.value)"
+                class="form-control" id="account-number" name="us_accountno" placeholder="Enter Account Number" ngModel>
+              <input type="text" *ngIf="!errus_accountno" (focusout)="checkvalid_accountno($event.target.value)"
+                style="border: 1px solid red;" class="form-control" id="account-number" name="us_accountno"
+                placeholder="Enter Account Number" ngModel>
+            </fieldset>
+
+            <div class="mb-1 col-12 icheck_minimal skin">
+              <label for="currencytype" style="margin-left: -15px;color: black;">Account type</label>
+              <fieldset>
+                <div class="row">
+                  <div class="col-md-12 mydiv" *ngIf="errus_accounttype" style="margin-bottom: 0.5rem;">
+                    <input type="radio" class="recipient_type" value="checking" name="us_accounttype" id="checking"
+                      ngModel>
+                    <label for="checking">&nbsp;Checking</label>
+                  </div>
+                  <div class="col-md-12 mydiv" *ngIf="!errus_accounttype"
+                    style="margin-bottom: 0.5rem;border: 1px solid red;">
+                    <input type="radio" class="recipient_type" value="checking" name="us_accounttype" id="checking"
+                      ngModel>
+                    <label for="checking">&nbsp;Checking</label>
+                  </div>
+
+                  <div class="col-md-12 mydiv" *ngIf="errus_accounttype">
+                    <input type="radio" class="recipient_type" value="saving" name="us_accounttype" id="saving" ngModel>
+                    <label for="saving">&nbsp;Savings</label>
+                  </div>
+                  <div class="col-md-12 mydiv" *ngIf="!errus_accounttype" style="border: 1px solid red;">
+                    <input type="radio" class="recipient_type" value="saving" name="us_accounttype" id="saving" ngModel>
+                    <label for="saving">&nbsp;Savings</label>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+
+          </div>
+
+          <div class="col-12 recipient_div" *ngIf="ca">
+
+            <fieldset class="form-group">
+              <label for="institution-no" style="color: black;">Institution No</label>
+              <input type="text" *ngIf="errinstino" (focusout)="checkvalid_institution($event.target.value)"
+                class="form-control" id="institution-no" name="institutionno" placeholder="Enter Institution No"
+                ngModel>
+              <input type="text" *ngIf="!errinstino" (focusout)="checkvalid_institution($event.target.value)"
+                style="border: 1px solid red;" class="form-control" id="institution-no" name="institutionno"
+                placeholder="Enter Institution No" ngModel>
+            </fieldset>
+
+            <fieldset class="form-group">
+              <label for="transit-no" style="color: black;">Transit No.</label>
+              <input type="text" *ngIf="errtransitno" class="form-control" id="transit-no" name="transitno"
+                placeholder="Enter Transit No" ngModel>
+              <input type="text" *ngIf="!errtransitno" style="border: 1px solid red;" class="form-control"
+                id="transit-no" name="transitno" placeholder="Enter Transit No" ngModel>
+            </fieldset>
+
+            <fieldset class="form-group">
+              <label for="account-number" style="color: black;">Account Number</label>
+              <input type="text" *ngIf="errca_accountno" (focusout)="checkvalid_accountno($event.target.value)"
+                class="form-control" id="account-number" name="ca_accountno" placeholder="Enter Account Number" ngModel>
+              <input type="text" *ngIf="!errca_accountno" (focusout)="checkvalid_accountno($event.target.value)"
+                style="border: 1px solid red;" class="form-control" id="account-number" name="ca_accountno"
+                placeholder="Enter Account Number" ngModel>
+            </fieldset>
+
+
+            <div class="mb-1 col-12 icheck_minimal skin">
+              <label for="currencytype" style="margin-left: -15px;color: black;">Account type</label>
+              <fieldset>
+                <div class="row">
+                  <div class="col-md-12 mydiv" *ngIf="errca_accounttype" style="margin-bottom: 0.5rem;">
+                    <input type="radio" class="recipient_type" value="checking" name="ca_accounttype" id="checking"
+                      ngModel>
+                    <label for="checking">&nbsp;Checking</label>
+                  </div>
+                  <div class="col-md-12 mydiv" *ngIf="!errca_accounttype"
+                    style="margin-bottom: 0.5rem;border: 1px solid red;">
+                    <input type="radio" class="recipient_type" value="checking" name="ca_accounttype" id="checking"
+                      ngModel>
+                    <label for="checking">&nbsp;Checking</label>
+                  </div>
+
+                  <div class="col-md-12 mydiv" *ngIf="errca_accounttype">
+                    <input type="radio" class="recipient_type" value="saving" name="ca_accounttype" id="saving" ngModel>
+                    <label for="saving">&nbsp;Savings</label>
+                  </div>
+                  <div class="col-md-12 mydiv" *ngIf="!errca_accounttype" style="border: 1px solid red;">
+                    <input type="radio" class="recipient_type" value="saving" name="ca_accounttype" id="saving" ngModel>
+                    <label for="saving">&nbsp;Savings</label>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+
+          </div>
+
+          <div class="col-12 recipient_div" *ngIf="gb">
+            <fieldset class="form-group">
+              <label for="uk-code" style="color: black;">UK Code</label>
+              <input type="text" class="form-control" (focusout)="checkvalid_ukcode($event.target.value)"
+                *ngIf="erruksortcode" id="uk-code" name="ukcode" placeholder="Enter UK Code" ngModel>
+              <input type="text" class="form-control" (focusout)="checkvalid_ukcode($event.target.value)"
+                *ngIf="!erruksortcode" style="border: 1px solid red;" id="uk-code" name="ukcode"
+                placeholder="Enter UK Code" ngModel>
+            </fieldset>
+            <fieldset class="form-group">
+              <label for="account-no" style="color: black;">Account Number</label>
+              <input type="text" *ngIf="errgb_accountno" (focusout)="checkvalid_ukaccountno($event.target.value)"
+                class="form-control" id="account-no" name="gb_accountno" placeholder="Enter Account Number" ngModel>
+              <input type="text" *ngIf="!errgb_accountno" (focusout)="checkvalid_ukaccountno($event.target.value)"
+                style="border: 1px solid red;" class="form-control" id="account-no" name="gb_accountno"
+                placeholder="Enter Account Number" ngModel>
+            </fieldset>
+          </div>
+
+          <div class="col-12 recipient_div" *ngIf="za">
+            <fieldset class="form-group">
+              <label for="bank-name" style="color: black;">Beneficiary's Bank Name [BIC/SWIFT]</label>
+              <input type="text" class="form-control" (focusout)="checkvalid_bankname($event.target.value)"
+                *ngIf="errza_bankname" id="bank-name" name="za_bankname" placeholder="Enter Bank Name" ngModel>
+              <input type="text" class="form-control" (focusout)="checkvalid_bankname($event.target.value)"
+                *ngIf="!errza_bankname" style="border: 1px solid red;" id="bank-name" name="za_bankname"
+                placeholder="Enter Bank Name" ngModel>
+            </fieldset>
+            <fieldset class="form-group">
+              <label for="account-no" style="color: black;">Account Number</label>
+              <input type="text" *ngIf="errza_accountno" (focusout)="checkvalid_zaacountno($event.target.value)"
+                class="form-control" id="account-no" name="za_accountno" placeholder="Enter Account Number" ngModel>
+              <input type="text" *ngIf="!errza_accountno" (focusout)="checkvalid_zaacountno($event.target.value)"
+                style="border: 1px solid red;" class="form-control" id="account-no" name="za_accountno"
+                placeholder="Enter Account Number" ngModel>
+            </fieldset>
+            <fieldset class="form-group">
+              <label for="phone-no" style="color: black;">Phone Number</label>
+              <input type="text" *ngIf="errza_phoneno" (focusout)="checkvalid_zaphoneno($event.target.value)"
+                class="form-control" id="phone-no" name="za_phoneno" placeholder="Enter Phone Number" ngModel>
+              <input type="text" *ngIf="!errza_phoneno" (focusout)="checkvalid_zaphoneno($event.target.value)"
+                style="border: 1px solid red;" class="form-control" id="phone-no" name="za_phoneno"
+                placeholder="Enter Phone Number" ngModel>
+            </fieldset>
+          </div>
+
+          <div class="col-12 recipient_div" *ngIf="er">
+            <fieldset class="form-group">
+              <label for="iban" style="color: black;">IBAN</label>
+              <input type="text" class="form-control" *ngIf="errer_iban" id="iban" name="er_iban"
+                placeholder="Enter IBAN Number" ngModel>
+              <input type="text" class="form-control" *ngIf="!errer_iban" style="border: 1px solid red;" id="iban"
+                name="er_iban" placeholder="Enter IBAN Number" ngModel>
+            </fieldset>
+          </div>
+
+          <div class="col-12 text-left" style="margin-top: 10px;">
+            <button type="submit" class="btn-zipco btn btn-glow btn-round ourfont">Add Beneficiary</button>
+            &nbsp;
+            <button type="button" class="btn-zipco btn btn-glow btn-round ourfont" data-dismiss="modal"
+              aria-label="Close">Close</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div [ngClass]="selfcss? 'modal animated zoomIn text-left show myshow' : 'modal animated zoomIn text-left'" id="my_self"
+  tabindex="-1" role="dialog" aria-labelledby="myModalLabel69" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1">Send To Myself</h4>
+        <button type="button" class="close" (click)="close_self()" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #selfdata="ngForm" (ngSubmit)="addself(selfdata.value)">
+          <div class="col-12">
+            <fieldset class="form-group">
+              <label for="fullname" style="text-transform: capitalize;color: black;">Full name of the account
+                holder</label>
+              <input type="text" *ngIf="errfullname" class="form-control" name="fullname" [(ngModel)]="fullname"
+                id="fullname" ngModel>
+              <input type="text" *ngIf="!errfullname" style="border: 1px solid red;" class="form-control"
+                name="fullname" [(ngModel)]="fullname" id="fullname" ngModel>
+            </fieldset>
+          </div>
+          <div class="col-12">
+            <p class="font-medium-2" style="color: #323232 !important;">Bank Details</p>
+            <hr style="border-top: 1px solid rgba(202,207,231, 1);">
+            <fieldset class="form-group">
+              <label for="ifsc_code" style="color: black;">IFSC Code</label>
+              <input type="text" *ngIf="errifsc_code" class="form-control" placeholder="012465" name="ifsc_code"
+                [(ngModel)]="ifsc_code" id="ifsc_code" ngModel>
+              <input type="text" *ngIf="!errifsc_code" style="border: 1px solid red;" class="form-control"
+                placeholder="012465" name="ifsc_code" [(ngModel)]="ifsc_code" id="ifsc_code" ngModel>
+            </fieldset>
+          </div>
+          <div class="col-12">
+            <fieldset class="form-group">
+              <label for="account_number" style="color: black;">Account Number</label>
+              <input type="text" *ngIf="erraccount_number" (focusout)="checkvalid_account()" class="form-control"
+                placeholder="1230156498712120" name="account_number" [(ngModel)]="account_number" id="account_number"
+                ngModel>
+              <input type="text" *ngIf="!erraccount_number" (focusout)="checkvalid_account()"
+                style="border: 1px solid red;" class="form-control" placeholder="1230156498712120" name="account_number"
+                [(ngModel)]="account_number" id="account_number" ngModel>
+            </fieldset>
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-zipco my-1 btn-min-width btn-round">Confirm</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div [ngClass]="elsecss? 'modal animated zoomIn text-left show myshow' : 'modal animated zoomIn text-left'"
+  id="someone_else" tabindex="-1" role="dialog" aria-labelledby="myModalLabel69" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1" style="text-transform: capitalize;">Send to someone else</h4>
+        <button type="button" class="close" (click)="close_else()" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #somelsedata="ngForm" (ngSubmit)="some_else(somelsedata.value)">
+          <div class="col-12">
+            <fieldset class="form-group">
+              <label for="theiremail" style="text-transform: capitalize;color: black;">Their mail</label>
+              <input *ngIf="erremail" type="email" class="form-control" name="email" [(ngModel)]="email" id="theiremail"
+                ngModel>
+              <input *ngIf="!erremail" style="border: 1px solid red;" type="email" class="form-control" name="email"
+                [(ngModel)]="email" id="theiremail" ngModel>
+            </fieldset>
+          </div>
+          <div class="col-12">
+            <fieldset class="form-group">
+              <label for="account_name" style="text-transform: capitalize;color: black;">Full name of the account
+                holder</label>
+              <input *ngIf="erraccount_name" type="text" class="form-control" name="account_name"
+                [(ngModel)]="account_name" id="account_name" ngModel>
+              <input *ngIf="!erraccount_name" style="border: 1px solid red;" type="text" class="form-control"
+                name="account_name" [(ngModel)]="account_name" id="account_name" ngModel>
+            </fieldset>
+          </div>
+          <div class="col-12">
+            <p class="font-medium-2" style="color: #323232 !important;">Beneficiary's Address</p>
+            <hr style="border-top: 1px solid rgba(202,207,231, 1);">
+            <fieldset class="form-group">
+              <label for="country" style="color: black;">Country</label>
+              <select *ngIf="errcountry" class="form-control" name="country" [(ngModel)]="country" id="country"
+                (ngModelChange)="countrystate($event)" ngModel>
+                <option value="">Select Country</option>
+                <option *ngFor="let list of countryname" value="{{list.c_id}}">{{list.country_name}}</option>
+              </select>
+              <select *ngIf="!errcountry" style="border: 1px solid red;" class="form-control" name="country"
+                [(ngModel)]="country" id="country" (ngModelChange)="countrystate($event)" ngModel>
+                <option value="">Select Country</option>
+                <option *ngFor="let list of countryname" value="{{list.c_id}}">{{list.country_name}}</option>
+              </select>
+            </fieldset>
+          </div>
+
+          <div class="col-12">
+            <fieldset class="form-group">
+              <label for="statedata" style="color: black;">State</label>
+              <select *ngIf="errstate" [(ngModel)]="state" name="state" class="custom-select"
+                (ngModelChange)="statecity($event)" id="statedata" ngModel>
+                <option value="">Select State</option>
+                <option *ngFor="let list of statename" value="{{list.id}}">{{list.state_name}}</option>
+              </select>
+              <select *ngIf="!errstate" style="border: 1px solid red;" [(ngModel)]="state" name="state"
+                class="custom-select" (ngModelChange)="statecity($event)" id="statedata" ngModel>
+                <option value="">Select State</option>
+                <option *ngFor="let list of statename" value="{{list.id}}">{{list.state_name}}</option>
+              </select>
+            </fieldset>
+          </div>
+
+          <div class="col-12">
+            <fieldset class="form-group">
+              <label for="citydata" style="color: black;">City</label>
+              <select *ngIf="errcity" class="form-control" name="city" [(ngModel)]="city" id="citydata" ngModel>
+                <option value="">Select City</option>
+                <option *ngFor="let list of cityname" value="{{list.id}}">{{list.city_name}}</option>
+              </select>
+              <select *ngIf="!errcity" style="border: 1px solid red;" class="form-control" name="city"
+                [(ngModel)]="city" id="citydata" ngModel>
+                <option value="">Select City</option>
+                <option *ngFor="let list of cityname" value="{{list.id}}">{{list.city_name}}</option>
+              </select>
+            </fieldset>
+          </div>
+
+          <div class="col-12">
+            <p class="font-medium-2" style="color: #323232 !important;">Bank Details</p>
+            <hr style="border-top: 1px solid rgba(202,207,231, 1);">
+            <fieldset class="form-group">
+              <label for="ifsc_code" style="color: black;">IFSC Code</label>
+              <input *ngIf="errelse_ifsc_code" type="text" class="form-control" placeholder="YES147850121"
+                name="else_ifsc_code" [(ngModel)]="else_ifsc_code" id="ifsc_code" ngModel>
+              <input *ngIf="!errelse_ifsc_code" style="border: 1px solid red;" type="text" class="form-control"
+                placeholder="YES147850121" name="else_ifsc_code" [(ngModel)]="else_ifsc_code" id="ifsc_code" ngModel>
+            </fieldset>
+          </div>
+          <div class="col-12">
+            <fieldset class="form-group">
+              <label for="account_number" style="color: black;">Account Number</label>
+              <input *ngIf="errelse_account_number" type="text" class="form-control" placeholder="1230156498712120"
+                name="else_account_number" [(ngModel)]="else_account_number" id="account_number" ngModel>
+              <input *ngIf="!errelse_account_number" style="border: 1px solid red;" type="text" class="form-control"
+                placeholder="1230156498712120" name="else_account_number" [(ngModel)]="else_account_number"
+                id="account_number" ngModel>
+            </fieldset>
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-zipco my-1 btn-min-width btn-round">Confirm</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="selfcss" class="modal-backdrop show"></div>
+<div *ngIf="elsecss" class="modal-backdrop show"></div>

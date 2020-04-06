@@ -1,0 +1,167 @@
+/*================================================================================
+	Item Name: Modern Admin - Clean Bootstrap 4 Dashboard HTML Template
+	Version: 1.0
+	Author: PIXINVENT
+	Author URL: http://www.themeforest.net/user/pixinvent
+================================================================================
+
+NOTE:
+------
+PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
+WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+
+@font-face {
+    font-family: Comfortaa;
+    src: url("../../app-assets/fonts/Comfortaa.ttf");
+}
+
+ul.token-distribution-list li.crowd-sale::before {
+    background: #17191d;
+}
+ul.token-distribution-list li.team::before {
+    background: #fa3455;
+}
+ul.token-distribution-list li.advisors::before {
+    background: #1dd1a1;
+}
+ul.token-distribution-list li.project-reserve::before {
+    background: #2ecc71;
+}
+ul.token-distribution-list li.master-nodes::before {
+    background: #c1d751;
+}
+ul.token-distribution-list li.program::before {
+    background: #8c7fb7;
+}
+
+ul.token-distribution-list li:before{
+	width: 10px;
+    height: 10px;
+    border-radius: 20%;
+}
+
+.btn-zipco{
+	background-image: linear-gradient(45deg, #e2b458, #c07e30);
+	color: #fff;
+}
+
+.btn-zipco:hover{
+	background-image: linear-gradient(45deg, #c07e30, #e2b458);
+	color: #fff;
+}
+
+.text-silver{
+	color: #c0c0c0;
+}
+
+.text-gold{
+	color: #c07e30;
+}
+
+/* Start Iphone slider CSS */
+	.dm-width {
+	   	width: 500px;
+	   	margin: 0 auto;
+	}
+
+	.iphone-mockup {
+	   	position: relative;
+	   	z-index: 5;
+	}
+
+	.dm-device {
+    	position: relative;
+	    width: 100%;
+	    /*padding-bottom:203.477897%;*/
+	    padding-bottom: 75%;
+	}
+
+	.device {
+	  	position: absolute;
+	    top: 0;
+	    bottom: 0;
+	    left: 0;
+	    right: 0;
+	    width: 60%;
+	    /*height: 600px;*/
+	    -webkit-background-size: 100% 100%;
+	    
+	    background-repeat: no-repeat;
+	    background-image: url(../../app-assets/images/carousel/iphone_1.png);
+	  	background-size: cover;
+	    background-position: center center;
+	}
+
+	.screen {
+	   	overflow: hidden;
+	    position: absolute;
+	    top: 12%;
+	    bottom: 12.6%;
+	    /*left: 12.49%;*/
+	    left: 20.95%;
+	    right: 0.4%;
+	    /*background-color: #E91E63;*/
+	    background-color: #2db2ff;
+	}
+
+	.dm-device .slider {
+		height: 100%;
+	}
+	.dm-device .slider div {
+		height: 100%;
+	}
+
+	.slider__item {
+		font-size: 100px;	
+	    color: rgba(255,255,255,0.7);
+	    display: flex;
+	    justify-content: center;
+	    align-items: center;
+	}
+
+	.owl-wrapper{
+	    display: flex !important;
+	}
+
+	.slider__item--1 {
+	   	/*background-color: #E91E63;*/
+	   	background-image: url(../../app-assets/images/carousel/001.jpg);
+   	    background-size: cover;
+        background-repeat: no-repeat;
+	}
+	.slider__item--2 {
+	   	/*background-color: #2196F3;*/
+	   	background-image: url(../../app-assets/images/carousel/002.jpg);
+   	    background-size: cover;
+   	    background-repeat: no-repeat;
+	}
+	.slider__item--3 {
+	   	/*background-color: #4CAF50;*/
+	   	background-image: url(../../app-assets/images/carousel/003.jpg);
+   	    background-size: cover;
+   	    background-repeat: no-repeat;
+	}
+	/* End Iphone slider CSS */
+
+
+	.bg-zipco{
+		background-color: #17191d !important;
+	    background-image: url(https://zipcx.io/assets/images/01.png) !important;
+        background-repeat: repeat !important;
+	}
+
+
+.zipco-gredient-text{
+	background: -webkit-linear-gradient(#c88936, #fadd8a);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;	
+}
+
+
+
+
+@media (min-width: 200px) and (max-width: 768px) {
+    .vertical-overlay-menu .main-menu{
+		width: 170px !important;
+	}
+}

@@ -1,0 +1,327 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+      <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block pathffont">Transfer</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb pathsfont">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/m-dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">Transfer
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-12 mb-2">
+          <a [routerLink]="['/m-transaction']">
+            <i class="ft ft-arrow-left"></i> All Transfer</a>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-xl-8" style="max-width: 760px;">
+          <div class="card bg-zipco">
+            <div class="card-header bg-zipco card-header-transparent">
+              <h4 class="text-white">Summary</h4>
+            </div>
+            <div class="card-content text-white">
+              <ul>
+                <li>
+                  <i class="ft ft-arrow-right"></i> Order Placed</li>
+                <li>
+                  <i class="ft ft-arrow-right"></i> Processed</li>
+                <li>
+                  <i class="ft ft-arrow-right"></i> It's with your recipient's bank</li>
+              </ul>
+            </div>
+          </div>
+          <img src="assets/images/send-money.png" style="width: 70%;">
+        </div>
+        <div class="card col-xl-4 bg-zipco mytransdiv" style="padding-right: 0px;padding-left: 0px;margin-bottom: 0px;">
+          <div class="bg-zipco text-white card-header card-header-transparent">
+            <div class="col-md-12 col-12">
+              <div class="pull-left">
+                <h4 class="text-white">Summary</h4>
+                <p>{{summery}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="card-content text-white">
+            <div class="col-md-12 col-12 mt-2" style="padding: 0px;">
+              <table class="table">
+                <tbody class="pdown">
+                  <tr>
+                    <td>Transaction Date</td>
+                    <td class="text-right">{{ransdate | date: "dd MMM yyyy"}}</td>
+                  </tr>
+                  <tr>
+                    <td>Transfer Number</td>
+                    <td class="text-right">{{transfer_number}}</td>
+                  </tr>
+                  <tr>
+                    <td>They get</td>
+                    <td class="text-right">{{getamount}} {{getcurrency}}</td>
+                  </tr>
+                  <tr *ngIf="zipcoamount">
+                    <td class="text-bold-800">You sent</td>
+                    <td class="text-bold-800 text-right"> {{zipcoamount}} ZIPCO</td>
+                  </tr>
+                  <tr *ngIf="!zipcoamount">
+                    <td class="text-bold-800">You sent</td>
+                    <td class="text-bold-800 text-right"> {{sendamount}} {{sendcurrency}}</td>
+                  </tr>
+                  <tr *ngIf="!zipcoamount">
+                    <td>Transfer fee</td>
+                    <td class="text-right">{{totfee}} {{sendcurrency}}</td>
+                  </tr>
+                  <tr *ngIf="!zipcoamount" class="bg-grey bg-lighten-4 text-bold-600">
+                    <td class="text-bold-800">Total Paid</td>
+                    <td class="text-bold-800 text-right">{{sendamount}} {{sendcurrency}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-md-12 row col-12">
+              <div style="padding-left: 20px;">
+                <h4 class="text-white" *ngIf="btype != 'agent'">Bank Details</h4>
+                <h4 class="text-white" *ngIf="btype == 'agent'">Beneficiary Details</h4>
+              </div>
+            </div>
+            <div class="col-md-12 row col-12 mt-2" style="padding-right: 0px;padding-left: 0;margin: 0px;">
+              <table class="table" *ngIf="btype != 'agent'">
+                <tbody>
+                  <tr>
+                    <td>Name</td>
+                    <td class="text-right" *ngIf="recipient_name">{{recipient_name}}</td>
+                    <td class="text-right" *ngIf="else_account_holder">{{else_account_holder}}</td>
+                    <td class="text-right" *ngIf="self_account_holder">{{self_account_holder}}</td>
+                  </tr>
+
+                  <tr *ngIf="us">
+                    <td>Rouoting Number</td>
+                    <td class="text-right">{{us_rouoting_no}}</td>
+                  </tr>
+                  <tr *ngIf="us">
+                    <td>Account Type</td>
+                    <td class="text-right">{{us_account_type}}</td>
+                  </tr>
+                  <tr *ngIf="us">
+                    <td>Account Number</td>
+                    <td class="text-right">{{us_account_no}}</td>
+                  </tr>
+
+                  <tr *ngIf="ca">
+                    <td>Institution Number</td>
+                    <td class="text-right">{{ca_institution_no}}</td>
+                  </tr>
+                  <tr *ngIf="ca">
+                    <td>Transit Type</td>
+                    <td class="text-right">{{ca_transit_no}}</td>
+                  </tr>
+                  <tr *ngIf="ca">
+                    <td>Account Type</td>
+                    <td class="text-right">{{ca_account_type}}</td>
+                  </tr>
+                  <tr *ngIf="ca">
+                    <td>Account Number</td>
+                    <td class="text-right">{{ca_account_no}}</td>
+                  </tr>
+
+                  <tr *ngIf="gb">
+                    <td>UK Code</td>
+                    <td class="text-right">{{gb_ukcode}}</td>
+                  </tr>
+                  <tr *ngIf="gb">
+                    <td>Account Number</td>
+                    <td class="text-right">{{gb_account_no}}</td>
+                  </tr>
+
+                  <tr *ngIf="er">
+                    <td>IBAN Number</td>
+                    <td class="text-right">{{er_iban}}</td>
+                  </tr>
+
+                  <tr *ngIf="za">
+                    <td>Bank Name</td>
+                    <td class="text-right">{{za_bank_name}}</td>
+                  </tr>
+                  <tr *ngIf="za">
+                    <td>Account Number</td>
+                    <td class="text-right">{{za_account_no}}</td>
+                  </tr>
+                  <tr *ngIf="za">
+                    <td>Phone Number</td>
+                    <td class="text-right">{{za_phone_no}}</td>
+                  </tr>
+
+
+                </tbody>
+              </table>
+              <table class="table" *ngIf="btype == 'agent'">
+                <tbody>
+                  <tr>
+                    <td>Name</td>
+                    <td class="text-right" *ngIf="rname">{{rname}}</td>
+                  </tr>
+                  <tr>
+                    <td>Email</td>
+                    <td class="text-right" *ngIf="remail">{{remail}}</td>
+                  </tr>
+                  <tr>
+                    <td>Phone</td>
+                    <td class="text-right" *ngIf="rphone">{{rphone}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-md-12 mt-2 mb-2 col-12 text-center">
+              <a href="javascript:void(0)" data-toggle="modal" data-target="#zoomIn">View Transaction Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal animated zoomIn text-left" id="zoomIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel69"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="border-bottom: 1px solid #98A4B8;padding-bottom: 0px;">
+        <p>Transaction Details</p>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="banDetails">
+        <h5 class="modal-title" id="myModalLabel69">{{summery}}</h5>
+        <p>Transfer number: {{transfer_number}}</p>
+        <h6>Summary</h6>
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>Transaction Date</td>
+              <td class="text-right">{{ransdate | date: "dd MMM yyyy"}}</td>
+            </tr>
+            <tr>
+              <td>Transfer Number</td>
+              <td class="text-right">{{transfer_number}}</td>
+            </tr>
+            <tr>
+              <td>They get</td>
+              <td class="text-right">{{getamount}} {{getcurrency}}</td>
+            </tr>
+            <tr *ngIf="zipcoamount">
+              <td class="text-bold-800">You sent</td>
+              <td class="text-bold-800 text-right"> {{zipcoamount}} ZIPCO</td>
+            </tr>
+            <tr *ngIf="!zipcoamount">
+              <td class="text-bold-800">You sent</td>
+              <td class="text-bold-800 text-right"> {{sendamount}} {{sendcurrency}}</td>
+            </tr>
+            <tr *ngIf="!zipcoamount">
+              <td>Transfer fee</td>
+              <td class="text-right">{{totfee}} {{sendcurrency}}</td>
+            </tr>
+            <tr *ngIf="!zipcoamount" class="bg-grey bg-lighten-4 text-bold-600">
+              <td class="text-bold-800">Total Paid</td>
+              <td class="text-bold-800 text-right">{{sendamount}} {{sendcurrency}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <h6 class="mt-2" *ngIf="btype != 'agent'">Bank details</h6>
+        <h6 class="mt-2" *ngIf="btype == 'agent'">Beneficiary details</h6>
+        <table class="table" *ngIf="btype != 'agent'">
+          <tbody>
+            <tr>
+              <td>Name</td>
+              <td class="text-right" *ngIf="recipient_name">{{recipient_name}}</td>
+              <td class="text-right" *ngIf="else_account_holder">{{else_account_holder}}</td>
+              <td class="text-right" *ngIf="self_account_holder">{{self_account_holder}}</td>
+              <td class="text-right" *ngIf="rname">{{rname}}</td>
+            </tr>
+
+            <tr *ngIf="us">
+              <td>Rouoting Number</td>
+              <td class="text-right">{{us_rouoting_no}}</td>
+            </tr>
+            <tr *ngIf="us">
+              <td>Account Type</td>
+              <td class="text-right">{{us_account_type}}</td>
+            </tr>
+            <tr *ngIf="us">
+              <td>Account Number</td>
+              <td class="text-right">{{us_account_no}}</td>
+            </tr>
+
+            <tr *ngIf="ca">
+              <td>Institution Number</td>
+              <td class="text-right">{{ca_institution_no}}</td>
+            </tr>
+            <tr *ngIf="ca">
+              <td>Transit Type</td>
+              <td class="text-right">{{ca_transit_no}}</td>
+            </tr>
+            <tr *ngIf="ca">
+              <td>Account Type</td>
+              <td class="text-right">{{ca_account_type}}</td>
+            </tr>
+            <tr *ngIf="ca">
+              <td>Account Number</td>
+              <td class="text-right">{{ca_account_no}}</td>
+            </tr>
+
+            <tr *ngIf="gb">
+              <td>UK Code</td>
+              <td class="text-right">{{gb_ukcode}}</td>
+            </tr>
+            <tr *ngIf="gb">
+              <td>Account Number</td>
+              <td class="text-right">{{gb_account_no}}</td>
+            </tr>
+
+            <tr *ngIf="er">
+              <td>IBAN Number</td>
+              <td class="text-right">{{er_iban}}</td>
+            </tr>
+
+            <tr *ngIf="za">
+              <td>Bank Name</td>
+              <td class="text-right">{{za_bank_name}}</td>
+            </tr>
+            <tr *ngIf="za">
+              <td>Account Number</td>
+              <td class="text-right">{{za_account_no}}</td>
+            </tr>
+            <tr *ngIf="za">
+              <td>Phone Number</td>
+              <td class="text-right">{{za_phone_no}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table" *ngIf="btype == 'agent'">
+          <tbody>
+            <tr>
+              <td>Name</td>
+              <td class="text-right" *ngIf="rname">{{rname}}</td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td class="text-right" *ngIf="remail">{{remail}}</td>
+            </tr>
+            <tr>
+              <td>Phone</td>
+              <td class="text-right" *ngIf="rphone">{{rphone}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

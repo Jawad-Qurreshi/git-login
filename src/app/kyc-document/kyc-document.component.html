@@ -1,0 +1,164 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+      <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block pathffont">KYC Application</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb pathsfont">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">KYC Application
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+      <div class="row justify-content-center">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 text-center">
+          <p class="text-center lead mt-2">
+            We strongly recommend that you should enable Google 2-Step Verification and SMS and finish the KYC.
+          </p>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+      <div class="row mb-2 match-height justify-content-center">
+        <div class="row col-md-2"></div>
+        <div class="row col-md-8 justify-content-center">
+          <div class="col-md-6" style="max-width: 365px;">
+            <div class="card pull-up bg-zipco">
+              <div class="card-body text-silver">
+                <h5 class="text-white" style="font-size: 20px;font-weight: bold;">KYC</h5>
+                <p>
+                  To protect and safeguard your assets, please complete Know Your Customer (KYC) process using correct
+                  information. This is a one-time process and once you click submit the provided information cannot be
+                  changed.
+                </p>
+                <label *ngIf="pending" class="mb-0 btn btn-warning btn-round click_btn ourfont"
+                  style="font-size: 15px;border-radius: 50px;">Under Review </label>
+                <label *ngIf="approve" class="mb-0 btn btn-success btn-round click_btn ourfont"
+                  style="font-size: 15px;border-radius: 50px;">KYC Verified </label>
+                <label *ngIf="reject" class="mb-0 btn btn-danger btn-round click_btn ourfont"
+                  style="font-size: 15px;border-radius: 50px;">KYC Rejected </label>
+                <label *ngIf="halfkyc" class="mb-0 btn btn-warning btn-round click_btn ourfont"
+                  style="font-size: 15px;border-radius: 50px;">KYC Pending </label>
+                <p *ngIf="note" class="mt-2">
+                  <label *ngIf="reject" style="color: red !important;">Rejected For: {{note}}</label>
+                  <label *ngIf="pending" style="color: red !important;">
+                    <label *ngIf="note" style="color: red !important;">This KYC rejected before for:</label>
+                    {{note}}
+                  </label>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6" style="max-width: 365px;">
+            <div class="card pull-up bg-zipco">
+              <div class="card-body text-silver">
+                <h5 class="text-white" style="font-size: 20px;font-weight: bold;">2FA</h5>
+                <p>We strongly recommend that you should enable Google 2-Step Verification. When you need to log in,
+                  withdraw,
+                  and do security settings, you must use Google's 2-Step verifications.</p>
+                <a *ngIf="show" [routerLink]="['/two-auth']"
+                  class="mb-0 btn btn-min-width btn-round btn-zipco ourfont">Enable</a>
+                <a *ngIf="!show" [routerLink]="['/two-auth']"
+                  class="mb-0 btn btn-min-width btn-round btn-zipco ourfont">Disable</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row col-md-2"></div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-6" style="max-width: 570px;">
+          <div class="card bg-zipco">
+            <div class="card-content">
+              <div class="card-body">
+                <section class="slider">
+                  <div class="flexslider">
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                      <ol class="carousel-indicators">
+                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+                      </ol>
+                      <div class="carousel-inner" role="listbox">
+                        <div class="carousel-item active">
+                          <img src="assets/images/kyc/kyc1.png" style="width: 100%" alt="First slide">
+                        </div>
+                        <div class="carousel-item">
+                          <img src="assets/images/kyc/kyc2.png" style="width: 100%" alt="Second slide">
+                        </div>
+                        <div class="carousel-item">
+                          <img src="assets/images/kyc/kyc3.png" style="width: 100%" alt="Third slide">
+                        </div>
+                        <div class="carousel-item">
+                          <img src="assets/images/kyc/kyc4.png" style="width: 100%" alt="Third slide">
+                        </div>
+                        <div class="carousel-item">
+                          <img src="assets/images/kyc/kyc5.png" style="width: 100%" alt="Third slide">
+                        </div>
+                      </div>
+                      <a class="carousel-control-prev" href="#carousel-example-generic" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                      <a class="carousel-control-next" href="#carousel-example-generic" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                      </a>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>KYC Verification</h1>
+          <p style="width: 60%;margin: auto;" class="text-center lead mt-2">
+            To comply with regulation each participant will have to go through indentity verification (KYC/AML) to
+            prevent fraud causes.
+            Please, complete our fast and secure verification process to participate in our token sale.
+          </p>
+        </div>
+      </div>
+      <div class="row justify-content-center mt-2">
+        <div class="col-md-8" style="max-width: 760px;">
+          <div class="card pull-up bg-zipco">
+            <div class="card-content collapse show">
+              <div class="card-body">
+                <div class="text-center row clearfix justify-content-center mb-2">
+                  <div class="col-12">
+                    <i class="bg-glow bg-warning d-inline-block far fa-3x fa-file p-2 rounded-circle white" style="width: 80px;"></i>
+                  </div>
+                </div>
+
+                <p class="text-center lead mt-2 text-silver">You have not submitted your necessary documents to verify
+                  your identity. In order to purchase our tokens,
+                  please verify your identity.</p>
+                <form action="" method="">
+                  <div class="row">
+                    <div class="col-md-12 text-center">
+                      <a [routerLink]="['/kyc-document-one']"
+                        class="mb-0 btn btn-round btn-zipco btn-min-width ourfont">Individual KYC</a>
+                      <!-- <a href="bkyc.html" class="mb-0 btn btn-outline-primary">Business KYC</a> -->
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

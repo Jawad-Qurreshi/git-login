@@ -1,0 +1,78 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+      <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block pathffont">Send Money</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb pathsfont">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">Send Money
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-body">
+
+      <div class="row justify-content-center">
+        <div class="col-md-10 offset-1" style="max-width: 950px;">
+          <div class="card pull-up bg-zipco text-white">
+            <div class="card-body p-2">
+
+              <h4 style="color: #c88c39;text-transform: uppercase;font-weight: bold;font-size: 20px;">Enterac Transfer
+              </h4>
+
+              <p class="text-silver" style="font-size: 17px;">Please send Exactly {{send_amount / 100}}
+                {{send_currency}} to one of below Email Address
+              </p>
+
+              <p style="font-size: 16px;">
+                <b style="color: #c78b38;">•</b> admin@zipcoinremit.com
+                <br>
+                <b style="color: #c78b38;">•</b> e-transfer@zipcoinremit.com
+                <br><br>
+                <b style="color: #c78b38;">•</b> Customer must include this reference {{referenceno}} in the body of the
+                e-transfer
+                payment
+              </p>
+
+              <br><br>
+
+              <h6 class="mb-1 text-center" style="color: #c88c39;font-size: 20px;">UPLOAD IMAGE/SCREENSHOT OF
+                SUCCESSFULL PAYMENT</h6>
+              <form #enteracpayment="ngForm" (ngSubmit)="enteracpay(enteracpayment.value)">
+                <div class="row" style="border: 1px solid;margin: 5px;padding: 5px;">
+                  <div class="col-md-12">
+                    <fieldset class="form-group">
+                      <label for="payment_img" style="color: white;">Payment Screenshot</label>
+                      <input type="file" class="form-control" id="payment_img" name="payment_img"
+                        (change)="upload_enterac($event)" #enteracpaym>
+                    </fieldset>
+                    <div class="col-md-12 text-center" style="margin-top:10px;">
+                      <div class="form-group">
+
+                        <button (click)="previous()" class="btn btn-zipco btn-round btn-min-width ourfont"
+                          style="background: white;color: black;">Go
+                          Back</button>
+                        &nbsp;&nbsp;
+                        <button type="submit" class="btn btn-zipco btn-round btn-min-width ourfont">CLICK HERE WHEN
+                          TRANSFER IS COMPLETE</button>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

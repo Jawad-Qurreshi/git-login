@@ -1,0 +1,21 @@
+@media (min-width: 768px) {
+    .display-block {
+        display: block;
+    }
+    .display-none {
+        display: none;
+    }
+}
+@media (max-width: 767px) {
+    .display-img-block {
+        display: none;
+    }
+}
+@media (min-width: 768px) {
+    .display-img-none {
+        display: none;
+    }
+    .display-img-block {
+        display: block;
+    }
+}

@@ -1,0 +1,486 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+      <div class="content-header col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block pathffont">KYC Applications</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb pathsfont">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/m-dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">
+                <a [routerLink]="['/m-ikyc']">KYC Application</a>
+              </li>
+              <li class="breadcrumb-item">
+                <span>View KYC Application</span>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+      <!-- Individual KYC -->
+      <div class="row justify-content-center">
+        <div class="col-12" style="max-width: 1140px;">
+          <div class="card pull-up bg-zipco">
+            <div class="card-content collapse show">
+              <div class="card-body text-silver">
+                <h4 class="mb-2 text-gold text-bold-700">
+                  <strong>Individual KYC</strong>
+                </h4>
+                <label *ngIf="status == 2" style="color: red !important;">Rejected For: {{note}}</label>
+                <label *ngIf="status == 0" style="color: red !important;">
+                  <label *ngIf="note" style="color: red !important;">This KYC rejected before for:</label>
+                  {{note}}</label>
+                <br>
+                <label *ngIf="status == 0" class="mb-0 btn btn-warning btn-round text-white">KYC Under Review</label>
+                <label *ngIf="status == 1" class="mb-0 btn btn-success btn-round text-white">KYC Verified </label>
+                <label *ngIf="status == 2" class="mb-0 btn btn-danger btn-round text-white">KYC Rejected </label>
+                &nbsp;
+                <a *ngIf="status == 0" (click)="verified(kyc_id)" class="mycheck btn btn-round btn-zipco ourfont"
+                  style="color: white;">Mark as Approved</a>
+                &nbsp;
+                <a *ngIf="status == 0" (click)="open()" class="btn btn-round btn-zipco ourfont"
+                  style="color: white;">Mark as Rejected</a>
+                  &nbsp;
+                <a *ngIf="block == 0" (click) = "blockdata()" name="Block" class="btn-sm btn btn-info text-white"><i class="la ft-lock"></i> Block</a>
+                <a *ngIf="block == 1" (click) = "unblockdata()" name="Block" class="btn-sm btn btn-info text-white"><i class="la ft-unlock"></i> Un Block</a>
+
+                <hr>
+                <div class="row mb-2">
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <span class="">Full Name : </span>
+                      </div>
+                      <div class="col-md-6">
+                        <span class="" style="text-transform: capitalize;">{{fullname}}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <span class="">Date Of Birth : </span>
+                      </div>
+                      <div class="col-md-6">
+                        <span>{{dob | date: "dd/MM/yyyy"}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-2">
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <span class="">Phone Number : </span>
+                      </div>
+                      <div class="col-md-6">
+                        <span style="text-transform: capitalize;">{{phone}}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <span class="">Country : </span>
+                      </div>
+                      <div class="col-md-6">
+                        <span style="text-transform: capitalize;">{{country}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-2">
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <span class="">Province/State/Region : </span>
+                      </div>
+                      <div class="col-md-6">
+                        <span style="text-transform: capitalize;">{{state}}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <span class="">City : </span>
+                      </div>
+                      <div class="col-md-6">
+                        <span style="text-transform: capitalize;">{{city}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-2">
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <span class="">Street Address : </span>
+                      </div>
+                      <div class="col-md-6">
+                        <span style="text-transform: capitalize;">{{streetaddress}}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <span class="">Zip Code : </span>
+                      </div>
+                      <div class="col-md-6">
+                        <span>{{zipcode}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-2">
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <span class="">Occupation : </span>
+                      </div>
+                      <div class="col-md-6">
+                        <span style="text-transform: capitalize;">{{occupation}}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <span class="">Document Type : </span>
+                      </div>
+                      <div class="col-md-6">
+                        <span style="text-transform: capitalize;">{{doctype}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-2">
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <span class="">Document Number : </span>
+                      </div>
+                      <div class="col-md-6">
+                        <span>{{docno}}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <span class="">Issue Date : </span>
+                      </div>
+                      <div class="col-md-6">
+                        <span>{{idate | date: "dd/MM/yyyy"}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-2">
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <span class="">Expiry Date : </span>
+                      </div>
+                      <div class="col-md-6">
+                        <span>{{edate | date: "dd/MM/yyyy"}}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <span class="">Address as per document : </span>
+                      </div>
+                      <div class="col-md-6">
+                        <span style="text-transform: capitalize;">{{adddocs}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mb-2">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <span class="">FRONTSIDE : </span>
+                      </div>
+                      <div class="col-md-6">
+                        <img src="{{durl + cid}}/{{frontside}}" *ngIf="lastfront == 'jpeg'" data-toggle="modal"
+                          data-target="#frontside" height="60" width="60">
+                        <img src="{{durl + cid}}/{{frontside}}" *ngIf="lastfront == 'jpg'" data-toggle="modal"
+                          data-target="#frontside" height="60" width="60">
+                        <img src="{{durl + cid}}/{{frontside}}" *ngIf="lastfront == 'png'" data-toggle="modal"
+                          data-target="#frontside" height="60" width="60">
+                        <p *ngIf="lastfront == 'pdf'">
+                          <a href="{{durl + cid}}/{{frontside}}" target="_blank">
+                            <i class="fas fa-3x fa-file-pdf" style="color: #ff0000;"></i>
+                          </a>
+                        </p>
+                        <p *ngIf="lastfront == 'docx'">
+                          <a href="{{durl + cid}}/{{frontside}}" target="_blank">
+                            <i class="far fa-3x fa-file-word" style="color: #1976d2;"></i>
+                          </a>
+                        </p>
+                        <p *ngIf="lastfront == 'doc'">
+                          <a href="{{durl + cid}}/{{frontside}}" target="_blank">
+                            <i class="far fa-3x fa-file-word" style="color: #1976d2;"></i>
+                          </a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-2">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <span class="">BACKSIDE : </span>
+                      </div>
+                      <div class="col-md-6">
+                        <img *ngIf="lastback == 'jpeg'" src="{{durl + cid}}/{{backside}}" data-toggle="modal"
+                          data-target="#backside" height="60" width="60">
+                        <img *ngIf="lastback == 'jpg'" src="{{durl + cid}}/{{backside}}" data-toggle="modal"
+                          data-target="#backside" height="60" width="60">
+                        <img *ngIf="lastback == 'png'" src="{{durl + cid}}/{{backside}}" data-toggle="modal"
+                          data-target="#backside" height="60" width="60">
+                        <p *ngIf="lastback == 'pdf'">
+                          <a href="{{durl + cid}}/{{backside}}" target="_blank">
+                            <i class="fas fa-3x fa-file-pdf" style="color: #ff0000;"></i>
+                          </a>
+                        </p>
+                        <p *ngIf="lastback == 'docx'">
+                          <a href="{{durl + cid}}/{{backside}}" target="_blank">
+                            <i class="far fa-3x fa-file-word" style="color: #1976d2;"></i>
+                          </a>
+                        </p>
+                        <p *ngIf="lastback == 'doc'">
+                          <a href="{{durl + cid}}/{{backside}}" target="_blank">
+                            <i class="far fa-3x fa-file-word" style="color: #1976d2;"></i>
+                          </a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 mb-2">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <span class="">UTILITY BILL : </span>
+                      </div>
+                      <div class="col-md-6">
+                        <img *ngIf="lastbill == 'jpeg'" src="{{durl + cid}}/{{bill}}" data-toggle="modal"
+                          data-target="#utilitybill" height="60" width="60">
+                        <img *ngIf="lastbill == 'jpg'" src="{{durl + cid}}/{{bill}}" data-toggle="modal"
+                          data-target="#utilitybill" height="60" width="60">
+                        <img *ngIf="lastbill == 'png'" src="{{durl + cid}}/{{bill}}" data-toggle="modal"
+                          data-target="#utilitybill" height="60" width="60">
+                        <p *ngIf="lastbill == 'pdf'">
+                          <a href="{{durl + cid}}/{{bill}}" target="_blank">
+                            <i class="fas fa-3x fa-file-pdf" style="color: #ff0000;"></i>
+                          </a>
+                        </p>
+                        <p *ngIf="lastbill == 'docx'">
+                          <a href="{{durl + cid}}/{{bill}}" target="_blank">
+                            <i class="far fa-3x fa-file-word" style="color: #1976d2;"></i>
+                          </a>
+                        </p>
+                        <p *ngIf="lastbill == 'doc'">
+                          <a href="{{durl + cid}}/{{bill}}" target="_blank">
+                            <i class="far fa-3x fa-file-word" style="color: #1976d2;"></i>
+                          </a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 mb-2">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <span class="">Bank Statement : </span>
+                      </div>
+                      <div class="col-md-6">
+                        <img *ngIf="lastselfi == 'jpeg'" src="{{durl + cid}}/{{selfie}}" data-toggle="modal"
+                          data-target="#bank_statement" height="60" width="60">
+                        <img *ngIf="lastselfi == 'jpg'" src="{{durl + cid}}/{{selfie}}" data-toggle="modal"
+                          data-target="#bank_statement" height="60" width="60">
+                        <img *ngIf="lastselfi == 'png'" src="{{durl + cid}}/{{selfie}}" data-toggle="modal"
+                          data-target="#bank_statement" height="60" width="60">
+                        <p *ngIf="lastselfi == 'pdf'">
+                          <a href="{{durl + cid}}/{{selfie}}" target="_blank">
+                            <i class="fas fa-3x fa-file-pdf" style="color: #ff0000;"></i>
+                          </a>
+                        </p>
+                        <p *ngIf="lastselfi == 'docx'">
+                          <a href="{{durl + cid}}/{{selfie}}" target="_blank">
+                            <i class="far fa-3x fa-file-word" style="color: #1976d2;"></i>
+                          </a>
+                        </p>
+                        <p *ngIf="lastselfi == 'doc'">
+                          <a href="{{durl + cid}}/{{selfie}}" target="_blank">
+                            <i class="far fa-3x fa-file-word" style="color: #1976d2;"></i>
+                          </a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 mb-2">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <span class="">UTILITY BIll Expiry Date : </span>
+                      </div>
+                      <div class="col-md-6">
+                        <span>{{utilitybilldate | date: "dd/MM/yyyy"}}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-2">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <span class="">Comment : </span>
+                      </div>
+                      <div class="col-md-6">
+                        <span style="text-transform: capitalize;">{{comment}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END Individual KYC -->
+    </div>
+  </div>
+</div>
+
+
+<div [ngClass]="display? 'modal fade text-left show myshow' : 'modal fade text-left'" id="frontdocs" tabindex="-1"
+  role="dialog" aria-labelledby="myModalLabel8" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form class="form-horizontal form-signin" #writedata="ngForm" (ngSubmit)="reason(writedata.value)">
+        <div class="modal-header bg-primary white">
+          <h4 class="modal-title white" id="myModalLabel8">Write Reason </h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <textarea *ngIf="errreason" class="form-control" placeholder="Write Reason" [(ngModel)]="wreason"
+            name="wreason" ngModel>
+
+        </textarea>
+
+          <textarea *ngIf="!errreason" style="border: 1px solid red;" class="form-control" placeholder="Write Reason"
+            [(ngModel)]="wreason" name="wreason" ngModel>
+
+        </textarea>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" (click)="close()"
+            style="background: #afafaf;border: none;color: white;border-radius: 2px;">Cancel</button>
+          <button class="btn" style="background: #FF4961;border: none;color: white;border-radius: 2px;">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="display" class="modal-backdrop fade show"></div>
+
+<div class="modal animated zoomIn text-left" id="frontside" tabindex="-1" role="dialog" aria-labelledby="myModalLabel69"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1">Show Frontside</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-3"></div>
+          <div class="col-6" style="padding: 0px;">
+            <img src="{{durl + cid}}/{{frontside}}" style="width: inherit;">
+          </div>
+          <div class="col-3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal animated zoomIn text-left" id="backside" tabindex="-1" role="dialog" aria-labelledby="myModalLabel69"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1">Show Backside</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-3"></div>
+          <div class="col-6" style="padding: 0px;">
+            <img src="{{durl + cid}}/{{backside}}" style="width: inherit;">
+          </div>
+          <div class="col-3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal animated zoomIn text-left" id="utilitybill" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel69" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1">Show Utility Bill</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-3"></div>
+          <div class="col-6" style="padding: 0px;">
+            <img src="{{durl + cid}}/{{bill}}" style="width: inherit;">
+          </div>
+          <div class="col-3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal animated zoomIn text-left" id="bank_statement" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel69" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1">Show Bank Statement</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-3"></div>
+          <div class="col-6" style="padding: 0px;">
+            <img src="{{durl + cid}}/{{selfie}}" style="width: inherit;">
+          </div>
+          <div class="col-3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

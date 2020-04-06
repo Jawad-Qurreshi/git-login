@@ -1,0 +1,251 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+      <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block pathffont">Users</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb pathsfont">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/m-dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">Users
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+
+      <div class="row justify-content-center">
+        <div class="col-12" style="max-width: 1140px;">
+          <div class="card pull-up bg-zipco">
+            <div class="card-header card-header-transparent">
+              <h6 class="card-title" style="font-size: 18px;">Advance Search</h6>
+            </div>
+            <div class="card-content">
+              <div class="card-body ">
+                <form class="row col-12" #finddata="ngForm" (ngSubmit)="searchdata(finddata.value)">
+
+                  <div class="col-md-4">
+                    <div class="form-group  text-white">
+                      <label for="start_date" class=" text-white">Date</label>
+                      <div class="input-group">
+                        <!-- <input type="date" name="start_date" [(ngModel)]="start_date" id="start_date"
+                          class="form-control" style="border-right: 0px;" ngModel> -->
+
+                        <ng-datepicker name="start_date" [(ngModel)]="start_date" id="start_date" [options]="options">
+                        </ng-datepicker>
+
+                        <span class="input-group-addon"
+                          style="background: none;padding-left: 10px;padding-right: 10px;">to</span>
+
+                        <ng-datepicker *ngIf="errenddate" name="end_date" [(ngModel)]="end_date" id="end_date"
+                          [options]="options">
+                        </ng-datepicker>
+
+                        <ng-datepicker *ngIf="!errenddate" name="end_date" [(ngModel)]="end_date" id="end_date"
+                          [options]="options">
+                        </ng-datepicker>
+                        <b *ngIf="!errenddate" style="color: red;font-weight: bold;">Please Choose Valid Date</b>
+
+                        <!-- <input type="date" *ngIf="errenddate" name="end_date" [(ngModel)]="end_date" id="end_date"
+                          class="form-control" style="border-left: 0px;" ngModel>
+                        <input type="date" *ngIf="!errenddate" name="end_date" [(ngModel)]="end_date" id="end_date"
+                          class="form-control" style="border-left: 0px;border: 1px solid red;" ngModel> -->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="country" class=" text-white">Country</label>
+                      <select class="form-control" [(ngModel)]="countryname" name="countryname" id="country" ngModel>
+                        <option value="">Select Country</option>
+                        <option *ngFor="let list of country" value="{{list.c_id}}">{{list.country_name}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group  text-white">
+                      <label for="ipaddress" class="text-white">IP address</label>
+                      <div class="input-group">
+                        <input type="text" name="ip_address" [(ngModel)]="ip_address" id="ipaddress"
+                          class="form-control" placeholder="Enter IP Address" ngModel>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group  text-white">
+                      <label for="device" class=" text-white">Device</label>
+                      <div class="input-group">
+                        <input type="text" name="devicename" [(ngModel)]="devicename" id="device" class="form-control"
+                          placeholder="Enter Device" ngModel>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="operatingsystem" class=" text-white">Operating Systems</label>
+                      <input type="text" name="osname" [(ngModel)]="osname" id="operatingsystem" class="form-control"
+                        placeholder="Enter Operating Systems" ngModel>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group  text-white">
+                      <label for="userid" class="text-white">User Id</label>
+                      <div class="input-group">
+                        <input type="text" name="accountid" [(ngModel)]="accountid" id="userid" class="form-control"
+                          placeholder="Enter User Id" ngModel>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <div class="col-md-2 pt-2">
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-block btn-round btn-zipco ourfont" id="btn_search"> Search
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-12" style="max-width: 1140px;">
+          <div class="card pull-up bg-zipco">
+            <div class="card-content collapse show">
+              <div class="card-body">
+                <form class="form-horizontal form-purchase-token row" action="">
+                  <div class="col-12 col-md-12">
+                    <div class="row">
+                      <div id="recent-transactions" class="col-12">
+                        <h6 class="my-2 text-white" style="float: left;font-size: 18px;">Users</h6>
+                        <input type="text" class="form-control searchtext" placeholder="Search here" name="searchText"
+                          [(ngModel)]="searchText" />
+                        <div class="table-responsive text-white">
+                          <table id="tbl_transaction" class="table table-hover table-xl mb-0">
+                            <thead>
+                              <tr>
+                                <th class="border-top-0 text-center">Account ID</th>
+                                <th class="border-top-0 text-center">Name</th>
+                                <th class="border-top-0 text-center">Email</th>
+                                <th class="border-top-0 text-center">Phone</th>
+                                <th class="border-top-0 text-center">Date</th>
+                                <th class="border-top-0 text-center">Referral</th>
+                                <th class="border-top-0 text-center">KYC Status</th>
+                                <th class="border-top-0 text-center">Country</th>
+                                <th class="border-top-0 text-center">Make an Agent</th>
+                                <th class="border-top-0 text-center">Action</th>
+                              </tr>
+                            </thead>
+                            <tbody class="text-center">
+                              <tr
+                                *ngFor="let list of userdetails | filter : searchText | paginate: { itemsPerPage: 10, currentPage: p }">
+                                <td class="text-truncate">{{list.account_id}}</td>
+                                <td class="text-truncate" style="text-transform: capitalize;">{{list.first_name}}
+                                  {{list.middle_name}}
+                                  {{list.last_name}}</td>
+                                <td class="text-truncate">{{list.email}}</td>
+                                <td class="text-truncate">+{{list.phone}}</td>
+                                <td class="text-truncate">{{list.register_date | date: "dd/MM/yyyy hh:mm a"}}</td>
+                                <td class="text-truncate">{{list.referralcodefrom}}</td>
+                                <td class="text-truncate">
+                                  <label *ngIf="list.kycstatus == null"
+                                    class="mb-0 btn-sm btn btn-outline-warning round">Pending</label>
+                                  <label *ngIf="list.kycstatus == 0"
+                                    class="mb-0 btn-sm btn btn-outline-warning round">Pending</label>
+                                  <label *ngIf="list.kycstatus == 1"
+                                    class="mb-0 btn-sm btn btn-outline-success round">Approved</label>
+                                  <label *ngIf="list.kycstatus == 2"
+                                    class="mb-0 btn-sm btn btn-outline-danger round">Reject</label>
+                                </td>
+                                <td class="text-truncate p-1">{{list.country_name}}</td>
+                                <td class="text-truncate p-1">
+                                  <button *ngIf="list.role == 0" type="button"
+                                    class="btn btn-sm btn-round btn-zipco mb-2 ourfont"
+                                    (click)="open(list.cust_id)">Make an Agent</button>
+                                  <label class="mb-0 text-warning" *ngIf="list.role == 1">Agent</label>
+                                </td>
+                                <td class="text-truncate" style="text-align: left;">
+                                  <a [routerLink]="['/m-edit-user', list.cust_id]"
+                                    class="mb-0 btn-sm btn btn-outline-primary round"><i
+                                      class="fa fa-pencil-square-o"></i>Edit</a>
+                                  &nbsp;
+                                  <a (click)="opendel(list.cust_id)" class="mb-0 btn-sm btn btn-outline-danger round"><i
+                                      class="fa fa-trash-o"></i>Delete</a>
+                                  &nbsp;
+                                  <a (click)="login(list.cust_id)"
+                                    class="mb-0 btn-sm btn btn-zipco btn-round btn-min-width text-white ourfont">Login
+                                    As User</a>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div style="text-align: end;padding-top: 15px;color: white;">
+                          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div [ngClass]="show? 'modal fade text-left show myshow' : 'modal fade text-left'" id="zoomIn" tabindex="-1"
+  role="dialog" aria-labelledby="myModalLabel69" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="border-bottom: 0px solid #98A4B8;">
+        <button type="button" class="close" (click)="close()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <i class="bg-glow bg-warning d-inline-block font-large-2 la la-info p-2 rounded-circle white mb-2"></i>
+        <h5 class="modal-title" id="myModalLabel69">Are you sure?</h5>
+        <p>You want to make this user as an Agent.</p>
+        <button type="reset" class="btn btn-outline-dark" (click)="close()">Cancel</button>
+        &nbsp;&nbsp;
+        <button type="button" (click)="makeagent()" class="btn btn-zipco btn-min-width">Make Agent</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="show" class="modal-backdrop show"></div>
+
+
+<div [ngClass]="showdel? 'modal fade text-left show myshow' : 'modal fade text-left'" id="bank_statement" tabindex="-1"
+  role="dialog" aria-labelledby="myModalLabel69" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1">Are You Sure You Want To Delete?</h4>
+        <button type="button" class="close" (click)="closedel()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <button type="reset" class="btn btn-outline-dark" (click)="closedel()">Cancel</button>
+        &nbsp;&nbsp;
+        <button type="button" (click)="deleteuser()" class="btn btn-zipco btn-min-width">DELETE</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showdel" class="modal-backdrop show"></div>

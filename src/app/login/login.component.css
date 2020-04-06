@@ -1,0 +1,50 @@
+.login_wrapper {
+    background-image: radial-gradient(circle, #bec1c1, #b6b9b9, #aeb1b1, #a7a9a9, #9fa1a1);
+    float: left;
+    width: 130%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 50px;
+    margin-bottom: 20px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.custom_btn_css {
+    background: #c88c39;
+    color: #fff;
+    text-transform: uppercase;
+    border: 1px solid #c88c39;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 3px;
+}
+
+.custom_btn_css:hover {
+    background: #ffffff;
+    color: #333;
+    text-transform: uppercase;
+    border: 1px solid #c88c39;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+form label {
+    color: #c88c39;
+}
+
+.content-wrapper {
+    background: #17191d;
+    background-image: url("https://zipcx.io/assets/images/01.png");
+    background-size: cover;
+}
+
+@media (max-width: 768px) {
+    .login_wrapper {
+        width: auto;
+    }
+}

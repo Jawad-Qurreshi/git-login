@@ -1,0 +1,375 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+      <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block pathffont">My Setting</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb pathsfont">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">My Setting
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-12 content-body bg-zipco"
+        style="padding-top: 25px;border-radius: 5px;max-width: 1140px;margin-bottom: 25px;">
+        <div class="col-md-12 col-12">
+          <div class="tab-content" id="v-pills-tabContent">
+            <div class="tab-pane fade active show" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+              <div id="accordion" class="collapse-icon accordion-icon-rotate left">
+
+                <div class="card">
+                  <div class="card-header" id="heading11">
+                    <a class="card-title lead collapsed" data-toggle="collapse" data-target="#collapse11"
+                      aria-expanded="false" aria-controls="collapse11" href="#">
+                      Email Setting
+                    </a>
+                  </div>
+                  <div id="collapse11" class="collapse show" aria-labelledby="heading11" data-parent="#accordion">
+                    <div class="card-body">
+                      <p class="font-medium-3">{{email}}
+                        <span class="text-success">(Verified)</span>
+                      </p>
+                      <a class="btn btn-info btn-min-width btn-glow btn-round mr-1 mb-1" (click)="open()"
+                        style="color: white;">Change email address</a>
+                      <p>To keep your account secure, we'll ask you to enter your password to authorise your email
+                        change.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header" id="heading33">
+                    <a class="card-title lead collapsed" data-toggle="collapse" data-target="#collapse17"
+                      aria-expanded="false" aria-controls="collapse11" href="#">
+                      Phone Number Setting
+                    </a>
+                  </div>
+                  <div id="collapse17" class="collapse" aria-labelledby="heading33" data-parent="#accordion">
+                    <div class="card-body">
+                      <p class="font-medium-3">+{{phonecode}}{{phone}}
+                        <span class="text-success">(Verified)</span>
+                      </p>
+                      <a (click)="open_phone_popup()" style="color: white;"
+                        class="btn btn-info btn-min-width btn-glow btn-round mr-1 mb-1">Phone Number</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header" id="heading12">
+                    <a class="card-title lead collapsed" data-toggle="collapse" data-target="#collapse12"
+                      aria-expanded="false" aria-controls="collapse12" href="#">
+                      Notifications
+                    </a>
+                  </div>
+                  <div id="collapse12" class="collapse" aria-labelledby="heading12" data-parent="#accordion">
+                    <div class="card-body">
+                      <p class="font-medium-3">Choose what we get in touch about</p>
+                      <div class="col-12 row">
+                        <table class="table">
+                          <thead>
+                            <th>
+                              <h6>Notifications</h6>
+                            </th>
+                            <th>
+                              <h6>Email</h6>
+                            </th>
+                            <th>
+                              <h6>Phone</h6>
+                            </th>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>
+                                <p class="mb-0">
+                                  <b>Your transfers and balances</b>
+                                </p>
+                                <p>Notifications about where your money is.</p>
+                              </td>
+                              <td>
+                                <ui-switch checked></ui-switch>
+                              </td>
+                              <td>
+                                <ui-switch checked></ui-switch>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <p class="mb-0">
+                                  <b>Your debit card</b>
+                                </p>
+                                <p>Notifications about your card transactions.</p>
+                              </td>
+                              <td>
+                                <ui-switch checked></ui-switch>
+                              </td>
+                              <td>
+                                <ui-switch [checked]="false"></ui-switch>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <p class="mb-0">
+                                  <b>Currencies and features</b>
+                                </p>
+                                <p>News about our latest and greatest work. Plus
+                                  tips on
+                                  using TransferWise.</p>
+                              </td>
+                              <td>
+                                <ui-switch [checked]="false"></ui-switch>
+                              </td>
+                              <td>
+                                <ui-switch [checked]="false"></ui-switch>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <p class="mb-0">
+                                  <b>Interviews and reviews</b>
+                                </p>
+                                <p>Invites to test new products and share your
+                                  thoughts.</p>
+                              </td>
+                              <td>
+                                <ui-switch checked></ui-switch>
+                              </td>
+                              <td>
+                                <ui-switch [checked]="false"></ui-switch>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <p class="mb-0">
+                                  <b>Our campaigns</b>
+                                </p>
+                                <p>Updates about causes we care about. Chances to
+                                  get involved.</p>
+                              </td>
+                              <td>
+                                <ui-switch [checked]="false"></ui-switch>
+                              </td>
+                              <td>
+                                <ui-switch [checked]="false"></ui-switch>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <p class="mt-2">There are some things that we'll always need to tell
+                          you about – like
+                          changes to our T&Cs.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header" id="heading14">
+                    <a class="card-title lead collapsed" data-toggle="collapse" data-target="#collapse14"
+                      aria-expanded="false" aria-controls="collapse14" href="#">
+                      Change Password
+                    </a>
+                  </div>
+                  <div id="collapse14" class="collapse" aria-labelledby="heading14" data-parent="#accordion">
+                    <div class="card-body">
+                      <form #upchangedata="ngForm" (ngSubmit)="changepassword(upchangedata.value)">
+                        <div class="col-5">
+                          <fieldset class="form-group">
+                            <label for="current_password">Current Password</label>
+                            <input type="password" class="form-control" id="current_password" name="password"
+                              [(ngModel)]="password" placeholder="Enter Current Password" ngModel>
+                          </fieldset>
+                          <fieldset class="form-group">
+                            <label for="new_password">New Password</label>
+                            <input type="password" class="form-control" id="new_password" name="newpassword"
+                              [(ngModel)]="newpassword" placeholder="Enter New Password" ngModel>
+                          </fieldset>
+                          <button type="submit" class="btn btn-primary btn-block">Save</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row col-md-12 content-body justify-content-center">
+      <div class="col-md-4" style="max-width: 380px;"></div>
+      <div class="col-md-5" style="max-width: 475px;">
+        <div class="card bg-zipco">
+          <div class="card-content">
+            <div class="card-body">
+              <section class="slider">
+
+                <div class="flexslider">
+                  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                      <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                      <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                      <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                      <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+                      <li data-target="#carousel-example-generic" data-slide-to="5"></li>
+                      <li data-target="#carousel-example-generic" data-slide-to="6"></li>
+                      <li data-target="#carousel-example-generic" data-slide-to="7"></li>
+                    </ol>
+                    <div class="carousel-inner" role="listbox">
+                      <div class="carousel-item active">
+                        <img src="assets/images/setting/setting1.png" style="width: 100%" alt="First slide">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="assets/images/setting/setting2.png" style="width: 100%" alt="Second slide">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="assets/images/setting/setting3.png" style="width: 100%" alt="Third slide">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="assets/images/setting/setting4.png" style="width: 100%" alt="Third slide">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="assets/images/setting/setting5.png" style="width: 100%" alt="Third slide">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="assets/images/setting/setting6.png" style="width: 100%" alt="Third slide">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="assets/images/setting/setting7.png" style="width: 100%" alt="Third slide">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="assets/images/setting/setting8.png" style="width: 100%" alt="Third slide">
+                      </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carousel-example-generic" role="button" data-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carousel-example-generic" role="button" data-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-md-3" style="max-width: 285px;"></div>
+    </div>
+  </div>
+</div>
+
+<div [ngClass]="show? 'modal fade text-left show myshow' : 'modal fade text-left'" id="zoomIn" tabindex="-1"
+  role="dialog" aria-labelledby="myModalLabel69" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="border-bottom: 0px solid #98A4B8;">
+        <h4>Change Email Address</h4>
+        <button type="button" class="close" (click)="close()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <form class="form-horizontal form-signin" #updatedata="ngForm" (ngSubmit)="changeemail(updatedata.value)">
+          <fieldset class="form-group" style="text-align: left;">
+            <label for="user-email">Email</label>
+            <input type="email" *ngIf="erremail" class="form-control" id="user-email" name="upemail"
+              [(ngModel)]="upemail" placeholder="Enter Your Email" ngModel>
+            <input type="email" *ngIf="!erremail" style="border: 1px solid red;" class="form-control" id="user-email"
+              name="upemail" [(ngModel)]="upemail" placeholder="Enter Your Email" ngModel>
+          </fieldset>
+          <button type="submit" class="btn btn-zipco btn-round btn-min-width ourfont">Update</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="show" class="modal-backdrop show"></div>
+
+<div [ngClass]="showphone? 'modal fade text-left show myshow' : 'modal fade text-left'" id="zoomIn" tabindex="-1"
+  role="dialog" aria-labelledby="myModalLabel69" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="border-bottom: 0px solid #98A4B8;">
+        <h4 style="font-size: 20px;font-weight: bold;">Change My Phone Number</h4>
+        <button type="button" class="close" (click)="close_phone_popup()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <form class="form-horizontal form-signin" #upphonedata="ngForm" (ngSubmit)="changephone(upphonedata.value)">
+
+          <fieldset class="form-group" style="text-align: left;">
+            <label for="country">Country</label>
+
+            <select *ngIf="errcountry" class="custom-select" id="country" [(ngModel)]="countryname"
+              (ngModelChange)="change($event)" name="countryname" style="background: white;" ngModel disabled>
+              <option value="">Select Country</option>
+              <option *ngFor="let list of upcountry" value="{{list.c_id}}">{{list.country_name}}</option>
+            </select>
+
+            <select *ngIf="!errcountry" style="border: 1px solid red;" class="custom-select" id="country"
+              [(ngModel)]="countryname" (ngModelChange)="change($event)" name="countryname" style="background: white;"
+              ngModel disabled>
+              <option value="">Select Country</option>
+              <option *ngFor="let list of upcountry" value="{{list.c_id}}">{{list.country_name}}</option>
+            </select>
+          </fieldset>
+
+          <fieldset class="form-group" style="text-align: left;">
+            <label for="phone_no">Phone Number</label>
+
+            <div class="row">
+              <div class="col-1">
+                <input type="text" class="form-control" style="padding-left: 2px;padding-right: 1px;width: 41px;"
+                  name="upphonecode" [(ngModel)]="upphonecode" ngModel disabled />
+              </div>
+              <div class="col-11">
+                <input type="text" *ngIf="errphoneno" class="form-control" id="phone_no" [(ngModel)]="upphoneno"
+                  (ngModelChange)="checkvalid_phone($event)" name="upphoneno" ngModel #phoneno>
+                <input type="text" *ngIf="!errphoneno" style="border: 1px solid red;" class="form-control"
+                  (ngModelChange)="checkvalid_phone($event)" id="phone_no" [(ngModel)]="upphoneno" name="upphoneno"
+                  ngModel #phoneno>
+              </div>
+            </div>
+            <p class="font-small-3 text-info" *ngIf="errphoneno">
+              <i class="la la-info-circle"></i>
+              Ex: Nigeria, 2347018858XXX [Here 234 is Country code and rest are your mobile numbers]. Do
+              not add the preceding zero before your actual number. Good Example +234 7784....... Bad
+              Example +234 07784......Do not enter the landline phone number.
+              <br>
+              <b style="color: red;font-weight: bold;">Do not enter the landline phone number; you will not
+                get the OTP.</b>
+            </p>
+            <p class="font-small-3 text-info" *ngIf="!errphoneno" style="color: red;">
+              <i class="la la-info-circle"></i>
+              Ex: Nigeria, 2347018858XXX [Here 234 is Country code and rest are your mobile numbers]. Do
+              not add the preceding zero before your actual number. Good Example +234 7784....... Bad
+              Example +234 07784......Do not enter the landline phone number.
+              <br>
+              <b style="color: red;font-weight: bold;">Do not enter the landline phone number; you will not
+                get the OTP.</b>
+            </p>
+          </fieldset>
+
+          <button type="submit" class="btn btn-zipco btn-round btn-min-width ourfont">Update</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showphone" class="modal-backdrop show"></div>

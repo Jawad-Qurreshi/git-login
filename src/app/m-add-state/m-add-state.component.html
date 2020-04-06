@@ -1,0 +1,65 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+      <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block pathffont">Add State</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb pathsfont">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/m-dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">Add State
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+      <div class="row justify-content-center">
+        <div class="col-2" style="max-width: 190px;"></div>
+        <div class="col-8" style="max-width: 760px;">
+          <div class="card pull-up bg-zipco">
+            <div class="card-content">
+              <div class="card-body">
+                <form class="row col-12" #statedata="ngForm" (ngSubmit)="addstate(statedata.value)">
+                  <div class="col-6">
+                    <fieldset class="form-group">
+                      <label for="country" style="color: white;">Country</label>
+                      <select *ngIf="errcountry" class="form-control" id="country" name="countryname"
+                        [(ngModel)]="countryname" ngModel>
+                        <option value="">Select Country</option>
+                        <option *ngFor="let list of country" value="{{list.c_id}}">{{list.country_name}}</option>
+                      </select>
+                      <select *ngIf="!errcountry" style="border: 1px solid red;" class="form-control" id="country"
+                        name="countryname" [(ngModel)]="countryname" ngModel>
+                        <option value="">Select Country</option>
+                        <option *ngFor="let list of country" value="{{list.c_id}}">{{list.country_name}}</option>
+                      </select>
+                    </fieldset>
+                  </div>
+                  <div class="col-6">
+                    <fieldset class="form-group">
+                      <label for="state" style="color: white;">Enter State</label>
+                      <input type="text" id="state" *ngIf="errstate" class="form-control" name="state"
+                        [(ngModel)]="state" placeholder="Enter State Name" ngModel />
+                      <input type="text" id="state" *ngIf="!errstate" class="form-control"
+                        style="border: 1px solid red;" name="state" [(ngModel)]="state" placeholder="Enter State Name"
+                        ngModel />
+                    </fieldset>
+                  </div>
+                  <div style="text-align: center;padding-left: 37%;">
+                    <button type="submit" style="width: auto;" class="btn btn-zipco btn-round btn-min-width ourfont"
+                      id="btn_search"> Add </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-2" style="max-width: 190px;"></div>
+      </div>
+    </div>
+  </div>
+</div>

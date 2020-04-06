@@ -1,0 +1,450 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+      <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block pathffont">My Profile</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb pathsfont">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">My Profile
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8" style="max-width: 760px;">
+          <section class="card bg-zipco  text-white">
+            <div class="card-content">
+              <div class="card-body">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="nav nav-pills" id="v-pills-tab" role="tablist" aria-orientation="">
+                      <a class="nav-link active show" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home"
+                        role="tab" aria-controls="v-pills-home" aria-selected="true">Personal Details</a>
+
+                      <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab"
+                        aria-controls="v-pills-profile" aria-selected="false">Password</a>
+                    </div>
+                    <div class="tab-content" id="v-pills-tabContent">
+                      <div class="tab-pane fade active show" id="v-pills-home" role="tabpanel"
+                        aria-labelledby="v-pills-home-tab">
+                        <div class="row mt-2">
+                          <hr>
+                          <div class="col-md-2 col-12">
+                            <img *ngIf="profilepic" src="{{profileurl}}pro_{{custid}}/{{profilepic}}"
+                              class="rounded-circle" style="width: 100px;height: 100px;" alt="Card image">
+                            <img *ngIf="!profilepic" src="{{profileurl}}user.jpg" class="rounded-circle"
+                              style="width: 100px;height: 100px;" alt="Card image">
+                          </div>
+                          <div class="col-md-10 col-12">
+                            <form class="form-horizontal form-user-profile row mt-2" #mydetailsdata="ngForm"
+                              (ngSubmit)="mydetails(mydetailsdata.value)">
+
+                              <div class="col-6">
+                                <fieldset class="form-group">
+                                  <label for="customerid">Customer ID</label>
+                                  <input type="text" *ngIf="erraccountid" class="form-control" id="customerid"
+                                    name="accountid" [(ngModel)]="accountid" ngModel disabled>
+                                  <input type="text" *ngIf="!erraccountid" style="border: 1px solid red;"
+                                    class="form-control" id="customerid" name="accountid" [(ngModel)]="accountid"
+                                    ngModel disabled>
+                                </fieldset>
+                              </div>
+
+                              <div class="col-6">
+                                <fieldset class="form-group">
+                                  <label for="firstname">First name</label>
+                                  <input type="text" *ngIf="errfname" class="form-control" id="firstname" name="fname"
+                                    [(ngModel)]="fname" ngModel>
+                                  <input type="text" *ngIf="!errfname" style="border: 1px solid red;"
+                                    class="form-control" id="firstname" name="fname" [(ngModel)]="fname" ngModel>
+                                </fieldset>
+                              </div>
+                              <div class="col-6">
+                                <fieldset class="form-group">
+                                  <label for="middlename">Middle name</label>
+                                  <input type="text" *ngIf="errmname" class="form-control" id="middlename" name="mname"
+                                    [(ngModel)]="mname" ngModel>
+                                  <input type="text" *ngIf="!errmname" style="border: 1px solid red;"
+                                    class="form-control" id="middlename" name="mname" [(ngModel)]="mname" ngModel>
+                                </fieldset>
+                              </div>
+                              <div class="col-6">
+                                <fieldset class="form-group">
+                                  <label for="lastname">Last name</label>
+                                  <input type="text" *ngIf="errlname" class="form-control" id="lastname" name="lname"
+                                    [(ngModel)]="lname" ngModel>
+                                  <input type="text" *ngIf="!errlname" style="border: 1px solid red;"
+                                    class="form-control" id="lastname" name="lname" [(ngModel)]="lname" ngModel>
+                                </fieldset>
+                              </div>
+                              <div class="col-6">
+                                <fieldset class="form-group">
+                                  <label for="email">Email</label>
+                                  <input type="text" class="form-control" id="email" name="email" [(ngModel)]="email"
+                                    ngModel disabled />
+                                </fieldset>
+                              </div>
+                              <div class="col-md-6 col-xs-12 col-sm-12">
+                                <fieldset class="form-group">
+                                  <label for="phone">Phone Number</label>
+                                  <br>
+                                  <div class="row" style="margin-left: 0px;">
+                                    <div class="col-md-1 col-xs-1 col-sm-1"
+                                      style="margin-right: 5px;padding-left: 0px;">
+                                      <input type="text" class="form-control nocode" name="phonecode"
+                                        [(ngModel)]="phonecode" ngModel disabled />
+                                    </div>
+                                    <div class="col-md-10 col-xs-10 col-sm-10 myno">
+                                      <input type="text" *ngIf="errphone" class="form-control" name="phone"
+                                        [(ngModel)]="phone" id="phone" ngModel>
+                                      <input type="text" *ngIf="!errphone" style="border: 1px solid red;"
+                                        class="form-control" name="phone" [(ngModel)]="phone" id="phone" ngModel>
+                                    </div>
+                                  </div>
+                                  <p class="font-small-3 text-info">
+                                    <i class="la la-info-circle"></i>
+                                    Ex: Nigeria, 2347018858XXX [Here 234 is Country code and rest are your mobile
+                                    numbers]. Do
+                                    not add the preceding zero before your actual number. Good Example +234 7784.......
+                                    Bad
+                                    Example +234 07784......Do not enter the landline phone number.
+                                    <br>
+                                    <b style="color: red;font-weight: bold;">Do not enter the landline phone number; you
+                                      will not get the OTP.</b>
+                                  </p>
+                                </fieldset>
+                              </div>
+
+                              <div class="col-md-6">
+                                <fieldset class="form-group">
+                                  <label for="country">Country</label>
+                                  <select *ngIf="errcountry" class="custom-select" name="country" [(ngModel)]="country"
+                                    (ngModelChange)="countrystate($event)" id="country" ngModel>
+                                    <option value="">Select Country</option>
+                                    <option *ngFor="let list of countryname" value="{{list.c_id}}">{{list.country_name}}
+                                    </option>
+                                  </select>
+                                  <select *ngIf="!errcountry" style="border: 1px solid red;" class="custom-select"
+                                    name="country" [(ngModel)]="country" (ngModelChange)="countrystate($event)"
+                                    id="country" ngModel>
+                                    <option value="">Select Country</option>
+                                    <option *ngFor="let list of countryname" value="{{list.c_id}}">{{list.country_name}}
+                                    </option>
+                                  </select>
+                                </fieldset>
+                              </div>
+
+                              <div class="col-md-6">
+                                <fieldset class="form-group">
+                                  <label for="state">State</label>
+                                  <select *ngIf="errstate" class="custom-select" name="state" [(ngModel)]="state"
+                                    (ngModelChange)="statecity($event)" id="state" ngModel>
+                                    <option value="">Select State</option>
+                                    <option *ngFor="let list of statename" value="{{list.id}}">{{list.state_name}}
+                                    </option>
+                                  </select>
+                                  <select *ngIf="!errstate" style="border: 1px solid red;" class="custom-select"
+                                    name="state" [(ngModel)]="state" (ngModelChange)="statecity($event)" id="state"
+                                    ngModel>
+                                    <option value="">Select State</option>
+                                    <option *ngFor="let list of statename" value="{{list.id}}">{{list.state_name}}
+                                    </option>
+                                  </select>
+                                </fieldset>
+                              </div>
+
+                              <div class="col-md-6">
+                                <fieldset class="form-group">
+                                  <label for="city">City</label>
+                                  <select *ngIf="errcity" class="custom-select" name="city" [(ngModel)]="city" id="city"
+                                    ngModel>
+                                    <option value="">Select City</option>
+                                    <option *ngFor="let list of cityname" value="{{list.id}}">{{list.city_name}}
+                                    </option>
+                                  </select>
+                                  <select *ngIf="!errcity" style="border: 1px solid red;" class="custom-select"
+                                    name="city" [(ngModel)]="city" id="city" ngModel>
+                                    <option value="">Select City</option>
+                                    <option *ngFor="let list of cityname" value="{{list.id}}">{{list.city_name}}
+                                    </option>
+                                  </select>
+                                </fieldset>
+                              </div>
+
+                              <div class="col-6">
+                                <fieldset class="form-group">
+                                  <label>Gander</label>
+                                  <br>
+                                  <input type="radio" value="male" name="rdogender" [(ngModel)]="rdogender"
+                                    ngModel />&nbsp;&nbsp;Male
+                                  &nbsp;&nbsp;
+                                  <input type="radio" value="female" name="rdogender" [(ngModel)]="rdogender"
+                                    ngModel />&nbsp;&nbsp;Female
+                                </fieldset>
+                              </div>
+
+                              <div class="col-md-6 col-xs-12 col-sm-12">
+                                <fieldset class="form-group">
+                                  <label for="phone">Mobile</label>
+                                  <br>
+                                  <input type="text" *ngIf="errmobile" class="form-control" name="mobile"
+                                    [(ngModel)]="mobile" id="mobile" ngModel>
+                                  <input type="text" *ngIf="!errmobile" style="border: 1px solid red;"
+                                    class="form-control" name="mobile" [(ngModel)]="mobile" id="mobile" ngModel>
+                                </fieldset>
+                              </div>
+
+                              <div class="col-6">
+                                <fieldset class="form-group">
+                                  <label for="occupation">Occupation</label>
+                                  <input type="text" *ngIf="erroccupation" class="form-control" id="occupation"
+                                    name="occupation" [(ngModel)]="occupation" ngModel>
+                                  <input type="text" *ngIf="!erroccupation" style="border: 1px solid red;"
+                                    class="form-control" id="occupation" name="occupation" [(ngModel)]="occupation"
+                                    ngModel>
+                                </fieldset>
+                              </div>
+
+                              <div class="col-6">
+                                <fieldset class="form-group">
+                                  <label for="postcode">Postcode</label>
+                                  <input type="text" *ngIf="errpostcode" class="form-control" id="postcode"
+                                    name="postcode" [(ngModel)]="postcode" ngModel>
+                                  <input type="text" *ngIf="!errpostcode" style="border: 1px solid red;"
+                                    class="form-control" id="postcode" name="postcode" [(ngModel)]="postcode" ngModel>
+                                </fieldset>
+                              </div>
+
+                              <div class="col-6">
+                                <fieldset class="form-group">
+                                  <label for="address">Address</label>
+                                  <textarea *ngIf="erraddress" class="form-control" id="address" name="address"
+                                    [(ngModel)]="address" ngModel>
+                                  </textarea>
+
+                                  <textarea *ngIf="!erraddress" style="border: 1px solid red;" class="form-control"
+                                    id="address" name="address" [(ngModel)]="address" ngModel>
+                                  </textarea>
+                                </fieldset>
+                              </div>
+
+                              <div class="col-12">
+                                <fieldset class="form-group">
+                                  <label for="profile_pic">Profile Picture</label>
+                                  <input type="file" class="form-control" name="profile_pic" id="profile_pic"
+                                    (change)="upload_profile($event)" #userprofile>
+                                </fieldset>
+                              </div>
+                              <div class="col-12 text-left">
+                                <button type="submit" class="mb-0 btn btn-round btn-zipco btn-min-width ourfont">
+                                  UPDATE</button>
+                              </div>
+
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
+                        aria-labelledby="v-pills-profile-tab">
+                        <div class="row mt-2">
+                          <div class="col-md-12 col-12">
+                            <hr>
+                            <form class="form-horizontal form-user-profile row mt-2" #changepass="ngForm"
+                              (ngSubmit)="updatepass(changepass.value)">
+                              <div class="col-6">
+                                <fieldset class="form-group">
+                                  <label for="user-password">Old password</label>
+                                  <input *ngIf="erroldpass" [(ngModel)]="oldpass" name="oldpass" id="user-password"
+                                    type="password" class="form-control" placeholder="Old Password" ngModel>
+                                  <input *ngIf="!erroldpass" style="border: 1px solid red;" [(ngModel)]="oldpass"
+                                    name="oldpass" id="user-password" type="password" class="form-control"
+                                    placeholder="Old Password" ngModel>
+                                </fieldset>
+                              </div>
+                              <div class="col-6">
+                                <fieldset class="form-group">
+                                  <label for="new-password">New password</label>
+                                  <input *ngIf="errnewpass" [(ngModel)]="newpass" name="newpass" id="new-password"
+                                    type="password" class="form-control" placeholder="New Password" ngModel>
+                                  <input *ngIf="!errnewpass" style="border: 1px solid red;" [(ngModel)]="newpass"
+                                    name="newpass" id="new-password" type="password" class="form-control"
+                                    placeholder="New Password" ngModel>
+                                </fieldset>
+                              </div>
+                              <div class="col-6">
+                                <fieldset class="form-group">
+                                  <label for="confirm-password">Confirm New password</label>
+                                  <input *ngIf="errconpass" [(ngModel)]="conpass" name="conpass" id="user-cnf-password"
+                                    type="password" class="form-control" placeholder="Confirm Password" ngModel>
+
+                                  <input *ngIf="!errconpass" style="border: 1px solid red;" [(ngModel)]="conpass"
+                                    name="conpass" id="user-cnf-password" type="password" class="form-control"
+                                    placeholder="Confirm Password" ngModel>
+                                </fieldset>
+                              </div>
+                              <div class="col-12 text-left">
+                                <p class="font-small-3 text-info"><i class="la la-info-circle"></i> Must be a minimum of
+                                  8 characters and include lower and uppercase and a special character. </p>
+                                <input type="submit" name="changepassword" id="changepassword"
+                                  class="mb-0 btn btn-round btn-zipco btn-min-width ourfont" value="SAVE">
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="card bg-zipco  text-white">
+            <div class="card-content">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-12 col-12">
+                    <h5 style="color: white;font-size: 15px;">Two-Factor Verification</h5>
+                    <hr>
+                    <p>Two-factor authentication is a method for protecting your web account. When it is activated, you
+                      will enter your password as well as a special code. You can receive this code through a mobile
+                      app. When activated, even if third person gets your password, they will not be able to access your
+                      account.</p>
+                    <a [routerLink]="['/two-auth']" class="mb-0 btn btn-outline-primary btn-round">ENABLE/TURN ON</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="col-12 col-md-4" style="max-width: 450px;">
+          <div class="card bg-zipco  text-white">
+            <div class="card-header">
+              <h6 class="card-title text-center" style="font-size: 18px;">Your Account Status</h6>
+            </div>
+            <div class="card-content collapse show">
+              <div class="card-body">
+                <div class="text-center row clearfix mb-2">
+                  <div class="col-5">
+                    <label class="mb-0 btn btn-success btn-round click_btn ourfont">Email Verified</label>
+                  </div>
+                  <div class="col-5">
+                    <label *ngIf="pending" class="mb-0 btn btn-warning btn-round click_btn ourfont">KYC Under Review
+                    </label>
+                    <label *ngIf="approve" class="mb-0 btn btn-success btn-round click_btn ourfont">KYC Verified
+                    </label>
+                    <label *ngIf="reject" class="mb-0 btn btn-danger btn-round click_btn ourfont">KYC Rejected </label>
+                    <label *ngIf="halfkyc" class="mb-0 btn btn-warning btn-round click_btn ourfont">KYC Pending </label>
+                  </div>
+                </div>
+                <div class="text-center row clearfix mb-2">
+                  <div class="col-4">
+                    <label class="mb-0 btn btn-success btn-round click_btn ourfont">Mobile Verified</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card bg-zipco  text-white">
+            <div class="card-header">
+              <h6 class="card-title text-center" style="font-size: 18px;">Earn with Referral</h6>
+            </div>
+            <div class="card-content collapse show">
+              <div class="card-body">
+                <div class="font-small-5 clearfix">
+                  <div class="font-small-7 mb-1 clearfix text-left">
+                    <p style="font-size: 15px;color: white;">Refer & Earn Program</p>
+                    <p style="color: #d09743;font-size: 17px;font-weight: bold;">
+                      Invite your 3 friends and Earn 10.00 CAD Money.
+                    </p>
+                  </div>
+                  <div class="row ">
+                    <div class="col-md-12">
+                      <fieldset class="form-group mb-0">
+                        <label for="wallet-address">Referral Link:</label>
+                        <div class="input-group mb-2">
+                          <input type="text" class="form-control" name="refere_link" [(ngModel)]="refere_link"
+                            id="refere_link" value="" ngModel #userinput />
+                          <div class="input-group-append">
+                            <button class="btn btn-primary clickBtn" (click)="copyInputMessage(userinput)"
+                              type="button">COPY</button>
+                          </div>
+                        </div>
+                        <p id="copymsg" class="col-md-12 mt-1 text-center"></p>
+                      </fieldset>
+                    </div>
+                  </div>
+                  <ul class="social_footer"
+                    style="display: -webkit-inline-box;margin-bottom: 20px;padding-left: 0px;list-style: none;">
+                    <li style="padding-right: 5px;"><a target="_blank"
+                        href="https://www.facebook.com/ZIPCOIN-Exchange-2205861812988417/"><img
+                          src="https://zipcx.io/tokensale/newassets/assets/images/social/facebook.png"></a></li>
+                    <li style="padding-right: 5px;"><a href="https://ca.linkedin.com/company/zipcoin"
+                        target="_blank"><img
+                          src="https://zipcx.io/tokensale/newassets/assets/images/social/linkedin.png"></a></li>
+                    <li style="padding-right: 5px;"><a href="https://www.reddit.com/user/ZIPCOINexchange"
+                        target="_blank"><img
+                          src="https://zipcx.io/tokensale/newassets/assets/images/social/reddit.png"></a></li>
+                    <li style="padding-right: 5px;"><a href="https://twitter.com/ZIPCOINexchange" target="_blank"><img
+                          src="https://zipcx.io/tokensale/newassets/assets/images/social/twitter.png"></a></li>
+                    <li style="padding-right: 5px;"><a href="https://t.me/joinchat/HbUtCAuidnSRqGPoHCBmnA"
+                        target="_blank"><img
+                          src="https://zipcx.io/tokensale/newassets/assets/images/social/telegram.png"></a></li>
+                    <li style="padding-right: 5px;"><a target="_blank"
+                        href="https://www.instagram.com/ZIPCOINexchange/"><img
+                          src="https://zipcx.io/tokensale/newassets/assets/images/social/instagram.png"></a></li>
+                    <li style="padding-right: 5px;"><a target="_blank"
+                        href="https://www.youtube.com/channel/UCu685G0VSk-F07CefsOHyNQ"><img
+                          src="https://zipcx.io/tokensale/newassets/assets/images/social/youtube.png"></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card bg-zipco  text-white">
+            <div class="card-header">
+              <h6 class="card-title text-center" style="font-size: 18px;">Identity Verification - KYC</h6>
+            </div>
+            <div class="card-content collapse show ">
+              <div class="card-body">
+
+                <div class="font-small-5 mb-1 clearfix text-left">
+                  <p>
+                    To protect and safeguard your assets, please complete Know Your Customer (KYC) process using correct
+                    information. This is a one-time process and once you click submit the provided information cannot be
+                    changed.
+                  </p>
+                </div>
+
+                <p *ngIf="note" class="mt-2">
+                  <br>
+                  <label *ngIf="reject" style="color: red !important;">Rejected For: {{note}}</label>
+                  <label *ngIf="pending" style="color: red !important;">
+                    <label *ngIf="note" style="color: red !important;">This KYC rejected before for:</label>
+                    {{note}}
+                  </label>
+                </p>
+                <br>
+                <a [routerLink]="['/kyc-document']" class="mt-1 mb-1 btn btn-outline-primary btn-round clickBtn">CLICK
+                  TO
+                  PROCCED</a>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

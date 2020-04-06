@@ -1,0 +1,144 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+      <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block">Checkout</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">Checkout
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row content-body justify-content-center">
+      <div class="col-md-2"></div>
+      <div class="col-md-8" style="max-width: 760px;">
+        <div class="card bg-zipco text-white">
+          <div class="card-content">
+            <div class="card-body">
+
+              <form action="" method="POST" id="payment-form" (submit)="getToken()">
+
+                <div class="" style="padding: 15px;">
+
+                  <p class="text-center m-auto" style="margin-bottom: 20px !important;font-size: 20px;">Please Send
+                    <label class="amount_usd">{{send_amount / 100}}</label> {{send_currency}} via AMERICAN EXPRESS</p>
+
+                  <div class="row">
+
+                    <div class="col-md-6">
+                      <fieldset class="form-group mb-0">
+                        <label for="firstname">First Name:</label>
+                        <input type="text" class="form-control" id="firstname" name="firstname" [(ngModel)]="firstname"
+                          placeholder="Enter First Name" ngModel>
+                      </fieldset>
+                    </div>
+
+                    <div class="col-md-6">
+                      <fieldset class="form-group mb-0">
+                        <label for="lastname">Last Name:</label>
+                        <input type="text" class="form-control" id="lastname" name="lastname" [(ngModel)]="lastname"
+                          placeholder="Enter Last Name" ngModel>
+                      </fieldset>
+                    </div>
+
+                    <div class="col-md-12" style="padding: 15px;"></div>
+
+                    <div class="col-md-6">
+                      <fieldset class="form-group mb-0">
+                        <label for="card_number">Card Number:</label>
+                        <input class="form-control" placeholder="Enter Card Number" [(ngModel)]="cardNumber"
+                          name="card-number" type="text" size="20" data-stripe="number">
+                      </fieldset>
+                    </div>
+
+                    <div class="col-md-4 row">
+                      <div class="col-md-6" style="padding-right: 0;">
+                        <fieldset class="form-group mb-0">
+                          <label for="ex_month">Expiry:</label>
+                          <select class="form-control myselect1" [(ngModel)]="expiryMonth" name="ex_month"
+                            data-stripe="exp_month">
+                            <option value="">Month</option>
+                            <option value="01">01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                            <option value="05">05</option>
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                          </select>
+                        </fieldset>
+                      </div>
+                      <div class="col-md-6" style="padding-right: 0;">
+                        <fieldset class="form-group mb-0">
+                          <label for="ex_year" style="padding-top: 15px;"></label>
+                          <select class="form-control myselect2" [(ngModel)]="expiryYear" name="ex_year"
+                            data-stripe="exp_year">
+                            <option value="">Year</option>
+                            <option value="19">2019</option>
+                            <option value="20">2020</option>
+                            <option value="21">2021</option>
+                            <option value="22">2022</option>
+                            <option value="23">2023</option>
+                            <option value="24">2024</option>
+                            <option value="25">2025</option>
+                            <option value="26">2026</option>
+                            <option value="27">2027</option>
+                            <option value="28">2028</option>
+                            <option value="29">2029</option>
+                            <option value="30">2030</option>
+                            <option value="31">2031</option>
+                            <option value="32">2032</option>
+                            <option value="33">2033</option>
+                            <option value="34">2034</option>
+                            <option value="35">2035</option>
+                            <option value="36">2036</option>
+                            <option value="37">2037</option>
+                            <option value="38">2038</option>
+                          </select>
+                        </fieldset>
+                      </div>
+                    </div>
+
+                    <div class="col-md-2">
+                      <fieldset class="form-group mb-0">
+                        <label class="mylbl1" for="card_cvv">CVV:</label>
+                        <input type="text" class="form-control mytxt1" placeholder="CVV" [(ngModel)]="cvc" name="cvc"
+                          type="text" size="4" data-stripe="cvc">
+                      </fieldset>
+                    </div>
+
+                    <div class="col-md-12" style="text-align: center;padding-top: 25px;">
+
+                      <button (click)="cancel()" class="btn btn-zipco btn-round btn-min-width ourfont"
+                        style="background: white;color: black;">Go
+                        Back</button>
+                      &nbsp;&nbsp;
+                      <button type="submit" class="btn btn-zipco btn-round btn-min-width ourfont">Pay</button>
+
+                    </div>
+
+                  </div>
+                </div>
+
+              </form>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+</div>

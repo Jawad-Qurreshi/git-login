@@ -1,0 +1,52 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+      <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block">Edit Beneficiary Country</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/m-dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/m-beneficiary-country']">Beneficiary Country</a>
+              </li>
+              <li class="breadcrumb-item active">Edit Beneficiary Country
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+          <div class="card pull-up bg-zipco">
+            <div class="card-header card-header-transparent">
+              <h6 class="card-title">Edit Country</h6>
+            </div>
+            <div class="card-content">
+              <div class="card-body">
+                <form class="row col-12" #upbenicountry="ngForm" (ngSubmit)="editbcountry(upbenicountry.value)">
+                  <div class="col-12">
+                    <fieldset class="form-group">
+                      <label for="bcountry" style="color: white;">Benificiary Country</label>
+                      <input type="text" *ngIf="errcountryname" class="form-control" name="countryname" [(ngModel)]="countryname" ngModel/>
+                      <input type="text" *ngIf="!errcountryname" style="border: 1px solid red;" class="form-control" name="countryname" [(ngModel)]="countryname" ngModel/>
+                    </fieldset>
+                  </div>
+                  <div style="text-align: center;padding-left: 37%;">
+                    <button type="submit" style="width: auto;" class="btn btn-zipco btn-round btn-min-width ourfont" id="btn_search"> Update </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-2"></div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+.myshow {
+    padding-right: 17px;
+    display: block;
+}
+
+.searchtext {
+    float: right;
+    width: 20%;
+}
+
+@media (max-width: 768px) {
+    .input-group>.form-control {
+        width: inherit;
+    }
+    .searchtext {
+        width: 100%;
+    }
+}

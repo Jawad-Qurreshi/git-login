@@ -1,0 +1,164 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+      <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block pathffont">Transaction Setting</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb pathsfont">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/m-dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">Transaction Setting
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+
+      <div class="row justify-content-center">
+        <div class="col-12" style="max-width: 1140px;">
+          <div class="card pull-up bg-zipco">
+            <div class="card-header card-header-transparent">
+              <h6 class="card-title" style="font-size: 18px;">Transaction Graph Setting</h6>
+            </div>
+            <div class="card-content">
+              <div class="card-body ">
+                <form class="row col-12 col-md-12" #gdata="ngForm" (ngSubmit)="edit_graphdata(gdata.value)">
+
+                  <div class="col-4">
+                    <fieldset class="form-group">
+                      <label for="week_1">18 March - 31 March</label>
+                      <input *ngIf="errweek_1" name="week_1" [(ngModel)]="week_1" id="week_1" type="text"
+                        class="form-control" placeholder="18 March - 31 March" ngModel>
+                      <input *ngIf="!errweek_1" style="border: 1px solid red;" name="week_1" [(ngModel)]="week_1"
+                        id="week_1" type="text" class="form-control" placeholder="18 March - 31 March" ngModel>
+                    </fieldset>
+                  </div>
+
+                  <div class="col-4">
+                    <fieldset class="form-group">
+                      <label for="week_2">1 April - 14 April</label>
+                      <input *ngIf="errweek_2" name="week_2" [(ngModel)]="week_2" id="week_2" type="text"
+                        class="form-control" placeholder="1 April - 14 April" ngModel>
+                      <input *ngIf="!errweek_2" style="border: 1px solid red;" name="week_2" [(ngModel)]="week_2"
+                        id="week_2" type="text" class="form-control" placeholder="1 April - 14 April" ngModel>
+                    </fieldset>
+                  </div>
+
+                  <div class="col-4">
+                    <fieldset class="form-group">
+                      <label for="week_3">15 April - 28 April</label>
+                      <input *ngIf="errweek_3" name="week_3" [(ngModel)]="week_3" id="week_3" type="text"
+                        class="form-control" placeholder="15 April - 28 April" ngModel>
+                      <input *ngIf="!errweek_3" style="border: 1px solid red;" name="week_3" [(ngModel)]="week_3"
+                        id="week_3" type="text" class="form-control" placeholder="15 April - 28 April" ngModel>
+                    </fieldset>
+                  </div>
+
+                  <div class="col-4">
+                    <fieldset class="form-group">
+                      <label for="week_4">29 May - 12 May</label>
+                      <input *ngIf="errweek_4" name="week_4" [(ngModel)]="week_4" id="week_4" type="text"
+                        class="form-control" placeholder="29 May - 12 May" ngModel>
+                      <input *ngIf="!errweek_4" style="border: 1px solid red;" name="week_4" [(ngModel)]="week_4"
+                        id="week_4" type="text" class="form-control" placeholder="29 May - 12 May" ngModel>
+                    </fieldset>
+                  </div>
+
+                  <div class="col-4">
+                    <fieldset class="form-group">
+                      <label for="week_5">13 May - 26 May</label>
+                      <input *ngIf="errweek_5" name="week_5" [(ngModel)]="week_5" id="week_5" type="text"
+                        class="form-control" placeholder="13 May - 26 May" ngModel>
+                      <input *ngIf="!errweek_5" style="border: 1px solid red;" name="week_5" [(ngModel)]="week_5"
+                        id="week_5" type="text" class="form-control" placeholder="13 May - 26 May" ngModel>
+                    </fieldset>
+                  </div>
+
+                  <div class="col-4">
+                    <fieldset class="form-group">
+                      <label for="week_6">27 May - 9 June</label>
+                      <input *ngIf="errweek_6" name="week_6" [(ngModel)]="week_6" id="week_6" type="text"
+                        class="form-control" placeholder="27 May - 9 June" ngModel>
+                      <input *ngIf="!errweek_6" style="border: 1px solid red;" name="week_6" [(ngModel)]="week_6"
+                        id="week_6" type="text" class="form-control" placeholder="27 May - 9 June" ngModel>
+                    </fieldset>
+                  </div>
+
+                  <div class="col-4">
+                    <fieldset class="form-group">
+                      <label for="week_7">10 June - 23 June</label>
+                      <input *ngIf="errweek_7" name="week_7" [(ngModel)]="week_7" id="week_7" type="text"
+                        class="form-control" placeholder="10 June - 23 June" ngModel>
+                      <input *ngIf="!errweek_7" style="border: 1px solid red;" name="week_7" [(ngModel)]="week_7"
+                        id="week_7" type="text" class="form-control" placeholder="10 June - 23 June" ngModel>
+                    </fieldset>
+                  </div>
+
+                  <div class="col-4">
+                    <fieldset class="form-group">
+                      <label for="week_8">24 June - 7 July</label>
+                      <input *ngIf="errweek_8" name="week_8" [(ngModel)]="week_8" id="week_8" type="text"
+                        class="form-control" placeholder="24 June - 7 July" ngModel>
+                      <input *ngIf="!errweek_8" style="border: 1px solid red;" name="week_8" [(ngModel)]="week_8"
+                        id="week_8" type="text" class="form-control" placeholder="24 June - 7 July" ngModel>
+                    </fieldset>
+                  </div>
+
+                  <div class="col-4">
+                    <fieldset class="form-group">
+                      <label for="week_9">8 July - 21 July</label>
+                      <input *ngIf="errweek_9" name="week_9" [(ngModel)]="week_9" id="week_9" type="text"
+                        class="form-control" placeholder="8 July - 21 July" ngModel>
+                      <input *ngIf="!errweek_9" style="border: 1px solid red;" name="week_9" [(ngModel)]="week_9"
+                        id="week_9" type="text" class="form-control" placeholder="8 July - 21 July" ngModel>
+                    </fieldset>
+                  </div>
+
+                  <div class="col-4">
+                    <fieldset class="form-group">
+                      <label for="week_10">22 July - 4 August</label>
+                      <input *ngIf="errweek_10" name="week_10" [(ngModel)]="week_10" id="week_10" type="text"
+                        class="form-control" placeholder="22 July - 4 August" ngModel>
+                      <input *ngIf="!errweek_10" style="border: 1px solid red;" name="week_10" [(ngModel)]="week_10"
+                        id="week_10" type="text" class="form-control" placeholder="22 July - 4 August" ngModel>
+                    </fieldset>
+                  </div>
+
+                  <div class="col-4">
+                    <fieldset class="form-group">
+                      <label for="week_11">5 August - 18 August</label>
+                      <input *ngIf="errweek_11" name="week_11" [(ngModel)]="week_11" id="week_11" type="text"
+                        class="form-control" placeholder="5 August - 18 August" ngModel>
+                      <input *ngIf="!errweek_11" style="border: 1px solid red;" name="week_11" [(ngModel)]="week_11"
+                        id="week_11" type="text" class="form-control" placeholder="5 August - 18 August" ngModel>
+                    </fieldset>
+                  </div>
+
+                  <div class="col-4">
+                    <fieldset class="form-group">
+                      <label for="week_12">19 August - 1 September</label>
+                      <input *ngIf="errweek_12" name="week_12" [(ngModel)]="week_12" id="week_12" type="text"
+                        class="form-control" placeholder="19 August - 1 September" ngModel>
+                      <input *ngIf="!errweek_12" style="border: 1px solid red;" name="week_12" [(ngModel)]="week_12"
+                        id="week_12" type="text" class="form-control" placeholder="19 August - 1 September" ngModel>
+                    </fieldset>
+                  </div>
+
+                  <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-round btn-zipco ourfont" id="btn_search">
+                      &nbsp;&nbsp;&nbsp;Update&nbsp;&nbsp;&nbsp;
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

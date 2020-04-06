@@ -1,0 +1,76 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+.flex-direction-nav a:before {
+    font-size: 20px;
+}
+
+.mrgtop {
+    margin-top: 70px;
+}
+
+.mydiv {
+    font-size: 15px !important;
+    display: block !important;
+    cursor: pointer !important;
+    padding-top: 7px !important;
+    background-color: #fff !important;
+    border: 1px solid #d3d5d8;
+    border-radius: 3px !important;
+}
+
+.mydiv label {
+    color: black !important;
+}
+
+.ourfont {
+    font-family: 'Comfortaa', cursive;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* 
+.vertical-compact-menu.menu-open .content, .vertical-compact-menu.menu-open .footer {
+    margin-left: 180px;
+}
+.main-menu.menu-light .navigation > li.open > a {
+    color: #c3c3c3 !important;
+    background: #23262f !important;
+    font-weight: 700 !important;
+    border-right: 4px solid #1E9FF2; 
+}
+.vertical-compact-menu .main-menu .navigation > li > a > span{
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    vertical-align: middle !important;
+    text-transform: none !important;
+    font-size: 1.1rem !important;
+    color: #c3c3c3 !important;
+    font-weight: unset !important;
+} */
+
+.pathffont {
+    font-size: 25px;
+}
+
+.pathsfont {
+    font-size: 17px;
+}
+
+.canvasjs-chart-canvas {
+    width: 100%;
+    height: 370px;
+}
+
+.canvasjs-chart-credit {
+    color: #16181c !important;
+}
+
+.canvasjs-chart-canvas {
+    border-radius: 5px !important;
+}
+
+.ngx-datepicker-container .ngx-datepicker-calendar-container{
+    z-index: 9999;
+}

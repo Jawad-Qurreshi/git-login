@@ -1,0 +1,74 @@
+.step {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+}
+
+.step.active {
+    opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+
+.step.finish {
+    background-color: #4CAF50;
+}
+
+.drop-div {
+    width: 100%;
+    max-width: 560px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.box.has-advanced-upload {
+    outline: 2px dashed #2b335e;
+    outline-offset: -10px;
+}
+.box.has-advanced-upload-error {
+    outline: 2px dashed red;
+    outline-offset: -10px;
+}
+
+.box {
+    font-size: 1.25rem;
+    background-color: #b6d0e7;
+    position: relative;
+    padding: 20px 20px;
+}
+
+.box.has-advanced-upload .box__icon {
+    width: 100%;
+    height: 80px;
+    fill: #2b335e;
+    display: block;
+    margin-bottom: 10px;
+}
+.box.has-advanced-upload-error .box__icon__error {
+    width: 100%;
+    height: 80px;
+    fill: red;
+    display: block;
+    margin-bottom: 10px;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+input[type=file] {
+    opacity: 0;
+}
+
+form label{
+    color: white;
+    text-transform: capitalize;
+}
+form p{
+    color: #c0c0c0;
+}

@@ -1,0 +1,28 @@
+.myslider {
+    height: 80%;
+}
+.social_footer li{
+    list-style: none;
+    padding-left: 6px;
+}
+
+@media (max-width: 768px) {
+    .myslider {
+        height: auto;
+    }
+    .carousel-indicators {
+        bottom: -26px;
+    }
+    .border-right-blue-grey.border-right-lighten-5 {
+        border-right: none !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .kycdiv {
+        padding-left: 0px;
+    }
+    .progressdiv {
+        padding-right: 0px;
+    }
+}

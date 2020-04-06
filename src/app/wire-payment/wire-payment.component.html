@@ -1,0 +1,169 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+      <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block pathffont">Send Money</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb pathsfont">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">Send Money
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-body">
+
+      <div class="row justify-content-center">
+        <div class="col-md-10 offset-1" style="max-width: 950px;">
+          <div class="card pull-up bg-zipco text-white">
+            <div class="card-body p-2">
+
+              <h4 style="color: #c88c39;text-transform: uppercase;font-weight: bold;font-size: 20px;">WIRE PAYMENT</h4>
+
+              <p class="text-silver" style="font-size: 17px;">Please send Exactly
+                {{send_amount / 100}} {{send_currency}}
+              </p>
+
+              <div class="row">
+                <div class="col-md-8">
+                  <p style="font-size: 16px;padding-top: 5px;">
+                    <b style="color: #c78b38;">•</b> Customer must include this reference {{referenceno}} to payment
+                    receipt
+                  </p>
+                </div>
+                <div class="col-md-4" style="padding-top: 3px;padding-left: 3px;border: 1px solid #c88c39;padding-bottom: 2px;
+                  border-radius: 3px;">
+                  <p style="margin-bottom: 0px;">
+
+                    <a *ngIf="showcad" href="assets/wirepayment_pdf/TD CanadaTrust Biz Acct.pdf" target="_blank">
+                      <i class="fas fa-file-pdf" style="color: #b71515;font-size: 35px;"></i>
+                      <b style="position: absolute;margin-top: 8px;margin-left: 5px;font-size: 15px;color: white;">Download
+                        Bank Account Details</b>
+                    </a>
+
+                    <a *ngIf="showusd" href="assets/wirepayment_pdf/TD United StateTrust Biz Acct.pdf" target="_blank">
+                      <i class="fas fa-file-pdf" style="color: #b71515;font-size: 35px;"></i>
+                      <b style="position: absolute;margin-top: 8px;margin-left: 5px;font-size: 15px;color: white;">Download
+                        Bank Account Details</b>
+                    </a>
+
+                  </p>
+                </div>
+              </div>
+
+
+
+
+              <!-- <h6 class="mb-1 text-center" style="color: #c88c39;font-size: 20px;">BENEFICIARY BANK INFORMATION</h6>
+              <div class="row" style="border: 1px solid;margin: 5px;padding: 5px;">
+
+
+                <div class="row col-md-12">
+                  <div class="col-md-4">
+                    <p>Beneficiary Bank Name:</p>
+                  </div>
+                  <div class="col-md-8">
+                    <p>The Bank of Nova Scotia</p>
+                  </div>
+                </div>
+
+                <div class="row col-md-12">
+                  <div class="col-md-4">
+                    <p>SWIFT Code/BIC:</p>
+                  </div>
+                  <div class="col-md-8">
+                    <p>NOSCCATT</p>
+                  </div>
+                </div>
+
+                <div class="row col-md-12">
+                  <div class="col-md-4">
+                    <p>Canadian Clearing Code:</p>
+                  </div>
+                  <div class="col-md-8">
+                    <p>CC0002 10009</p>
+                  </div>
+                </div>
+
+                <div class="row col-md-12">
+                  <div class="col-md-4">
+                    <p>Beneficiary Bank Address:</p>
+                  </div>
+                  <div class="col-md-8">
+                    <p>Address: 225, 6TH AVENUE SW</p>
+                    <p>City: CALGARY &nbsp;&nbsp; Province: AB &nbsp;&nbsp; Postal Code: T2P 1N2 </p>
+                    <p>Country: CANADA</p>
+                  </div>
+                </div>
+              </div>
+              <br><br>
+              <h6 class="mb-1 text-center" style="color: #c88c39;font-size: 20px;">BENEFICIARY CUSTOMER INFORMATION</h6>
+              <div class="row" style="border: 1px solid;margin: 5px;padding: 5px;">
+
+                <div class="row col-md-12">
+                  <div class="col-md-4">
+                    <p>Beneficiary Account Number:</p>
+                  </div>
+                  <div class="col-md-8">
+                    <p>100090424315</p>
+                  </div>
+                </div>
+                <div class="row col-md-12">
+                  <div class="col-md-4">
+                    <p>Beneficiary Account Name:</p>
+                  </div>
+                  <div class="col-md-8">
+                    <p>*MORGATE CONSULTING SOLUTIONS INC.</p>
+                  </div>
+                </div>
+                <div class="row col-md-12">
+                  <div class="col-md-4">
+                    <p>Beneficiary Address :</p>
+                  </div>
+                  <div class="col-md-8">
+                    <p>Country: CANADA</p>
+                  </div>
+                </div>
+                
+              </div>
+              <br><br>
+              <h6 class="mb-1 text-center" style="color: #c88c39;font-size: 20px;">UPLOAD IMAGE/SCREENSHOT OF
+                SUCCESSFULL PAYMENT</h6> -->
+              <form #wirepayment="ngForm" (ngSubmit)="wirepay(wirepayment.value)" style="margin-top:10px;">
+                <div class="row">
+                  <div class="col-md-12">
+                    <!-- <fieldset class="form-group">
+                      <label for="payment_img" style="color: white;">Payment Screenshot</label>
+                      <input type="file" class="form-control" id="payment_img" name="payment_img"
+                        (change)="upload_wirepay($event)" #wirepaym>
+                    </fieldset> -->
+                    <div class="col-md-12 text-center" style="margin-top:10px;">
+                      <div class="form-group">
+
+                        <button (click)="previous()" class="btn btn-zipco btn-round btn-min-width ourfont"
+                          style="background: white;color: black;">Go
+                          Back</button>
+                        &nbsp;&nbsp;
+                        <button type="submit" class="btn btn-zipco btn-round btn-min-width ourfont">CLICK HERE WHEN
+                          TRANSFER IS COMPLETE</button>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

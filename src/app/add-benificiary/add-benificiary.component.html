@@ -1,0 +1,346 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+      <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block pathffont">Beneficiary</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb pathsfont">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/benificiary']">Beneficiary</a>
+              </li>
+              <li class="breadcrumb-item active">Add Beneficiary
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+      <div class="row justify-content-center">
+        <div class="col-md-3" style="max-width: 285px;"></div>
+        <div class="col-xs-12 col-sm-12 col-md-6" style="max-width: 570px;">
+          <div class="card pull-up bg-zipco">
+            <div class="card-content collapse show text-white">
+              <div class="card-body">
+                <form class="form-horizontal form-user-profile row mt-2" #benidata="ngForm"
+                  (ngSubmit)="benificiary(benidata.value)">
+
+                  <div class="col-12">
+                    <fieldset class="form-group">
+                      <label for="currency" style="color: white;">Beneficiary Country:</label>
+                      <br>
+
+                      <div class="flagediv">
+                        <img *ngIf="disflage" src="assets/flage/blank.gif" class="flag flag-{{disflage}}"
+                          alt="Czech Republic" />
+                        <i *ngIf="!disflage" class="fas fa-globe-asia"
+                          style="color: #d6a24a;padding: 5px;font-size: 22px;"></i>
+                      </div>
+
+                      <div class="currencyelm">
+                        <select *ngIf="errcurrency" class="custom-select countryselect" id="currency" name="currency"
+                          [(ngModel)]="currency" (ngModelChange)="change($event)" ngModel>
+                          <option value="">Select Currency</option>
+                          <option *ngFor="let list of benifcountry" value="{{list.bc_id}}">
+                            {{list.country_name}}
+                          </option>
+                        </select>
+
+                        <select *ngIf="!errcurrency" style="border: 1px solid red;" class="custom-select countryselect"
+                          id="currency" name="currency" [(ngModel)]="currency" (ngModelChange)="change($event)" ngModel>
+                          <option value="">Select Currency</option>
+                          <option *ngFor="let list of benifcountry" value="{{list.bc_id}}">{{list.country_name}}
+                          </option>
+                        </select>
+                      </div>
+
+                    </fieldset>
+                  </div>
+
+                  <div class="mb-1 col-12 icheck_minimal skin">
+                    <label for="currency" style="color: white;">Select Beneficiary Type:</label>
+                    <fieldset>
+                      <div class="row myrow">
+                        <div style="width: 3%;"></div>
+                        <div class="col-md-5 mydiv" *ngIf="errrectype">
+                          <input type="radio" class="recipient_type" value="personal" (click)="changeval('personal')"
+                            name="recipientType" id="input-radio-5" ngModel>
+                          <label for="input-radio-5" style="color:white;">&nbsp;Personal</label>
+                        </div>
+                        <div class="col-md-5 mydiv" *ngIf="!errrectype" style="border: 1px solid red;">
+                          <input type="radio" class="recipient_type" value="personal" (click)="changeval('personal')"
+                            name="recipientType" id="input-radio-5" ngModel>
+                          <label for="input-radio-5" style="color:white;">&nbsp;Personal</label>
+                        </div>
+                        <div style="width: 11%;"></div>
+                        <div class="col-md-5 mydiv" *ngIf="errrectype">
+                          <input type="radio" class="recipient_type" value="business" (click)="changeval('business')"
+                            name="recipientType" id="input-radio-6" ngModel>
+                          <label for="input-radio-6" style="color:white;">&nbsp;Business</label>
+                        </div>
+                        <div class="col-md-5 mydiv" *ngIf="!errrectype" style="border: 1px solid red;">
+                          <input type="radio" class="recipient_type" value="business" (click)="changeval('business')"
+                            name="recipientType" id="input-radio-6" ngModel>
+                          <label for="input-radio-6" style="color:white;">&nbsp;Business</label>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+
+                  <div class="col-12">
+                    <fieldset class="form-group">
+                      <label for="currency" style="color: white;">{{text}}</label>
+                      <input type="text" *ngIf="errholder" name="account_holder" class="form-control" ngModel>
+                      <input type="text" *ngIf="!errholder" style="border: 1px solid red;" name="account_holder" class="form-control" ngModel>
+                    </fieldset>
+                  </div>
+
+                  <div class="col-12">
+                    <fieldset class="form-group">
+                      <label for="phone-no" style="color: white;">Phone Number</label>
+
+                      <div class="row">
+
+                        <div class="col-md-1">
+                          <input type="text" class="form-control myphonecode" name="phonecode" [(ngModel)]="phonecode"
+                            ngModel disabled />
+                        </div>
+                        <div class="col-md-11">
+                          <input type="text" *ngIf="errphone" class="form-control" id="phone-no" [(ngModel)]="phone"
+                            name="phone" placeholder="Your Phone Number ( With Country Code )" ngModel>
+                          <input type="text" *ngIf="!errphone" style="border: 1px solid red;" class="form-control"
+                            id="phone-no" [(ngModel)]="phone" name="phone"
+                            placeholder="Your Phone Number ( With Country Code )" ngModel>
+                        </div>
+
+                        <p class="font-small-3 text-info" *ngIf="errphone" style="padding-left: 15px;">
+                          <i class="la la-info-circle"></i>
+                          Ex: Nigeria, 2347018858XXX [Here 234 is Country code and rest are your mobile numbers]. Do
+                          not add the preceding zero before your actual number. Good Example +234 7784....... Bad
+                          Example +234 07784......Do not enter the landline phone number.
+                          <br>
+                          <b style="color: red;font-weight: bold;">Do not enter the landline phone number; you will
+                            not get the OTP.</b>
+                        </p>
+                        <p class="font-small-3 text-info" *ngIf="!errphone" style="color: red;padding-left: 15px;">
+                          <i class="la la-info-circle"></i>
+                          Ex: Nigeria, 2347018858XXX [Here 234 is Country code and rest are your mobile numbers]. Do
+                          not add the preceding zero before your actual number. Good Example +234 7784....... Bad
+                          Example +234 07784......Do not enter the landline phone number.
+                          <br>
+                          <b style="color: red;font-weight: bold;">Do not enter the landline phone number; you will
+                            not get the OTP.</b>
+                        </p>
+                      </div>
+                    </fieldset>
+                  </div>
+
+                  <div class="col-12">
+                    <fieldset class="form-group">
+                      <label for="comemail" style="color: white;">Email</label>
+                      <input type="email" id="comemail" *ngIf="errcomemail" name="comemail" [(ngModel)]="comemail"
+                        class="form-control" ngModel>
+                      <input type="email" id="comemail" *ngIf="!errcomemail" style="border: 1px solid red;"
+                        name="comemail" [(ngModel)]="comemail" class="form-control" ngModel>
+                    </fieldset>
+                  </div>
+
+                  <div class="col-12">
+                    <fieldset class="form-group"
+                      style="background: white;padding: 7px;padding-bottom: 0px;border-radius: 3px;">
+                      <label class="container" style="margin-bottom: 4px;color: black;text-transform: none;">
+                        <input type="checkbox" name="chkverify" [(ngModel)]="chkverify" data-md-icheck
+                          (change)="toggleVisibility($event)" ngModel />
+                        I know their bank details
+                        <span class="checkmark"></span>
+                      </label>
+                    </fieldset>
+                  </div>
+
+                  <div class="col-12" *ngIf="!chkverify">
+                    <p style="font-size: 16px;">
+                      Please enter their email address in the required field above. We'll send an email to request
+                      their bank details once you've paid for your transfer.
+                      <br><br>
+                      Make sure they respond to our email or the money will be refunded to you.
+                    </p>
+                  </div>
+
+                  <div class="col-12 mb-1">
+                    <h4 style="color: white;">Beneficiary Bank Details</h4>
+                  </div>
+
+                  <div class="col-12 recipient_div" *ngIf="us">
+
+                    <fieldset class="form-group">
+                      <label for="routing-number" style="color: white;">Routing Number</label>
+                      <input type="text" *ngIf="errroutingno" class="form-control" id="routing-number" name="routingno"
+                        placeholder="Enter Routing Number" ngModel>
+                      <input type="text" *ngIf="!errroutingno" style="border: 1px solid red;" class="form-control"
+                        id="routing-number" name="routingno" placeholder="Enter Routing Number" ngModel>
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                      <label for="account-number" style="color: white;">Account Number</label>
+                      <input type="text" *ngIf="errus_accountno" class="form-control" id="account-number"
+                        name="us_accountno" placeholder="Enter Account Number" ngModel>
+                      <input type="text" *ngIf="!errus_accountno" style="border: 1px solid red;" class="form-control"
+                        id="account-number" name="us_accountno" placeholder="Enter Account Number" ngModel>
+                    </fieldset>
+
+                    <div class="mb-1 col-12 icheck_minimal skin">
+                      <label for="currencytype" style="margin-left: -15px;color: white;">Account type</label>
+                      <fieldset>
+                        <div class="row">
+                          <div class="col-md-12 mydiv" *ngIf="errus_accounttype" style="margin-bottom: 0.5rem;">
+                            <input type="radio" class="recipient_type" value="checking" name="us_accounttype"
+                              id="checking" ngModel>
+                            <label for="checking">&nbsp;Checking</label>
+                          </div>
+                          <div class="col-md-12 mydiv" *ngIf="!errus_accounttype"
+                            style="margin-bottom: 0.5rem;border: 1px solid red;">
+                            <input type="radio" class="recipient_type" value="checking" name="us_accounttype"
+                              id="checking" ngModel>
+                            <label for="checking">&nbsp;Checking</label>
+                          </div>
+
+                          <div class="col-md-12 mydiv" *ngIf="errus_accounttype">
+                            <input type="radio" class="recipient_type" value="saving" name="us_accounttype" id="saving"
+                              ngModel>
+                            <label for="saving">&nbsp;Savings</label>
+                          </div>
+                          <div class="col-md-12 mydiv" *ngIf="!errus_accounttype" style="border: 1px solid red;">
+                            <input type="radio" class="recipient_type" value="saving" name="us_accounttype" id="saving"
+                              ngModel>
+                            <label for="saving">&nbsp;Savings</label>
+                          </div>
+                        </div>
+                      </fieldset>
+                    </div>
+
+                  </div>
+
+                  <div class="col-12 recipient_div" *ngIf="ca">
+
+                    <fieldset class="form-group">
+                      <label for="institution-no" style="color: white;">Institution No</label>
+                      <input type="text" *ngIf="errinstino" class="form-control" id="institution-no"
+                        name="institutionno" placeholder="Enter Institution No" ngModel>
+                      <input type="text" *ngIf="!errinstino" style="border: 1px solid red;" class="form-control"
+                        id="institution-no" name="institutionno" placeholder="Enter Institution No" ngModel>
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                      <label for="transit-no" style="color: white;">Transit No.</label>
+                      <input type="text" *ngIf="errtransitno" class="form-control" id="transit-no" name="transitno"
+                        placeholder="Enter Transit No" ngModel>
+                      <input type="text" *ngIf="!errtransitno" style="border: 1px solid red;" class="form-control"
+                        id="transit-no" name="transitno" placeholder="Enter Transit No" ngModel>
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                      <label for="account-number" style="color: white;">Account Number</label>
+                      <input type="text" *ngIf="errca_accountno" class="form-control" id="account-number"
+                        name="ca_accountno" placeholder="Enter Account Number" ngModel>
+                      <input type="text" *ngIf="!errca_accountno" style="border: 1px solid red;" class="form-control"
+                        id="account-number" name="ca_accountno" placeholder="Enter Account Number" ngModel>
+                    </fieldset>
+
+
+                    <div class="mb-1 col-12 icheck_minimal skin">
+                      <label for="currencytype" style="margin-left: -15px;">Account type</label>
+                      <fieldset>
+                        <div class="row">
+                          <div class="col-md-12 mydiv" *ngIf="errca_accounttype" style="margin-bottom: 0.5rem;">
+                            <input type="radio" class="recipient_type" value="checking" name="ca_accounttype"
+                              id="checking" ngModel>
+                            <label for="checking">&nbsp;Checking</label>
+                          </div>
+                          <div class="col-md-12 mydiv" *ngIf="!errca_accounttype"
+                            style="margin-bottom: 0.5rem;border: 1px solid red;">
+                            <input type="radio" class="recipient_type" value="checking" name="ca_accounttype"
+                              id="checking" ngModel>
+                            <label for="checking">&nbsp;Checking</label>
+                          </div>
+
+                          <div class="col-md-12 mydiv" *ngIf="errca_accounttype">
+                            <input type="radio" class="recipient_type" value="saving" name="ca_accounttype" id="saving"
+                              ngModel>
+                            <label for="saving">&nbsp;Savings</label>
+                          </div>
+                          <div class="col-md-12 mydiv" *ngIf="!errca_accounttype" style="border: 1px solid red;">
+                            <input type="radio" class="recipient_type" value="saving" name="ca_accounttype" id="saving"
+                              ngModel>
+                            <label for="saving">&nbsp;Savings</label>
+                          </div>
+                        </div>
+                      </fieldset>
+                    </div>
+
+                  </div>
+
+                  <div class="col-12 recipient_div" *ngIf="gb">
+                    <fieldset class="form-group">
+                      <label for="uk-code" style="color: white;">UK Code</label>
+                      <input type="text" class="form-control" *ngIf="erruksortcode" id="uk-code" name="ukcode"
+                        placeholder="Enter UK Code" ngModel>
+                      <input type="text" class="form-control" *ngIf="!erruksortcode" style="border: 1px solid red;"
+                        id="uk-code" name="ukcode" placeholder="Enter UK Code" ngModel>
+                    </fieldset>
+                    <fieldset class="form-group">
+                      <label for="account-no" style="color: white;">Account Number</label>
+                      <input type="text" *ngIf="errgb_accountno" class="form-control" id="account-no"
+                        name="gb_accountno" placeholder="Enter Account Number" ngModel>
+                      <input type="text" *ngIf="!errgb_accountno" style="border: 1px solid red;" class="form-control"
+                        id="account-no" name="gb_accountno" placeholder="Enter Account Number" ngModel>
+                    </fieldset>
+                  </div>
+
+                  <div class="col-12 recipient_div" *ngIf="za">
+                    <fieldset class="form-group">
+                      <label for="bank-name" style="color: white;">Beneficiary's Bank Name [BIC/SWIFT]</label>
+                      <input type="text" class="form-control" *ngIf="errza_bankname" id="bank-name" name="za_bankname"
+                        placeholder="Enter Bank Name" ngModel>
+                      <input type="text" class="form-control" *ngIf="!errza_bankname" style="border: 1px solid red;"
+                        id="bank-name" name="za_bankname" placeholder="Enter Bank Name" ngModel>
+                    </fieldset>
+                    <fieldset class="form-group">
+                      <label for="account-no" style="color: white;">Account Number</label>
+                      <input type="text" *ngIf="errza_accountno" class="form-control" id="account-no"
+                        name="za_accountno" placeholder="Enter Account Number" ngModel>
+                      <input type="text" *ngIf="!errza_accountno" class="form-control" id="account-no"
+                        name="za_accountno" placeholder="Enter Account Number" ngModel>
+                    </fieldset>
+                    <fieldset class="form-group">
+                      <label for="phone-no" style="color: white;">Phone Number</label>
+                      <input type="text" *ngIf="errza_phoneno" class="form-control" id="phone-no" name="za_phoneno"
+                        placeholder="Enter Phone Number" ngModel>
+                      <input type="text" *ngIf="!errza_phoneno" style="border: 1px solid red;" class="form-control"
+                        id="phone-no" name="za_phoneno" placeholder="Enter Phone Number" ngModel>
+                    </fieldset>
+                  </div>
+
+                  <div class="col-12 recipient_div" *ngIf="er">
+                    <fieldset class="form-group">
+                      <label for="iban" style="color: white;">IBAN</label>
+                      <input type="text" class="form-control" *ngIf="errer_iban" id="iban" name="er_iban"
+                        placeholder="Enter IBAN Number" ngModel>
+                      <input type="text" class="form-control" *ngIf="!errer_iban" style="border: 1px solid red;"
+                        id="iban" name="er_iban" placeholder="Enter IBAN Number" ngModel>
+                    </fieldset>
+                  </div>
+
+                  <div class="col-12 text-left" style="margin-top: 10px;">
+                    <button type="submit" class="btn-zipco btn btn-glow btn-round ourfont">Add Benificiary</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3" style="max-width: 285px;"></div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+      <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block pathffont">Login History</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb pathsfont">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">Login History
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+      <div class="row justify-content-center">
+        <div class="col-12" style="max-width: 1140px;">
+          <div class="card pull-up bg-zipco">
+            <div class="card-content collapse show">
+              <div class="card-body text-white">
+                <form class="form-horizontal form-purchase-token row" action="">
+                  <div class="col-12 col-md-12">
+                    <div class="row">
+                      <div id="recent-transactions" class="col-12">
+                        <h6 class="my-2 text-white" style="font-size: 18px;">Login History</h6>
+                        <!-- <input type="text" style="width: 20%;" class="form-control" placeholder="Search here"
+                          name="searchText" [(ngModel)]="searchText" /> -->
+                        <div class="card bg-zipco text-white">
+                          <div class="card-content">
+                            <div class="table-responsive">
+                              <table id="tbl_transaction" class="table table-hover table-xl mb-0">
+                                <thead>
+                                  <tr>
+                                    <th class="border-top-0 text-center">Date & Time</th>
+                                    <th class="border-top-0 text-center">Browser</th>
+                                    <th class="border-top-0 text-center">IP Address</th>
+                                    <th class="border-top-0 text-center">OS</th>
+                                    <th class="border-top-0 text-center">Status</th>
+                                  </tr>
+                                </thead>
+                                <tbody class="text-center">
+                                  <tr
+                                    *ngFor="let list of logindetails | filter : searchText | paginate: { itemsPerPage: 10, currentPage: p }">
+                                    <td class="text-truncate">{{list.reg_date | date: "dd/MM/yyyy hh:mm a"}}</td>
+                                    <td class="text-truncate">{{list.browser}}</td>
+                                    <td class="text-truncate">{{list.ip_address}}</td>
+                                    <td class="text-truncate">{{list.os}}</td>
+                                    <td class="text-truncate">
+                                      <label *ngIf="list.status == 0"
+                                        class="mb-0 btn-sm btn btn-outline-danger round">Login
+                                        Fail</label>
+                                      <label *ngIf="list.status == 1"
+                                        class="mb-0 btn-sm btn btn-outline-success round">Login
+                                        Successfully</label>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

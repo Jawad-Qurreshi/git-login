@@ -1,0 +1,160 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+      <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block pathffont">Send Money</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb pathsfont">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">Send Money
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+
+      <div class="row justify-content-center">
+        <div class="col-12" style="max-width: 1110px;">
+          <div class="card bg-zipco text-white">
+            <div class="card-content">
+              <div class="card-header card-header-transparent">
+                <h6 class="card-title" style="font-size: 18px;">Send Money Now</h6>
+              </div>
+              <div style="margin-top: 25px;">
+                <img src="assets/plate/plate_4.png" style="margin-left: 10%;width: 80%;" />
+              </div>
+              <div class="card-body">
+                <form class="number-tab-steps wizard-circle" #sendmoneyfour="ngForm"
+                  (ngSubmit)="sendmoney(sendmoneyfour.value)">
+                  <fieldset>
+                    <div class="row mt-2 justify-content-center">
+                      <div class="col-md-8 col-xs-12">
+                        <h4 class="text-center text-gold text-bold-700" style="text-transform: uppercase;">Review
+                          details
+                          of your transfer</h4>
+                        <div class="card box-shadow-0 border-warning bg-transparent">
+                          <div class="card-content collapse show" style="background: none;">
+                            <div class="card-body">
+                              <div class="row">
+                                <div class="col-md-7 text-left">
+                                  <p class="font-medium-2" style="color: #999999;font-weight: bold;">Transfer Details
+                                  </p>
+                                </div>
+                                <div class="col-md-5 text-right">
+                                  <a [routerLink]="['/send-money']">Edit</a>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-7 text-left">
+                                  <p class="font-medium-1">You Send</p>
+                                </div>
+                                <div class="col-md-5 text-right">
+                                  <p class="font-medium-4">{{sendamount}} {{sendcurrency}}</p>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-7 text-left">
+                                  <p class="font-medium-1">Fee (Included):</p>
+                                </div>
+                                <div class="col-md-5 text-right">
+                                  <p class="font-medium-2">{{totfee}} {{sendcurrency}}</p>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-7 text-left">
+                                  <p class="font-medium-1">Amount We'll Convert</p>
+                                </div>
+                                <div class="col-md-5 text-right">
+                                  <p class="font-medium-2">{{totamount}} {{sendcurrency}}</p>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-7 text-left">
+                                  <p class="font-medium-1">You Get</p>
+                                </div>
+                                <div class="col-md-5 text-right">
+                                  <p class="font-medium-4">{{getamount}} {{getcurrency}}</p>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-7 text-left">
+                                  <p class="font-medium-1">Should Arrive</p>
+                                </div>
+                                <div class="col-md-5 text-right">
+                                  <p class="font-medium-2">Same Working Day</p>
+                                </div>
+                              </div>
+                              <hr style="border-top: 1px solid rgba(202,207,231, 0.5);">
+                              <div class="row">
+                                <div class="col-md-7 text-left">
+                                  <p class="font-medium-2" style="color: #999999;font-weight: bold;">Beneficiary Details
+                                  </p>
+                                </div>
+                                <div class="col-md-5 text-right">
+                                  <a [routerLink]="['/send-money-three']">Change</a>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-7 text-left">
+                                  <p class="font-medium-1">Name</p>
+                                </div>
+                                <div class="col-md-5 text-right">
+                                  <p class="font-medium-2" style="text-transform: capitalize;">{{name}}</p>
+                                </div>
+                              </div>
+
+                              <div class="row mt-1">
+                                <div class="col-md-12">
+                                  <fieldset>
+                                    <label for="promo">Promocode</label>
+                                    <div class="input-group">
+                                      <div class="input-group-prepend">
+                                        <button class="btn btn-primary" type="button">
+                                          <i class="la la-smile-o"></i>
+                                        </button>
+                                      </div>
+                                      <input type="text" id="promo" name="promocode" [(ngModel)]="promocode"
+                                        class="form-control" placeholder="Please Enter Your Promocode" ngModel>
+                                    </div>
+                                  </fieldset>
+                                </div>
+
+                                <div class="col-md-12 mt-2">
+                                  <div class="skin skin-square">
+                                    <fieldset>
+                                      <input type="checkbox" id="input-12" checked>
+                                      <label for="input-12">&nbsp; I accept the <a
+                                          href="https://zipcoinremit.com/images/docs/ZipCoinRemit_TermsofUse_Conditions.pdf"
+                                          target="_blank">Terms of Use</a></label>
+                                    </fieldset>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div style="text-align: right;">
+                      <button (click)="previous()" class="btn btn-zipco btn-round btn-min-width ourfont"
+                        style="background: white;color: black;">Go
+                        Back</button>
+                      &nbsp;&nbsp;
+                      <button type="submit" class="btn btn-zipco btn-round btn-min-width ourfont">Next</button>
+                    </div>
+                  </fieldset>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

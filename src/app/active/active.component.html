@@ -1,0 +1,89 @@
+<div class="content-wrapper">
+    <div class="content-header row">
+    </div>
+    <div class="content-body">
+        <div style="background: #17191d;background-image: url(https://zipcx.io/assets/images/01.png);">
+
+            <div class="left_align_logo" style="position: fixed;z-index: 99999;padding: 30px;">
+                <a href="https://zipcoinremit.com/" target="_blank">
+                    <img class="brand-logo" alt="modern admin logo" style="width: 150px;"
+                        src="assets/images/zipcoin.png">
+                </a>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5 d-none d-sm-none d-xs-none d-md-block">
+                        <img src="app-assets/images/img_2.png" style="position: fixed;left:0;width: 43%;height: auto" />
+                    </div>
+                    <div class="col-md-7"
+                        style="background-color:#17191d; background-image: url(https://zipcx.io/assets/images/01.png); background-repeat: no-repeat;background-position: top left;">
+
+                        <particles [params]="myParams" [style]="myStyle" [width]="width" [height]="height"></particles>
+
+                        <div class="container" style="padding-top: 55px;padding-bottom: 40px;">
+                            <div class="row">
+                                <div class="col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-12 col-sm-12 col-12">
+                                    <div class="login_wrapper" style="background: #131519;border-radius: 30px;">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <p
+                                            style="font-size: 22px; font-weight:bold; color:#c88c39; text-align:center; line-height:normal;">
+                                            WELCOME TO ZIPCOIN REMIT</p>
+                                        <p class="text-center h5 text-capitalize subtitle" style="color: white;">Mobile
+                                            Verification</p>
+                                        <br>
+                                        <p style="color: rgb(13, 141, 13)">
+                                            Email is successfully verified please verify your mobile, we sent OTP on
+                                            your registred phone number.
+                                        </p>
+
+
+                                        <form class="form-horizontal form-signin" #reotpfulldata="ngForm"
+                                            (ngSubmit)="reotpdate(reotpfulldata.value)">
+                                            <fieldset class="form-group">
+                                                <label for="phone">Phone (with country code)</label>
+                                                <input type="text" *ngIf="errphone" class="form-control"
+                                                    placeholder="Enter Phone Number With Country Code"
+                                                    [(ngModel)]="phone" name="phone" ngModel>
+                                                <input type="text" *ngIf="!errphone" style="border: 1px solid red;"
+                                                    class="form-control"
+                                                    placeholder="Enter Phone Number With Country Code"
+                                                    [(ngModel)]="phone" name="phone" ngModel>
+                                            </fieldset>
+                                            <div style="text-align: center;">
+                                                <button type="submit" class="custom_btn_css"
+                                                    id="btn_forgotpassword">RESEND OTP</button>
+                                            </div>
+                                        </form>
+
+
+                                        <form class="form-horizontal form-signin" #otpfulldata="ngForm"
+                                            (ngSubmit)="otpdate(otpfulldata.value)">
+                                            <fieldset class="form-group">
+                                                <label for="otp">Enter OTP</label>
+                                                <input type="text" *ngIf="errotp" class="form-control"
+                                                    placeholder="Enter OTP" name="otp" ngModel>
+                                                <input type="text" *ngIf="!errotp" style="border: 1px solid red;"
+                                                    class="form-control" placeholder="Enter OTP" name="otp" ngModel>
+                                            </fieldset>
+                                            <div style="text-align: center;">
+                                                <button type="submit" class="custom_btn_css"
+                                                    id="btn_forgotpassword">SUBMIT</button>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

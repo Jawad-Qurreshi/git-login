@@ -1,0 +1,133 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+      <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block">Users</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/m-dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">Users
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+      <div class="row justify-content-center">
+        <div class="col-md-3 col-xs-12" style="max-width: 285px;"></div>
+        <div class="col-md-6 col-xs-12" style="max-width: 570px;">
+          <section class="card bg-zipco  text-white">
+            <div class="card-content">
+              <div class="card-body">
+                <div class="row mt-2">
+                  <div class="col-md-12 col-12">
+                    <form class="form-horizontal form-user-profile row mt-2" #mydetailsdata="ngForm"
+                      (ngSubmit)="edituser(mydetailsdata.value)">
+
+                      <div class="col-md-12 col-12">
+                        <fieldset class="form-group">
+                          <label for="customer_id">Customer ID</label>
+                          <input type="text" class="form-control" id="customer_id" name="customerid"
+                            [(ngModel)]="customerid" ngModel disabled />
+                        </fieldset>
+                      </div>
+                      <div class="col-md-12 col-12">
+                        <fieldset class="form-group">
+                          <label for="first_name">First Name</label>
+                          <input type="text" *ngIf="errfirstname" class="form-control" id="first_name" name="firstname"
+                            [(ngModel)]="firstname" ngModel />
+
+                          <input type="text" *ngIf="!errfirstname" style="border: 1px solid red;" class="form-control"
+                            id="first_name" name="firstname" [(ngModel)]="firstname" ngModel />
+                        </fieldset>
+                      </div>
+                      <div class="col-md-12 col-12">
+                        <fieldset class="form-group">
+                          <label for="middle_name">Middle Name</label>
+                          <input type="text" *ngIf="errmiddlename" class="form-control" id="middle_name"
+                            name="middlename" [(ngModel)]="middlename" ngModel />
+
+                          <input type="text" *ngIf="!errmiddlename" style="border: 1px solid red;" class="form-control"
+                            id="middle_name" name="middlename" [(ngModel)]="middlename" ngModel />
+                        </fieldset>
+                      </div>
+                      <div class="col-md-12 col-12">
+                        <fieldset class="form-group">
+                          <label for="lastname">Last Name</label>
+                          <input type="text" *ngIf="errlastname" class="form-control" id="lastname" name="lastname"
+                            [(ngModel)]="lastname" ngModel />
+
+                          <input type="text" *ngIf="!errlastname" style="border: 1px solid red;" class="form-control"
+                            id="lastname" name="lastname" [(ngModel)]="lastname" ngModel />
+                        </fieldset>
+                      </div>
+                      <div class="col-md-12 col-12">
+                        <fieldset class="form-group">
+                          <label for="email">Email</label>
+                          <input type="text" class="form-control" id="email" name="email" [(ngModel)]="email" ngModel
+                            disabled />
+                        </fieldset>
+                      </div>
+                      <div class="col-md-12 col-12">
+                        <fieldset class="form-group">
+                          <label for="country">Country</label>
+                          <select *ngIf="errcountry" class="custom-select" name="country" [(ngModel)]="country"
+                            (ngModelChange)="countrystate($event)" id="country" ngModel>
+                            <option value="">Select Country</option>
+                            <option *ngFor="let list of countryname" value="{{list.c_id}}">{{list.country_name}}
+                            </option>
+                          </select>
+                          <select *ngIf="!errcountry" style="border: 1px solid red;" class="custom-select"
+                            name="country" [(ngModel)]="country" (ngModelChange)="countrystate($event)" id="country"
+                            ngModel>
+                            <option value="">Select Country</option>
+                            <option *ngFor="let list of countryname" value="{{list.c_id}}">{{list.country_name}}
+                            </option>
+                          </select>
+                        </fieldset>
+                      </div>
+                      <div class="col-md-12 col-12">
+                        <fieldset class="form-group">
+                          <label for="phone">Phone Number</label>
+                          <br>
+                          <div class="row" style="margin-left: 0px;">
+                            <div class="col-md-1 col-xs-1 col-sm-1" style="margin-right: 5px;padding: 0px;">
+                              <input type="text" class="form-control"
+                                style="width: 50px;padding-left: 5px;padding-right: 3px;text-align: center;"
+                                name="phonecode" [(ngModel)]="phonecode" ngModel disabled />
+                            </div>
+                            <div class="col-md-10 col-xs-10 col-sm-10" style="padding-right: 0px;">
+                              <input type="text" *ngIf="errphone" class="form-control" name="phone" [(ngModel)]="phone"
+                                id="phone" ngModel>
+                              <input type="text" *ngIf="!errphone" style="border: 1px solid red;" class="form-control"
+                                name="phone" [(ngModel)]="phone" id="phone" ngModel>
+                            </div>
+                          </div>
+                          <p class="font-small-3 text-info">
+                            <i class="la la-info-circle"></i>
+                            Ex: Nigeria, 2347018858XXX [Here 234 is Country code and rest are your mobile numbers]. Do
+                            not add the preceding zero before your actual number. Good Example +234 7784....... Bad
+                            Example +234 07784......Do not enter the landline phone number.
+                          </p>
+                        </fieldset>
+                      </div>
+
+                      <div class="col-12 text-center">
+                        <button type="submit" class="btn-zipco btn btn-min-width btn-round my-1 ourfont">Save</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="col-md-3 col-xs-12" style="max-width: 285px;"></div>
+      </div>
+    </div>
+  </div>
+</div>

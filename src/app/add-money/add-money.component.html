@@ -1,0 +1,151 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+      <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block pathffont">Add Money</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb pathsfont">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">Add Money
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row content-body justify-content-center">
+      <div class="col-12" style="max-width: 1110px;">
+        <div class="card bg-zipco text-white">
+          <div class="card-content">
+            <div class="card-header card-header-transparent">
+              <h6 class="card-title" style="font-size: 18px;">Add Money</h6>
+            </div>
+            <div class="card-body">
+              <form class="number-tab-steps wizard-circle" #moneydata="ngForm" (ngSubmit)="addmoney(moneydata.value)">
+
+                <fieldset>
+                  <div class="row mt-2">
+                    <div class="row col-md-12">
+                      <div class="col-md-5">
+
+                        <fieldset class="form-group">
+                          <div class="row">
+                            <div class="col-md-12">
+                              <label for="amount">Amount</label>
+                              <input type="text" class="form-control" id="amount" name="amount" [(ngModel)]="amount"
+                                placeholder="Enter Your Amount" (ngModelChange)="calculate_amount($event)" ngModel>
+                            </div>
+                          </div>
+                        </fieldset>
+
+                        <div class="mb-1 col-12 icheck_minimal skin">
+                          <fieldset>
+                            <input type="radio" value="credit_card_vsmc" name="pay_type"
+                              (click)="chkbutton('credit_card_vsmc')" [(ngModel)]="pay_type" id="credit_card_vsmc"
+                              ngModel>
+                            <label for="credit_card_vsmc" style="font-size: 17px;">
+                              <strong>&nbsp;&nbsp;Credit Card ( Visa, Mastercard )</strong>
+                            </label>
+                          </fieldset>
+                        </div>
+
+                        <div class="mb-1 col-12 icheck_minimal skin">
+                          <fieldset>
+                            <input type="radio" value="credit_card_amex" name="pay_type"
+                              (click)="chkbutton('credit_card_amex')" [(ngModel)]="pay_type" id="credit_card_amex"
+                              ngModel>
+                            <label for="credit_card_amex" style="font-size: 17px;">
+                              <strong>&nbsp;&nbsp;Credit Card ( American Express )</strong>
+                            </label>
+                          </fieldset>
+                        </div>
+
+                      </div>
+                      <div class="col-md-7">
+                        <div class="card box-shadow-0 border-warning bg-transparent">
+                          <div class="card-content collapse show" style="background: none;">
+                            <div class="card-body">
+                              <div class="row">
+                                <div class="col-md-7 text-left">
+                                  <p class="font-medium-2" style="color: #999999;font-weight: bold;">Add Money Details
+                                  </p>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-7 text-left">
+                                  <p class="font-medium-1">Amount</p>
+                                </div>
+                                <div class="col-md-5 text-right">
+                                  <p class="font-medium-4" *ngIf="amount">{{namount}} USD</p>
+                                  <p class="font-medium-4" *ngIf="!amount">0 USD</p>
+                                </div>
+                              </div>
+
+                              <div class="row" *ngIf="vsm_card">
+                                <div class="col-md-7 text-left">
+                                  <p class="font-medium-1">Visa and Mastercard Fee ( 3.5% + $0.40 )</p>
+                                </div>
+                                <div class="col-md-5 text-right">
+                                  <p class="font-medium-2" *ngIf="vfinalper">{{vfinalper}} USD</p>
+                                  <p class="font-medium-2" *ngIf="!vfinalper">0 USD</p>
+                                </div>
+                              </div>
+
+                              <div class="row" *ngIf="amex_card">
+                                <div class="col-md-7 text-left">
+                                  <p class="font-medium-1">American Express Fee ( 3.5% + $0.80 )</p>
+                                </div>
+                                <div class="col-md-5 text-right">
+                                  <p class="font-medium-2" *ngIf="afinalper">{{afinalper}} USD</p>
+                                  <p class="font-medium-2" *ngIf="!afinalper">0 USD</p>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-md-7 text-left">
+                                  <p class="font-medium-1">Standerd Fee (1%)</p>
+                                </div>
+                                <div class="col-md-5 text-right">
+                                  <p class="font-medium-2" *ngIf="fee">{{fee}} USD</p>
+                                  <p class="font-medium-2" *ngIf="!fee">0 USD</p>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-md-6 text-left">
+                                  <p class="font-medium-1">You Have to Pay Total</p>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                  <p class="font-medium-4" *ngIf="totamount">{{totamount}} USD</p>
+                                  <p class="font-medium-4" *ngIf="!totamount">0 USD</p>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="text-align: right;">
+
+                    <button (click)="cancel()" class="btn btn-zipco btn-round btn-min-width ourfont"
+                      style="background: white;color: black;">Go
+                      Back</button>
+                    &nbsp;&nbsp;
+                    <button type="submit" class="btn btn-zipco btn-round btn-min-width ourfont">Next</button>
+
+                  </div>
+                </fieldset>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,182 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-body">
+      <div class="row justify-content-center">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 col-xs-12" style="max-width: 950px;">
+          <div class="card pull-up">
+            <div class="card-content">
+              <div class="card-header card-header-transparent">
+                <h6 class="card-title text-bold-700 text-gold">ZipCoRemit Money Transfer(ZRMT)</h6>
+              </div>
+              <div class="card-body">
+                <div class="col-md-12">
+                  <div>
+                    <form method="POST" #seodata="ngForm" (ngSubmit)="searchagent(seodata.value)">
+                      <div class="row">
+                        <div class="col-md-8">
+                          <fieldset class="form-group">
+                            <label for="zipcoin_remit_code">ZipCoRemit Money Transfer
+                              Code(ZRMT):</label>
+                            <input type="text" *ngIf="errzrmt_no" class="form-control" name="zrmt_no"
+                              [(ngModel)]="zrmt_no" id="zip_remit_code" placeholder="ZipRemmit Transfer Money Code"
+                              ngModel>
+                            <input type="text" *ngIf="!errzrmt_no" style="border: 1px solid red;" class="form-control"
+                              name="zrmt_no" [(ngModel)]="zrmt_no" id="zip_remit_code"
+                              placeholder="ZipRemmit Transfer Money Code" ngModel>
+                          </fieldset>
+                        </div>
+                        <div class="text-center col-md-4">
+                          <button type="submit" class="btn-block btn btn-primary" style="margin-top: 26px;"
+                            id="search_transfer_btn">Search</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+
+                  <div *ngIf="show">
+
+                    <div *ngIf="transp">
+                      <div class="card box-shadow-0 border-warning bg-transparent">
+                        <div class="card-content collapse show" style="background: none;">
+                          <div class="card-body">
+                            <h5>Sender Details:</h5>
+                            <div class="row">
+                              <div class="row col-12 mb-1">
+                                <div class="col-5">ZipRemit Code:</div>
+                                <div class="col-6">{{zipcoin_code}}</div>
+                              </div>
+                              <div class="row col-12 mb-1">
+                                <div class="col-5">Name:</div>
+                                <div class="col-6" style="text-transform: capitalize;">{{sname}}</div>
+                              </div>
+                              <div class="row col-12 mb-1">
+                                <div class="col-5">Address:</div>
+                                <div class="col-6" style="text-transform: capitalize;">{{saddress}}</div>
+                              </div>
+                              <div class="row col-12 mb-1">
+                                <div class="col-5">Country:</div>
+                                <div class="col-6" style="text-transform: capitalize;">{{scountry}}</div>
+                              </div>
+                              <div class="row col-12 mb-1">
+                                <div class="col-5">Mobile Number:</div>
+                                <div class="col-6">+{{sphonecode}}{{sphone}}</div>
+                              </div>
+                              <div class="row col-12 mb-1">
+                                <div class="col-5">Email:</div>
+                                <div class="col-6">{{semail}}</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card box-shadow-0 border-warning bg-transparent">
+                        <div class="card-content collapse show" style="background: none;">
+                          <div class="card-body">
+                            <h5>Receiver Details:</h5>
+                            <div class="row">
+                              <div class="row col-12 mb-1">
+                                <div class="col-5">Name:</div>
+                                <div class="col-6" style="text-transform: capitalize;">{{recname}}</div>
+                              </div>
+                              <div class="row col-12 mb-1">
+                                <div class="col-5">Address:</div>
+                                <div class="col-6" style="text-transform: capitalize;">{{recaddress}}</div>
+                              </div>
+                              <div class="row col-12 mb-1">
+                                <div class="col-5">City:</div>
+                                <div class="col-6">{{reccity}}</div>
+                              </div>
+                              <div class="row col-12 mb-1">
+                                <div class="col-5">State:</div>
+                                <div class="col-6">{{recstate}}</div>
+                              </div>
+                              <div class="row col-12 mb-1">
+                                <div class="col-5">Country:</div>
+                                <div class="col-6">{{reccountry}}</div>
+                              </div>
+                              <div class="row col-12 mb-1">
+                                <div class="col-5">Email:</div>
+                                <div class="col-6">{{recemail}}</div>
+                              </div>
+                              <div class="row col-12 mb-1">
+                                <div class="col-5">Mobile Number:</div>
+                                <div class="col-6">{{recphone}}</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card box-shadow-0 border-warning bg-transparent">
+                        <div class="card-content collapse show" style="background: none;">
+                          <div class="card-body">
+                            <h5>Transaction Details:</h5>
+                            <div class="row">
+                              <div class="row col-12 mb-1">
+                                <div class="col-5">Amount Send:</div>
+                                <div class="col-6">{{send_amount}} {{send_currency}}</div>
+                              </div>
+                              <div class="row col-12 mb-1">
+                                <div class="col-5" style="padding-top: 5px;">Payout Country:</div>
+                                <div class="col-6">
+                                  <img src="assets/flage/blank.gif" class="flag flag-{{country_iso | lowercase}}"
+                                    alt="Czech Republic" />
+                                  {{get_currency}}
+                                </div>
+                              </div>
+                              <div class="row col-12 mb-1">
+                                <div class="col-5">Payout Amount:</div>
+                                <div class="col-6">{{get_amount}} {{get_currency}}</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div>
+                        <form method="POST" #scodedata="ngForm" (ngSubmit)="secretcode(scodedata.value)">
+                          <div class="row">
+                            <div class="col-md-12 col-12">
+                              <fieldset class="form-group">
+                                <label for="zipcoin_remit_secret_code">Enter Secret Code From
+                                  Receiver :</label>
+                                <input type="text" class="form-control" *ngIf="errsecret_code" name="secret_code"
+                                  [(ngModel)]="secret_code" id="zipcoin_remit_secret_code"
+                                  placeholder="Enter Secret Code From Receiver" ngModel />
+
+                                <input type="text" class="form-control" *ngIf="!errsecret_code" name="secret_code"
+                                  [(ngModel)]="secret_code" id="zipcoin_remit_secret_code"
+                                  style="border: 1px solid red;" placeholder="Enter Secret Code From Receiver"
+                                  ngModel />
+                              </fieldset>
+                              <fieldset class="form-group text-center">
+                                <button type="submit" class="btn btn-success" id="search_transfer_btn">I Accept
+                                  Transaction</button>
+                                &nbsp;
+                                <a style="color: white;" (click)="reject()" class="btn btn-danger">Decline</a>
+                              </fieldset>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+
+                    <div *ngIf="transs">
+                      <b style="color: #03a84e;">This Transaction is Allready Paid.</b>
+                    </div>
+
+                    <div *ngIf="transr">
+                      <b style="color: red;">This Transaction is Allready Rejected.</b>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+    </div>
+  </div>
+</div>

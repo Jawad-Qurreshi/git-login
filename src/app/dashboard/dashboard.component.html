@@ -1,0 +1,335 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+    </div>
+    <div class="content-body">
+
+      <div class="row justify-content-center">
+        <div class="col-xl-3 col-lg-6 col-12" style="max-width: 325px;">
+          <div class="card bg-gradient-directional-danger pull-up">
+            <div class="card-content">
+              <div class="card-body">
+                <div class="media d-flex">
+                  <div class="media-body text-white text-left">
+                    <h3 class="text-white">{{bcount}}</h3>
+                    <span>Beneficiaries Added</span>
+                  </div>
+                  <div class="align-self-center">
+                    <i class="la la-user-plus text-white font-large-2 float-right"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-12" style="max-width: 325px;">
+          <div class="card bg-gradient-directional-success pull-up">
+            <div class="card-content">
+              <div class="card-body">
+                <div class="media d-flex">
+                  <div class="media-body text-white text-left">
+                    <h3 class="text-white">{{tcount}}</h3>
+                    <span>Total Transactions</span>
+                  </div>
+                  <div class="align-self-center">
+                    <i class="la la-credit-card text-white font-large-2 float-right"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-12" style="max-width: 325px;">
+          <div class="card bg-gradient-directional-amber pull-up">
+            <div class="card-content">
+              <div class="card-body">
+                <div class="media d-flex">
+                  <div class="media-body text-white text-left">
+                    <h3 class="text-white" *ngIf="approve">Approved</h3>
+                    <h3 class="text-white" *ngIf="reject">Rejected</h3>
+                    <h3 class="text-white" *ngIf="pending">Under Review</h3>
+                    <h3 class="text-white" *ngIf="halfkyc">Pending</h3>
+                    <span>KYC Status</span>
+                  </div>
+                  <div class="align-self-center">
+                    <i class="la la-file-text text-white font-large-2 float-right"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-12" style="max-width: 325px;">
+          <div class="card bg-gradient-directional-info pull-up">
+            <div class="card-content">
+              <div class="card-body">
+                <div class="media d-flex">
+                  <div class="media-body text-white text-left">
+                    <h3 class="text-white" *ngIf="status == 0">Disable</h3>
+                    <h3 class="text-white" *ngIf="status == 1">Enable</h3>
+                    <span>Google 2FA</span>
+                  </div>
+                  <div class="align-self-center">
+                    <i class="fas fa-shield-alt text-white font-large-2 float-right"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ICO Token &  Distribution-->
+      <div class="row justify-content-center">
+        <div class="col-xl-8 col-12" style="max-width: 915px;">
+          <div class="card pull-up bg-zipco">
+            <div class="card-header card-header-transparent py-20" style="background: none;">
+              <div class="btn-group dropdown ">
+                <h4 class="card-title" style="color: white;">Money Transfer History</h4>
+              </div>
+            </div>
+            <!-- <div class="height-300" id="ico-token-supply-demand-chart"></div> -->
+            <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+
+          </div>
+        </div>
+        <div class="col-xl-4 col-12" style="max-width: 380px;">
+          <div class="col-xl-12" style="padding: 0px;max-width: 350px;">
+            <div class="card pull-up bg-zipco" style="padding-bottom: 15px;">
+              <div class="card-content collapse show">
+                <div class="card-body" style="padding-right: 0px;">
+                  <fieldset>
+                    <h5 class="box-title text-bold-700 text-gold ">Download Our Mobile App</h5><br>
+                    <p>
+                      <a target="_blank"
+                        href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&amp;hl=en_IN"><img
+                          src="https://zipcx.io/tokensale/newassets/assets/images/google-play.png"
+                          style="width: 44%;"></a>
+                      &nbsp;&nbsp;&nbsp;
+                      <a target="_blank"
+                        href="https://itunes.apple.com/in/app/google-authenticator/id388497605?mt=8"><img
+                          src="https://zipcx.io/tokensale/newassets/assets/images/app-store.png"
+                          style="width: 44%;"></a>
+                    </p>
+                    <p class="text-silver">
+                      Download Our Android and Iphone Application.
+                    </p>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-12" style="padding: 0px;max-width: 350px;">
+            <div class="card pull-up bg-zipco">
+              <div class="card-header bg-zipco">
+                <h4 class="card-title text-white text-center">Transaction</h4>
+              </div>
+              <div class="card-content collapse show">
+                <div class="card-body pt-0">
+                  <div class="row">
+                    <div class="col-md-4 col-12 border-right-blue-grey border-right-lighten-5 text-center">
+                      <h4 class="font-large-2 text-bold-400 text-silver">{{lastyear}}</h4>
+                      <p class="lighten-2 mb-0 text-silver">Last Year</p>
+                    </div>
+                    <div class="col-md-4 col-12 border-right-blue-grey border-right-lighten-5 text-center">
+                      <h4 class="font-large-2 text-bold-400 text-silver">{{lastmonth}}</h4>
+                      <p class="lighten-2 mb-0 text-silver">Last Month</p>
+                    </div>
+                    <div class="col-md-4 col-12 text-center">
+                      <h4 class="font-large-2 text-bold-400 text-silver">{{current_month}}</h4>
+                      <p class="text-silver lighten-2 mb-0">This Month</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/ ICO Token &  Distribution-->
+
+      <div class="row justify-content-center  match-height">
+        <div class="col-xl-4 col-12" style="max-width: 430px;">
+          <div class="card pull-up bg-zipco">
+            <div class="card-content">
+              <div class="card-header bg-zipco card-header-transparent" style="padding-bottom: 0;">
+                <h6 class="card-title text-white">Identity Verification - KYC</h6>
+              </div>
+              <div class="card-body">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col-md-12 col-12 text-silver">
+                      <p>To comply with regulation, participant will have to go through identity verification.</p>
+                      <p>You have not submitted your KYC application to verify your identity.</p>
+                      <p *ngIf="note" class="mt-2">
+                        <label *ngIf="reject" style="color: red !important;">Rejected For: {{note}}</label>
+                        <label *ngIf="pending" style="color: red !important;">
+                          <label *ngIf="note" style="color: red !important;">This KYC rejected before for:</label>
+                          {{note}}
+                        </label>
+                      </p>
+                      <a [routerLink]="['/kyc-document']" class="mb-0 btn btn-zipco btn-round click_btn ourfont">CLICK
+                        TO PROCEED</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-12" style="max-width: 430px;">
+          <div class="card pull-up bg-zipco">
+            <div class="card-header bg-zipco">
+              <h4 class="card-title text-white">Most Popular Currency</h4>
+            </div>
+            <div class="card-content collapse show">
+              <div class="card-body pt-0 text-silver">
+                <p>USD
+                  <span class="float-right text-bold-600">95%</span>
+                </p>
+                <div class="progress progress-sm mt-1 mb-0 box-shadow-1">
+                  <div class="progress-bar bg-gradient-x-danger" role="progressbar" style="width: 95%"
+                    aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <p class="pt-1">CAD
+                  <span class="float-right">
+                    <span class="text-bold-600">93%</span>
+                  </span>
+                </p>
+                <div class="progress progress-sm mt-1 mb-0 box-shadow-1">
+                  <div class="progress-bar bg-gradient-x-success" role="progressbar" style="width: 93%"
+                    aria-valuenow="93" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <p class="pt-1">ZAR
+                  <span class="float-right">
+                    <span class="text-bold-600">90%</span>
+                  </span>
+                </p>
+                <div class="progress progress-sm mt-1 mb-0 box-shadow-1">
+                  <div class="progress-bar bg-gradient-x-warning" role="progressbar" style="width: 90%"
+                    aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-12" style="max-width: 430px;">
+          <div class="card pull-up bg-zipco">
+            <div class="card-content">
+              <div class="card-header bg-zipco card-header-transparent" style="padding-bottom: 0px;">
+                <h6 class="card-title text-white">Two-Factor Verification</h6>
+              </div>
+              <div class="card-body">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col-md-12 col-12 text-silver">
+                      <p>
+                        Two-factor authentication is a method for protecting your web account. When it is activated, you
+                        will enter your password as well as a special code. You can receive this code through a mobile
+                        app. When activated, even if third person gets your password, they will not be able to access
+                        your account.
+                      </p>
+                      <a [routerLink]="['/two-auth']" class="mb-0 btn btn-zipco btn-round click_btn ourfont">ENABLE/TURN
+                        ON</a>
+                      &nbsp;&nbsp;
+                      <span *ngIf="!show" class="ourfont" style="color: #d7a24b;">Enable</span>
+                      <span *ngIf="show" class="ourfont" style="color: #d7a24b;">Disable</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-xl-8 col-12" style="max-width: 915px;">
+          <div class="card pull-up bg-zipco">
+            <div class="card-content">
+              <div class="card-header card-header-transparent py-20" style="background: none;">
+                <div class="btn-group dropdown ">
+                  <h4 class="card-title" style="color: white;">Earn with Referral</h4>
+                </div>
+              </div>
+              <div class="card-body text-silver">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col-md-12 col-12">
+                      <p>Invite your friends and family and receive free tokens.</p>
+                      <p>Each member has a unique referral link to share with friends and family and receive a <b>bonus
+                          -5% of the value of their contribution.</b></p>
+                      <p>If anyone sign-up with this link, will be added to your referral program. The referral link may
+                        be used during a token sales running</p>
+                      <fieldset>
+                        <div class="input-group">
+                          <input type="text" class="form-control" name="refere_link" [(ngModel)]="refere_link"
+                            id="refere_link" value="" ngModel #userinput />
+                          <div class="input-group-append">
+                            <button class="btn btn-primary clickBtn" (click)="copyInputMessage(userinput)"
+                              type="button">COPY</button>
+                          </div>
+                        </div>
+                      </fieldset>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-12" style="max-width: 380px;">
+          <div class="col-xl-12" style="padding: 0px;max-width: 350px;">
+            <div class="card pull-up bg-zipco">
+              <div class="card-content collapse show">
+                <div class="card-body" style="padding-right: 0px;">
+                  <fieldset>
+                    <h5 class="box-title text-bold-700 text-white">Your Account Status</h5>
+                    <br>
+                    <p class="text-silver">
+                      <label class="mb-0 btn btn-success btn-round click_btn ourfont">Email
+                        Verified</label>
+                      &nbsp;&nbsp;
+                      <label class="mb-0 btn btn-success btn-round click_btn ourfont">Mobile
+                        Verified</label>
+                    </p>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-12" style="padding: 0px;max-width: 350px;">
+            <div class="card pull-up bg-zipco">
+              <div class="card-content collapse show">
+                <div class="card-body" style="padding-bottom: 0px;">
+                  <fieldset>
+                    <h5 class="box-title text-bold-700 text-white">Social links</h5>
+                    <br>
+                    <ul class="social_footer  col-xs-12 col-sm-12"
+                      style="display: -webkit-inline-box;margin-bottom: 20px;padding-left: 0px;">
+                      <li><a target="_blank" href="https://www.facebook.com/ZIPCOIN-Exchange-2205861812988417/"><img
+                            src="https://zipcx.io/tokensale/newassets/assets/images/social/facebook.png"></a></li>
+                      <li><a href="https://ca.linkedin.com/company/zipcoin" target="_blank"><img
+                            src="https://zipcx.io/tokensale/newassets/assets/images/social/linkedin.png"></a></li>
+                      <li><a href="https://www.reddit.com/user/ZIPCOINexchange" target="_blank"><img
+                            src="https://zipcx.io/tokensale/newassets/assets/images/social/reddit.png"></a></li>
+                      <li><a href="https://twitter.com/ZIPCOINexchange" target="_blank"><img
+                            src="https://zipcx.io/tokensale/newassets/assets/images/social/twitter.png"></a></li>
+                      <li><a href="https://t.me/joinchat/HbUtCAuidnSRqGPoHCBmnA" target="_blank"><img
+                            src="https://zipcx.io/tokensale/newassets/assets/images/social/telegram.png"></a></li>
+                      <li><a target="_blank" href="https://www.instagram.com/ZIPCOINexchange/"><img
+                            src="https://zipcx.io/tokensale/newassets/assets/images/social/instagram.png"></a></li>
+                      <li><a target="_blank" href="https://www.youtube.com/channel/UCu685G0VSk-F07CefsOHyNQ"><img
+                            src="https://zipcx.io/tokensale/newassets/assets/images/social/youtube.png"></a></li>
+                    </ul>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+.myheadcolor{
+    color: #c88c39;
+}
+.myimg{
+    width: 114px;
+    height: 113px;
+}
+.act:hover{
+    cursor: pointer;
+}
+.myshow{
+    padding-right: 17px;
+    display: block;
+}

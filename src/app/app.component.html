@@ -1,0 +1,554 @@
+<nav *ngIf="type == 0"
+  class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-dark bg-zipco navbar-shadow navbar-brand-center">
+
+  <div class="navbar-wrapper">
+    <div class="navbar-header">
+      <ul class="nav navbar-nav flex-row">
+
+        <li class="nav-item mobile-menu d-md-none mr-auto">
+          <a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#">
+            <i class="ft-menu font-large-1"></i>
+          </a>
+        </li>
+        <li class="nav-item display-img-none">
+          <a class="navbar-brand" href="https://zipcx.io/" target="_blank">
+            <img class="brand-logo" alt="modern admin logo" src="assets/images/zipcoin.png">
+          </a>
+        </li>
+        <li class="nav-item d-md-none">
+          <a class="nav-link open-navbar-container" data-toggle="collapse" data-target="#navbar-mobile">
+            <i class="la la-ellipsis-v"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="navbar-container content">
+      <div class="collapse navbar-collapse" id="navbar-mobile">
+        <ul class="nav navbar-nav mr-auto float-left">
+
+          <li class="nav-item display-img-block">
+            <a class="navbar-brand" href="https://zipcx.io/" target="_blank">
+              <img class="brand-logo" alt="modern admin logo"
+                style="width: 110px;margin-top: 10px;margin-left: 15px;margin-right: 10px;"
+                src="assets/images/zipcoin.png">
+            </a>
+          </li>
+
+          <li class="nav-item d-none d-md-block">
+            <a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#">
+              <i class="ft-menu"></i>
+            </a>
+          </li>
+          <li class="nav-item d-none d-md-block">
+            <a class="nav-link nav-menu-main">
+              Account Id: {{accountid}}
+            </a>
+          </li>
+          <li class="nav-item d-none d-md-block">
+            <a class="nav-link nav-menu-main" href="https://zipcoinremit.com/" target="_blank">
+              Visit ZipCoin Remit website
+            </a>
+          </li>
+        </ul>
+
+        <ul class="nav navbar-nav float-right">
+          <li class="dropdown dropdown-user nav-item">
+            <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
+              <span class="mr-1">
+                <span class="user-name text-bold-700" style="text-transform: capitalize;">{{username}}</span>
+              </span>
+              <span class="avatar avatar-online">
+                <img *ngIf="profile" src="{{profileurl}}pro_{{custid}}/{{profile}}" alt="avatar">
+                <img *ngIf="!profile" src="{{profileurl}}user.jpg" alt="avatar">
+                <i></i>
+              </span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a class="dropdown-item" [routerLink]="['/login-history']">
+                <i class="ft-user"></i> Login History</a>
+              <a class="dropdown-item" [routerLink]="['/my-details']">
+                <i class="ft-user"></i> Profile</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" [routerLink]="['/logout']">
+                <i class="ft-power"></i> Logout</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div *ngIf="type == 0" class="main-menu menu-fixed menu-light menu-accordion menu-shadow display-block"
+  data-scroll-to-active="true">
+  <div class="main-menu-content" style="background: #17191d;">
+    <ul class="navigation navigation-main bg-zipco" id="main-menu-navigation" data-menu="menu-navigation">
+
+      <li class="nav-item">
+        <a [routerLink]="['dashboard']">
+          <img src="assets/images/icons/dashboard.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title">Dashboard</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['kyc-document']">
+          <img src="assets/images/icons/kyc-application.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title">KYC Application</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['send-money']">
+          <img src="assets/images/icons/send-money.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title">Send Money</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['refer']">
+          <img src="assets/images/icons/refer-a-friends.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title">Refer a Friend</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['faq']">
+          <img src="assets/images/icons/faq.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title">FAQ</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['transaction']">
+          <img src="assets/images/icons/my-transactions.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title">My Transaction</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['benificiary']">
+          <img src="assets/images/icons/my-beneficiaries.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title">My Beneficiary</span>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="role == 1">
+        <a [routerLink]="['agent']">
+          <img src="assets/images/icons/agent.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title">Agent</span>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="role == 1">
+        <a [routerLink]="['agent-transaction']">
+          <img src="assets/images/icons/agent-transaction.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title">Agent Transaction</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['my-details']">
+          <img src="assets/images/icons/my-details.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title">My Profile</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['my-wallet']">
+          <img src="assets/images/icons/my-wallets.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title">My Wallet</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['recharge']">
+          <img src="assets/images/icons/recharge.png" class="menu-img img-xl">
+          <br>
+          <span class="menu-title">Recharge</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['two-auth']">
+          <img src="assets/images/icons/2fa-security.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title">2FA Security</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a [routerLink]="['setting']">
+          <img src="assets/images/icons/settings.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title">Settings</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="https://tawk.to/chat/5c6245af6cb1ff3c14cc1314/default" target="_blank">
+          <img src="assets/images/icons/support.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title" data-i18n="">Support Help Desk</span>
+        </a>
+      </li>
+
+    </ul>
+  </div>
+</div>
+<!-- <div *ngIf="type == 0" class="main-menu menu-fixed menu-light menu-accordion menu-shadow display-none"
+  data-scroll-to-active="true">
+  <div class="main-menu-content" style="background: #17191d;">
+    <ul class="navigation navigation-main bg-zipco" id="main-menu-navigation" data-menu="menu-navigation">
+
+      <li class="nav-item">
+        <a href="dashboard">
+          <img src="assets/images/icons/dashboard.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title">Dashboard</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="kyc-document">
+          <img src="assets/images/icons/kyc-application.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title">KYC Application</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="send-money">
+          <img src="assets/images/icons/send-money.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title">Send Money</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="refer">
+          <img src="assets/images/icons/refer-a-friends.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title">Refer a Friend</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="faq">
+          <img src="assets/images/icons/faq.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title">FAQ</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="transaction">
+          <img src="assets/images/icons/my-transactions.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title">My Transaction</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="benificiary">
+          <img src="assets/images/icons/my-beneficiaries.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title">My Beneficiary</span>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="role == 1">
+        <a href="agent">
+          <img src="assets/images/icons/agent.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title">Agent</span>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="role == 1">
+        <a href="agent-transaction">
+          <img src="assets/images/icons/agent-transaction.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title">Agent Transaction</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="my-details">
+          <img src="assets/images/icons/my-details.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title">My Profile</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="my-wallet">
+          <img src="assets/images/icons/my-wallets.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title">My Wallet</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="recharge">
+          <img src="assets/images/icons/recharge.png" class="menu-img img-xl">
+          <br>
+          <span class="menu-title">Recharge</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="two-auth">
+          <img src="assets/images/icons/2fa-security.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title">2FA Security</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="setting">
+          <img src="assets/images/icons/settings.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title">Settings</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="https://tawk.to/chat/5c6245af6cb1ff3c14cc1314/default" target="_blank">
+          <img src="assets/images/icons/support.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title" data-i18n="">Support Help Desk</span>
+        </a>
+      </li>
+
+    </ul>
+  </div>
+</div> -->
+
+
+
+<nav *ngIf="type == 1"
+  class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-dark bg-zipco navbar-shadow navbar-brand-center">
+  <div class="navbar-wrapper">
+    <div class="navbar-header">
+      <ul class="nav navbar-nav flex-row">
+        <li class="nav-item mobile-menu d-md-none mr-auto">
+          <a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#">
+            <i class="ft-menu font-large-1"></i>
+          </a>
+        </li>
+        <li class="nav-item display-img-none">
+          <a class="navbar-brand" href="https://zipcx.io/" target="_blank">
+            <img class="brand-logo" alt="modern admin logo" src="assets/images/zipcoin.png">
+          </a>
+        </li>
+        <li class="nav-item d-md-none">
+          <a class="nav-link open-navbar-container" data-toggle="collapse" data-target="#navbar-mobile">
+            <i class="la la-ellipsis-v"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="navbar-container content">
+      <div class="collapse navbar-collapse" id="navbar-mobile">
+        <ul class="nav navbar-nav mr-auto float-left">
+          <li class="nav-item display-img-block">
+            <a class="navbar-brand" href="https://zipcx.io/" target="_blank">
+              <img class="brand-logo" alt="modern admin logo"
+                style="width: 110px;margin-top: 10px;margin-left: 15px;margin-right: 10px;"
+                src="assets/images/zipcoin.png">
+            </a>
+          </li>
+          <li class="nav-item d-none d-md-block">
+            <a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#">
+              <i class="ft-menu"></i>
+            </a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav float-right">
+          <li class="dropdown dropdown-user nav-item">
+            <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
+              <span class="mr-1">
+                <span class="user-name text-bold-700">Admin</span>
+              </span>
+              <span class="avatar avatar-online">
+                <img src="app-assets/images/portrait/small/avatar-s-19.png" alt="avatar">
+                <i></i>
+              </span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a class="dropdown-item" [routerLink]="['/m-login-history']">
+                <i class="ft-user"></i> Login History</a>
+              <a class="dropdown-item" [routerLink]="['/m-change-password']">
+                <i class="ft-settings"></i> Change Password</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" [routerLink]="['/logout']">
+                <i class="ft-power"></i> Logout</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div *ngIf="type == 1"
+  class="main-menu menu-fixed menu-dark menu-bg-default rounded menu-accordion menu-shadow display-block"
+  style="background: #17191d;">
+  <div class="main-menu-content">
+    <ul class="navigation navigation-main bg-zipco" id="main-menu-navigation" data-menu="menu-navigation">
+
+      <li class="nav-item">
+        <a [routerLink]="['m-dashboard']">
+          <img src="assets/images/icons/dashboard.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title" data-i18n="">Dashboard</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a [routerLink]="['m-user']">
+          <img src="assets/images/icons/users.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title" data-i18n="">Users</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a [routerLink]="['m-transaction']">
+          <img src="assets/images/icons/my-transactions.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title" data-i18n="">Transactions</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a [routerLink]="['m-ikyc']">
+          <img src="assets/images/icons/kyc-application.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title" data-i18n="">KYC Documents</span>
+        </a>
+      </li>
+
+      <li class="nav-item has-sub">
+        <a>
+          <img src="assets/images/icons/settings.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title" data-i18n="">Settings</span>
+        </a>
+        <ul class="menu-content" style="top: 185px !important;">
+          <li>
+            <a class="menu-item" [routerLink]="['m-addstate']">ADD State</a>
+          </li>
+          <li>
+            <a class="menu-item" [routerLink]="['m-addcity']">ADD City</a>
+          </li>
+          <li>
+            <a class="menu-item" [routerLink]="['m-graph-setting']">Transaction Graph</a>
+          </li>
+          <li>
+            <a class="menu-item" [routerLink]="['m-eosaddress']">EOS Address</a>
+          </li>
+          <li>
+            <a class="menu-item" [routerLink]="['m-promocode']">Promocode</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item">
+        <a [routerLink]="['m-two-auth']">
+          <img src="assets/images/icons/2fa-security.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title" data-i18n="">2FA Security</span>
+        </a>
+      </li>
+
+    </ul>
+  </div>
+</div>
+<!-- <div *ngIf="type == 1"
+  class="main-menu menu-fixed menu-dark menu-bg-default rounded menu-accordion menu-shadow display-none"
+  style="background: #17191d;">
+  <div class="main-menu-content">
+    <ul class="navigation navigation-main bg-zipco" id="main-menu-navigation" data-menu="menu-navigation">
+
+      <li class="nav-item">
+        <a href="m-dashboard">
+          <img src="assets/images/icons/dashboard.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title" data-i18n="">Dashboard</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="m-user">
+          <img src="assets/images/icons/users.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title" data-i18n="">Users</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="m-transaction">
+          <img src="assets/images/icons/my-transactions.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title" data-i18n="">Transactions</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="m-ikyc">
+          <img src="assets/images/icons/kyc-application.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title" data-i18n="">KYC Documents</span>
+        </a>
+      </li>
+
+      <li class="nav-item has-sub">
+        <a>
+          <img src="assets/images/icons/settings.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title" data-i18n="">Settings</span>
+        </a>
+        <ul class="menu-content" style="top: 185px !important;">
+          <li>
+            <a class="menu-item" href="m-addstate">ADD State</a>
+          </li>
+          <li>
+            <a class="menu-item" href="m-addcity">ADD City</a>
+          </li>
+          <li>
+            <a class="menu-item" href="m-graph-setting">Transaction Graph</a>
+          </li>
+          <li>
+            <a class="menu-item" href="m-eosaddress">EOS Address</a>
+          </li>
+          <li>
+            <a class="menu-item" href="m-promocode">Promocode</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item">
+        <a href="m-two-auth">
+          <img src="assets/images/icons/2fa-security.png" class="menu-img img-xl" style="border-radius: 15px;">
+          <br>
+          <span class="menu-title" data-i18n="">2FA Security</span>
+        </a>
+      </li>
+
+    </ul>
+  </div>
+</div> -->
+
+
+<router-outlet></router-outlet>
+
+<footer *ngIf="type == 0" class="footer footer-static footer-dark navbar-border navbar-shadow">
+  <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2">
+    <span class="zipco-gredient-text float-md-left d-block d-md-inline-block">Copyright &copy; 2019
+      <a class="text-bold-800 grey darken-2" href="https://themeforest.net/user/pixinvent/portfolio?ref=pixinvent"
+        target="_blank">ZipCo Remit </a>, All rights reserved. </span>
+    <span class="float-md-right d-block d-md-inline-blockd-none d-lg-block zipco-gredient-text">Hand-crafted & Made with
+      <i class="ft-heart pink"></i>
+    </span>
+  </p>
+</footer>
+
+<footer *ngIf="type == 1" class="footer footer-static footer-dark navbar-border navbar-shadow">
+  <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2">
+    <span class="zipco-gredient-text float-md-left d-block d-md-inline-block">Copyright &copy; 2019
+      <a class="text-bold-800 grey darken-2" href="https://themeforest.net/user/pixinvent/portfolio?ref=pixinvent"
+        target="_blank">ZipCo Remit </a>, All rights reserved. </span>
+    <span class="float-md-right d-block d-md-inline-blockd-none d-lg-block zipco-gredient-text">Hand-crafted & Made with
+      <i class="ft-heart pink"></i>
+    </span>
+  </p>
+</footer>

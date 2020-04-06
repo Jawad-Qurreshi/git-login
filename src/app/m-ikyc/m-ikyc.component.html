@@ -1,0 +1,167 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+      <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block pathffont">Individual KYC</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb pathsfont">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/m-dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">Individual KYC
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+      <div class="row justify-content-center">
+        <div class="col-12" style="max-width: 1140px;">
+          <div class="card pull-up bg-zipco">
+            <div class="card-content collapse show">
+              <div class="card-body text-white">
+                <form class="form-horizontal form-purchase-token row" action="">
+                  <div class="col-12 col-md-12">
+                    <div class="row">
+                      <div id="recent-transactions" class="col-12">
+                        <h6 class="my-2 text-white" style="font-size: 18px;">Individual KYC</h6>
+                        <div class="card bg-zipco">
+                          <div class="card-content text-white">
+                            <div class="table-responsive">
+                              <table id="tbl_transaction" class="table table-hover table-xl mb-0">
+                                <thead>
+                                  <tr>
+                                    <th class="border-top-0 text-center">Status</th>
+                                    <th class="border-top-0 text-center">Date</th>
+                                    <th class="border-top-0 text-center">Account ID</th>
+                                    <th class="border-top-0 text-center">Full Name</th>
+                                    <th class="border-top-0 text-center">Phone Number</th>
+                                    <th class="border-top-0 text-center">Country</th>
+                                    <th class="border-top-0 text-center">Front Side</th>
+                                    <th class="border-top-0 text-center">Utility Bill</th>
+                                    <th class="border-top-0 text-center">Bank Statement</th>
+                                    <th class="border-top-0 text-center">IP Address</th>
+                                    <th class="border-top-0 text-center">OS/Browser</th>
+                                  </tr>
+                                </thead>
+                                <tbody class="text-center">
+                                  <tr *ngFor="let list of kyc">
+                                    <td class="text-truncate">
+                                      <label class="mb-0 btn btn-warning btn-round text-white"
+                                        *ngIf="list.verified_status == 0">KYC Under
+                                        Review</label>
+                                      <label class="mb-0 btn btn-success btn-round text-white"
+                                        *ngIf="list.verified_status == 1">KYC
+                                        Approved</label>
+                                      <label class="mb-0 btn btn-danger btn-round text-white"
+                                        *ngIf="list.verified_status == 2">KYC
+                                        Rejected</label>
+                                    </td>
+                                    <td class="text-truncate">{{list.created_date | date: "dd/MM/yyyy hh:mm a"}}</td>
+                                    <td class="text-truncate">{{list.accountid}}</td>
+                                    <td class="text-truncate" style="text-transform: capitalize;">
+                                      <a
+                                        [routerLink]="['/m-single-ikyc', list.ikyc_id]">{{list.first_name + " " + list.middle_name + " " + list.last_name}}</a>
+                                    </td>
+                                    <td class="text-truncate">{{list.phone_number}}</td>
+                                    <td class="text-truncate p-1">{{list.country}}</td>
+                                    <td class="text-truncate">
+                                      <a href="{{durl + list.cust_id}}/{{list.front_side}}"
+                                        *ngIf="list.extfront == 'jpeg'" target="_blank">
+                                        <img class="myimg" src="{{durl + list.cust_id}}/{{list.front_side}}">
+                                      </a>
+                                      <a href="{{durl + list.cust_id}}/{{list.front_side}}"
+                                        *ngIf="list.extfront == 'jpg'" target="_blank">
+                                        <img class="myimg" src="{{durl + list.cust_id}}/{{list.front_side}}">
+                                      </a>
+                                      <a href="{{durl + list.cust_id}}/{{list.front_side}}"
+                                        *ngIf="list.extfront == 'png'" target="_blank">
+                                        <img class="myimg" src="{{durl + list.cust_id}}/{{list.front_side}}">
+                                      </a>
+                                      <a href="{{durl + list.cust_id}}/{{list.front_side}}"
+                                        *ngIf="list.extfront == 'pdf'" target="_blank">
+                                        <i class="fas fa-7x fa-file-pdf" style="color: #ff0000;"></i>
+                                      </a>
+                                      <a href="{{durl + list.cust_id}}/{{list.front_side}}"
+                                        *ngIf="list.extfront == 'docx'" target="_blank">
+                                        <i class="far fa-7x fa-file-word" style="color: #1976d2;"></i>
+                                      </a>
+                                      <a href="{{durl + list.cust_id}}/{{list.front_side}}"
+                                        *ngIf="list.extfront == 'doc'" target="_blank">
+                                        <i class="far fa-7x fa-file-word" style="color: #1976d2;"></i>
+                                      </a>
+                                    </td>
+                                    <td class="text-truncate">
+                                      <a href="{{durl + list.cust_id}}/{{list.utility_bill}}"
+                                        *ngIf="list.extbill == 'jpeg'" target="_blank">
+                                        <img class="myimg" src="{{durl + list.cust_id}}/{{list.utility_bill}}">
+                                      </a>
+                                      <a href="{{durl + list.cust_id}}/{{list.utility_bill}}"
+                                        *ngIf="list.extbill == 'jpg'" target="_blank">
+                                        <img class="myimg" src="{{durl + list.cust_id}}/{{list.utility_bill}}">
+                                      </a>
+                                      <a href="{{durl + list.cust_id}}/{{list.utility_bill}}"
+                                        *ngIf="list.extbill == 'png'" target="_blank">
+                                        <img class="myimg" src="{{durl + list.cust_id}}/{{list.utility_bill}}">
+                                      </a>
+                                      <a href="{{durl + list.cust_id}}/{{list.utility_bill}}"
+                                        *ngIf="list.extbill == 'pdf'" target="_blank">
+                                        <i class="fas fa-7x fa-file-pdf" style="color: #ff0000;"></i>
+                                      </a>
+                                      <a href="{{durl + list.cust_id}}/{{list.utility_bill}}"
+                                        *ngIf="list.extbill == 'docx'" target="_blank">
+                                        <i class="far fa-7x fa-file-word" style="color: #1976d2;"></i>
+                                      </a>
+                                      <a href="{{durl + list.cust_id}}/{{list.utility_bill}}"
+                                        *ngIf="list.extbill == 'doc'" target="_blank">
+                                        <i class="far fa-7x fa-file-word" style="color: #1976d2;"></i>
+                                      </a>
+                                    </td>
+                                    <td class="text-truncate">
+                                      <a href="{{durl + list.cust_id}}/{{list.selfie_id}}"
+                                        *ngIf="list.extselfi == 'jpeg'" target="_blank">
+                                        <img class="myimg" src="{{durl + list.cust_id}}/{{list.selfie_id}}">
+                                      </a>
+                                      <a href="{{durl + list.cust_id}}/{{list.selfie_id}}"
+                                        *ngIf="list.extselfi == 'jpg'" target="_blank">
+                                        <img class="myimg" src="{{durl + list.cust_id}}/{{list.selfie_id}}">
+                                      </a>
+                                      <a href="{{durl + list.cust_id}}/{{list.selfie_id}}"
+                                        *ngIf="list.extselfi == 'png'" target="_blank">
+                                        <img class="myimg" src="{{durl + list.cust_id}}/{{list.selfie_id}}">
+                                      </a>
+                                      <a href="{{durl + list.cust_id}}/{{list.selfie_id}}"
+                                        *ngIf="list.extselfi == 'pdf'" target="_blank">
+                                        <i class="fas fa-7x fa-file-pdf" style="color: #ff0000;"></i>
+                                      </a>
+                                      <a href="{{durl + list.cust_id}}/{{list.selfie_id}}"
+                                        *ngIf="list.extselfi == 'docx'" target="_blank">
+                                        <i class="far fa-7x fa-file-word" style="color: #1976d2;"></i>
+                                      </a>
+                                      <a href="{{durl + list.cust_id}}/{{list.selfie_id}}"
+                                        *ngIf="list.extselfi == 'doc'" target="_blank">
+                                        <i class="far fa-7x fa-file-word" style="color: #1976d2;"></i>
+                                      </a>
+                                    </td>
+                                    <td class="text-truncate">{{list.ip_address}}</td>
+                                    <td class="text-truncate">{{list.os}} / {{list.browser}}</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

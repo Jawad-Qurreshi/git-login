@@ -1,0 +1,137 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-body">
+      <div class="content-header row">
+        <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+          <h3 class="content-header-title mb-0 d-inline-block pathffont">Google 2FA</h3>
+          <div class="row breadcrumbs-top d-inline-block">
+            <div class="breadcrumb-wrapper col-12">
+              <ol class="breadcrumb pathsfont">
+                <li class="breadcrumb-item">
+                  <a [routerLink]="['/m-dashboard']">Dashboard</a>
+                </li>
+                <li class="breadcrumb-item active">Google 2FA</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-6" style="max-width: 570px;">
+          <div class="card pull-up bg-zipco">
+            <div class="card-content collapse show">
+              <div class="card-body text-white">
+                <form class="form-register" #enbldsbldata="ngForm" (ngSubmit)="enbl_dsbl(enbldsbldata.value)">
+                  <fieldset>
+                    <h2 class="box-title text-center text-gold">Google Authenticator</h2>
+                    <br>
+                    <h4 class="box-title text-bold-700 text-gold ">Enable Authenticator Support</h4>
+                    <p class="text-silver">Authenticator Secret Code : {{address}}</p>
+                    <div class="form-group" style="text-align: center;">
+                      <img src="https://chart.googleapis.com/chart?chs=200x200&chld=M|0&cht=qr&chl={{url}}">
+                    </div>
+                    <br>
+                  </fieldset>
+
+                  <fieldset>
+                    <h4 class="box-title text-gold text-bold-700">Scan to bind your Google Authenticator</h4>
+                    <p class="text-silver">1. Install an authenticator app on your mobile device if you don't already
+                      have one Here are the link
+                      for
+                      <a href="https://itunes.apple.com/in/app/google-authenticator/id388497605?mt=8">iOS</a> and
+                      <a
+                        href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&amp;hl=en_IN">Android</a>
+                      phone. Go ahead and download it now to get started.. </p>
+                    <p class="text-silver">2. Scan OR code with the authenticator</p>
+                    <p class="text-silver">3. Please write down or print a copy of the 16 digit secret code and put it
+                      in a safe place.</p>
+                    <p class="text-silver">4. If your phone gets lost. stolen or erased, you will need this code to link
+                      Coinbase to a new Authenticator
+                      app install once again.</p>
+                    <p class="text-silver">5. Do not share it with anyone. Be aware of phishing scame. We Will never ask
+                      you for this key</p>
+                  </fieldset>
+                  <br>
+                  <fieldset>
+                    <h4 class="box-title text-gold text-bold-700">Once an Authenticator app is enable</h4>
+                    <div class="form-group">
+                      <div cass="row">
+                        <div class="col-md-2" style="display: inline-block;">
+                          <img src="assets/images/google-authenticator.png" width="100%">
+                        </div>
+
+                        <div class="col-md-8" style="display: inline-block;">
+                          <label class="text-white">Enter the 2-step verification code provided by your authentication
+                            app
+                          </label>
+                          <input type="text" *ngIf="errcode" [(ngModel)]="appcode" name="appcode"
+                            placeholder=" Enter the 6-Digit verification code"
+                            style="width: 80%; height: 40px;border: 1px #000 solid;" ngModel>
+
+                          <input type="text" *ngIf="!errcode" [(ngModel)]="appcode" name="appcode"
+                            placeholder=" Enter the 6-Digit verification code"
+                            style="width: 80%; height: 40px;border: 1px solid red;" ngModel>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-actions" style="text-align: center;">
+                      <button *ngIf="show" type="submit" class="btn btn-zipco btn-round btn-min-width ourfont"
+                        id="btn_register">
+                        Enable
+                      </button>
+
+                      <button *ngIf="!show" type="submit" class="btn btn-zipco btn-round btn-min-width ourfont"
+                        id="btn_register">
+                        Disable
+                      </button>
+                    </div>
+                  </fieldset>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6" style="max-width: 570px;">
+          <div class="card pull-up bg-zipco">
+            <div class="row">
+              <div class="col-md-8" style="padding-right: 0px;max-width: 380px;">
+                <div class="card-content collapse show">
+                  <div class="card-body">
+                    <fieldset>
+                      <h5 class="box-title text-bold-700 text-gold ">Download the App and Setup 2 factor authentication
+                      </h5>
+                      <p>
+                        <a target="_blank"
+                          href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&amp;hl=en_IN"><img
+                            src="https://zipcx.io/tokensale/newassets/assets/images/google-play.png"
+                            style="width: 35%;"></a>
+                        &nbsp;&nbsp;&nbsp;
+                        <a target="_blank"
+                          href="https://itunes.apple.com/in/app/google-authenticator/id388497605?mt=8"><img
+                            src="https://zipcx.io/tokensale/newassets/assets/images/app-store.png"
+                            style="width: 35%;"></a>
+                      </p>
+                      <p class="text-silver">
+                          Download Our Android and Iphone Application.
+                      </p>
+                    </fieldset>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4" style="padding-left: 0px;max-width: 190px;padding-right: 0px;">
+                <div class="card-content collapse show">
+                  <div class="card-body">
+                    <p class="text-center">
+                      <label class="mb-0 btn btn-success btn-round text-white">Mobile Verified</label>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

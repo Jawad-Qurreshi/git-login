@@ -1,0 +1,491 @@
+<div class="app-content content">
+  <div class="content-wrapper mrgtop">
+    <div class="content-header row">
+      <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <h3 class="content-header-title mb-0 d-inline-block pathffont">Individual KYC</h3>
+        <div class="row breadcrumbs-top d-inline-block">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb pathsfont">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">Individual KYC
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-body">
+
+      <!-- Title Section Start -->
+      <div class="row mb-2">
+        <div class="col-md-12 text-center" style="max-width: 1140px;">
+          <h1>Begin your ID-Verification</h1>
+          <p style="width: 60%;margin: auto;" class="text-center lead mt-2">
+            Verify your identity to participate in sending money to family.
+          </p>
+        </div>
+      </div>
+      <!-- Title Section End -->
+
+
+      <!-- Form Wizard -->
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10" style="max-width: 950px;">
+          <div class="card pull-up bg-zipco text-white">
+            <div style="text-align:center;margin-top:40px;">
+              <span class="step"></span>
+              <span class="step active"></span>
+              <span class="step"></span>
+            </div>
+            <div class="card-body p-2">
+              <div class="tab">
+                <br>
+                <br>
+                <h4 class="text-white text-bold-700">Document Upload</h4>
+                <br />
+                <p class="text-silver">Please upload your ID card (Hong Kong, Macao, and Taiwan users please submit
+                  passport pictures)
+                </p>
+                <br>
+
+                <form *ngIf="view" #kycsecond="ngForm" (ngSubmit)="kyc_second(kycsecond.value)">
+
+                  <div class="row">
+                    <div class="col-md-6 col-12">
+                      <fieldset class="form-group">
+                        <label for="document_type">Document Type</label>
+                        <select *ngIf="errdoctype" name="document_type" id="document_type" [(ngModel)]="document_type"
+                          class="form-control" ngModel>
+                          <option value="">Select Document Type</option>
+                          <option value="passport">Passport</option>
+                          <option value="driving_license">Driving License</option>
+                          <option value="id_card">ID Card</option>
+                        </select>
+                        <select *ngIf="!errdoctype" style="border: 1px solid red;" name="document_type"
+                          id="document_type" [(ngModel)]="document_type" class="form-control" ngModel>
+                          <option value="">Select Document Type</option>
+                          <option value="passport">Passport</option>
+                          <option value="driving_license">Driving License</option>
+                          <option value="id_card">ID Card</option>
+                        </select>
+                      </fieldset>
+                    </div>
+
+                    <div class="col-md-6 col-12">
+                      <fieldset class="form-group">
+                        <label for="document_number">Document Number</label>
+                        <input type="text" *ngIf="errdocno" class="form-control" [(ngModel)]="document_number"
+                          name="document_number" id="document_number" placeholder="Document Number" ngModel>
+                        <input type="text" *ngIf="!errdocno" style="border: 1px solid red;" class="form-control"
+                          [(ngModel)]="document_number" name="document_number" id="document_number"
+                          placeholder="Document Number" ngModel>
+                      </fieldset>
+                    </div>
+
+                    <div class="col-md-4 col-12">
+                      <fieldset class="form-group">
+                        <label for="issue_date">Issue Date</label>
+
+                        <ng-datepicker *ngIf="errissuedate" [(ngModel)]="issue_date" name="issue_date" id="issue_date"
+                          [options]="options">
+                        </ng-datepicker>
+                        <ng-datepicker *ngIf="!errissuedate" [(ngModel)]="issue_date" name="issue_date" id="issue_date"
+                          [options]="options">
+                        </ng-datepicker>
+                        <b *ngIf="!errissuedate" style="color: red;font-weight: bold;">Please Choose Valid Date</b>
+
+                        <!-- <input type="date" class="form-control" *ngIf="errissuedate" [(ngModel)]="issue_date"
+                          name="issue_date" id="issue_date" placeholder="Document Issue Date" ngModel>
+                        <input type="date" class="form-control" *ngIf="!errissuedate" style="border: 1px solid red;"
+                          [(ngModel)]="issue_date" name="issue_date" id="issue_date" placeholder="Document Issue Date"
+                          ngModel> -->
+                      </fieldset>
+                    </div>
+
+                    <div class="col-md-4 col-12">
+                      <fieldset class="form-group">
+                        <div class=" mb-1 col-12 mt-2" style="padding-top: 15px;">
+                          <input type="checkbox" name="never_expire" class="selectall icheckbox_minimal"
+                            (click)="neverexpire($event)" id="never_expire" value="never_expire">
+                          <label for="never_expire">&nbsp;My Document Never Expire</label>
+                        </div>
+                      </fieldset>
+                    </div>
+
+                    <div class="col-md-4 col-12">
+                      <fieldset class="form-group">
+                        <label for="expiry_date">Expiry Date</label>
+
+                        <ng-datepicker *ngIf="errexpdate" [(ngModel)]="expiry_date" name="expiry_date" id="expiry_date"
+                          [options]="options" ngModel>
+                        </ng-datepicker>
+                        <ng-datepicker *ngIf="!errexpdate" [(ngModel)]="expiry_date" name="expiry_date" id="expiry_date"
+                          [options]="options" ngModel>
+                        </ng-datepicker>
+                        <b *ngIf="!errexpdate" style="color: red;font-weight: bold;">Please Choose Valid Date</b>
+
+                        <!-- <input type="date" class="form-control" *ngIf="errexpdate" [(ngModel)]="expiry_date"
+                          name="expiry_date" id="expiry_date" placeholder="Document Expiry Date" ngModel>
+                        <input type="date" class="form-control" *ngIf="!errexpdate" style="border: 1px solid red;"
+                          [(ngModel)]="expiry_date" name="expiry_date" id="expiry_date"
+                          placeholder="Document Expiry Date" ngModel> -->
+                      </fieldset>
+                    </div>
+
+                    <div class="col-md-12 col-12">
+                      <fieldset class="form-group">
+                        <label for="address_as_doc">Address as per document</label>
+                        <textarea id="address_as_doc" *ngIf="erraddress_as_doc" [(ngModel)]="address_as_doc"
+                          name="address_as_doc" rows="3" class="form-control" ngModel></textarea>
+                        <textarea id="address_as_doc" *ngIf="!erraddress_as_doc" style="border: 1px solid red;"
+                          [(ngModel)]="address_as_doc" name="address_as_doc" rows="3" class="form-control"
+                          ngModel></textarea>
+                      </fieldset>
+                    </div>
+
+                    <div class="col-md-12 col-12">
+                      <h5 class="text-white">Front Side</h5>
+                      <p class="text-silver">Frontside and backside of your valid photo ID document. Make sure that the
+                        image is clear and legible
+                        and not obscured by your hand and/or fingers. If the document is very old and/or features
+                        non-natural
+                        face changes, like glasses, beard, moustache, tattoos, scars etc., we might ask you for
+                        additional
+                        information.
+                      </p>
+                      <div class="row mb-2">
+                        <div class="col-md-6 col-12">
+                          <div class="drop-div" role="main">
+                            <div
+                              [ngClass]="[errfrontside? 'box has-advanced-upload' : 'box has-advanced-upload-error']">
+                              <div class="box__input">
+                                <svg [ngClass]="[errfrontside? 'box__icon' : 'box__icon__error']"
+                                  xmlns="http://www.w3.org/2000/svg" width="50" height="43" viewBox="0 0 50 43">
+                                  <path
+                                    d="M48.4 26.5c-.9 0-1.7.7-1.7 1.7v11.6h-43.3v-11.6c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v13.2c0 .9.7 1.7 1.7 1.7h46.7c.9 0 1.7-.7 1.7-1.7v-13.2c0-1-.7-1.7-1.7-1.7zm-24.5 6.1c.3.3.8.5 1.2.5.4 0 .9-.2 1.2-.5l10-11.6c.7-.7.7-1.7 0-2.4s-1.7-.7-2.4 0l-7.1 8.3v-25.3c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v25.3l-7.1-8.3c-.7-.7-1.7-.7-2.4 0s-.7 1.7 0 2.4l10 11.6z" />
+                                </svg>
+
+                                <input type="file" name="frontside" id="frontside" placeholder="Please choose Frontside"
+                                  class="box__file" data-multiple-caption="{count} files selected"
+                                  (change)="upload_frontside($event)" #filefrontside>
+                                <br>
+                                <label for="frontside">
+                                  <strong>Choose a file</strong>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-12 text-center">
+                          <img src="{{firsturl}}" style="width: 80%;">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12 col-12">
+                      <h5 class="text-white">Back Side</h5>
+                      <div class="row mb-2">
+                        <div class="col-md-6 col-12">
+                          <div class="drop-div" role="main">
+                            <div [ngClass]="[errbackside? 'box has-advanced-upload' : 'box has-advanced-upload-error']">
+                              <div class="box__input">
+                                <svg [ngClass]="[errbackside? 'box__icon' : 'box__icon__error']"
+                                  xmlns="http://www.w3.org/2000/svg" width="50" height="43" viewBox="0 0 50 43">
+                                  <path
+                                    d="M48.4 26.5c-.9 0-1.7.7-1.7 1.7v11.6h-43.3v-11.6c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v13.2c0 .9.7 1.7 1.7 1.7h46.7c.9 0 1.7-.7 1.7-1.7v-13.2c0-1-.7-1.7-1.7-1.7zm-24.5 6.1c.3.3.8.5 1.2.5.4 0 .9-.2 1.2-.5l10-11.6c.7-.7.7-1.7 0-2.4s-1.7-.7-2.4 0l-7.1 8.3v-25.3c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v25.3l-7.1-8.3c-.7-.7-1.7-.7-2.4 0s-.7 1.7 0 2.4l10 11.6z">
+                                  </path>
+                                </svg>
+
+                                <input type="file" name="backside" id="backside" placeholder="Please choose Backside"
+                                  class="box__file" (change)="upload_backside($event)" #filebackside>
+                                <br>
+                                <label for="backside">
+                                  <strong>Choose a file</strong>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-12 text-center">
+                          <img src="{{secondurl}}" style="width: 80%;">
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div style="overflow:auto;">
+                    <div style="float:right;">
+                      <button type="button" (click)="first()"
+                        class="btn btn-zipco btn-round btn-min-width ourfont">Previous</button>
+
+                      &nbsp;
+                      <button (click)="save_kyc_second()" *ngIf="swait"
+                        class="btn btn-zipco btn-round btn-min-width ourfont">Save</button>
+                      <button type="button" *ngIf="!swait" class="btn btn-zipco btn-round btn-min-width ourfont">Please
+                        Wait...!</button>
+                      &nbsp;
+
+                      <button type="submit" *ngIf="wait"
+                        class="btn btn-zipco btn-round btn-min-width ourfont">Next</button>
+                      <button type="button" *ngIf="!wait" class="btn btn-zipco btn-round btn-min-width ourfont">Please
+                        Wait...!</button>
+                    </div>
+                  </div>
+                </form>
+
+                <form *ngIf="!view" #upkycsecond="ngForm" (ngSubmit)="up_kyc_second(upkycsecond.value)">
+
+                  <div class="row">
+
+                    <div class="col-md-6 col-12">
+                      <fieldset class="form-group">
+                        <label for="document_type">Document Type</label>
+                        <select *ngIf="errdoctype" name="document_type" id="document_type" [(ngModel)]="document_type"
+                          class="form-control" ngModel>
+                          <option value="">Select Document Type</option>
+                          <option value="passport">Passport</option>
+                          <option value="driving_license">Driving License</option>
+                          <option value="id_card">ID Card</option>
+                        </select>
+                        <select *ngIf="!errdoctype" style="border: 1px solid red;" name="document_type"
+                          id="document_type" [(ngModel)]="document_type" class="form-control" ngModel>
+                          <option value="">Select Document Type</option>
+                          <option value="passport">Passport</option>
+                          <option value="driving_license">Driving License</option>
+                          <option value="id_card">ID Card</option>
+                        </select>
+                      </fieldset>
+                    </div>
+
+                    <div class="col-md-6 col-12">
+                      <fieldset class="form-group">
+                        <label for="document_number">Document Number</label>
+                        <input type="text" *ngIf="errdocno" class="form-control" [(ngModel)]="document_number"
+                          name="document_number" id="document_number" placeholder="Document Number" ngModel>
+                        <input type="text" *ngIf="!errdocno" style="border: 1px solid red;" class="form-control"
+                          [(ngModel)]="document_number" name="document_number" id="document_number"
+                          placeholder="Document Number" ngModel>
+                      </fieldset>
+                    </div>
+
+                    <div class="col-md-4 col-12">
+                      <fieldset class="form-group">
+                        <label for="issue_date">Issue Date</label>
+
+                        <ng-datepicker *ngIf="errissuedate" [(ngModel)]="issue_date" name="issue_date" id="issue_date"
+                          [options]="options">
+                        </ng-datepicker>
+                        <ng-datepicker *ngIf="!errissuedate" [(ngModel)]="issue_date" name="issue_date" id="issue_date"
+                          [options]="options">
+                        </ng-datepicker>
+                        <b *ngIf="!errissuedate" style="color: red;font-weight: bold;">Please Choose Valid Date</b>
+
+                      </fieldset>
+                    </div>
+
+                    <div class="col-md-4 col-12">
+                      <fieldset class="form-group">
+                        <div class=" mb-1 col-12 mt-2" style="padding-top: 15px;">
+                          <input type="checkbox" name="never_expire" [(ngModel)]="never_expire"
+                            class="selectall icheckbox_minimal" (click)="neverexpire($event)" id="never_expire"
+                            value="never_expire" ngModel>
+                          <label for="never_expire">&nbsp;My Document Never Expire</label>
+                        </div>
+                      </fieldset>
+                    </div>
+
+                    <div class="col-md-4 col-12">
+                      <fieldset class="form-group">
+                        <label for="expiry_date">Expiry Date</label>
+
+                        <ng-datepicker *ngIf="errexpdate" [(ngModel)]="expiry_date" name="expiry_date" id="expiry_date"
+                          [options]="options" ngModel>
+                        </ng-datepicker>
+                        <ng-datepicker *ngIf="!errexpdate" [(ngModel)]="expiry_date" name="expiry_date" id="expiry_date"
+                          [options]="options" ngModel>
+                        </ng-datepicker>
+                        <b *ngIf="!errexpdate" style="color: red;font-weight: bold;">Please Choose Valid Date</b>
+
+                      </fieldset>
+                    </div>
+
+                    <div class="col-md-12 col-12">
+                      <fieldset class="form-group">
+                        <label for="address_as_doc">Address as per document</label>
+                        <textarea id="address_as_doc" *ngIf="erraddress_as_doc" [(ngModel)]="address_as_doc"
+                          name="address_as_doc" rows="3" class="form-control" ngModel></textarea>
+                        <textarea id="address_as_doc" *ngIf="!erraddress_as_doc" style="border: 1px solid red;"
+                          [(ngModel)]="address_as_doc" name="address_as_doc" rows="3" class="form-control"
+                          ngModel></textarea>
+                      </fieldset>
+                    </div>
+
+                    <div class="col-md-12 col-12">
+                      <h5 class="text-white">Front Side</h5>
+                      <p class="text-silver">Frontside and backside of your valid photo ID document. Make sure that the
+                        image is clear and legible
+                        and not obscured by your hand and/or fingers. If the document is very old and/or features
+                        non-natural
+                        face changes, like glasses, beard, moustache, tattoos, scars etc., we might ask you for
+                        additional
+                        information.
+                      </p>
+                      <div class="row mb-2">
+                        <div class="col-md-6 col-12">
+                          <div class="drop-div" role="main">
+                            <div
+                              [ngClass]="[errfrontside? 'box has-advanced-upload' : 'box has-advanced-upload-error']">
+                              <div class="box__input">
+                                <svg [ngClass]="[errfrontside? 'box__icon' : 'box__icon__error']"
+                                  xmlns="http://www.w3.org/2000/svg" width="50" height="43" viewBox="0 0 50 43">
+                                  <path
+                                    d="M48.4 26.5c-.9 0-1.7.7-1.7 1.7v11.6h-43.3v-11.6c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v13.2c0 .9.7 1.7 1.7 1.7h46.7c.9 0 1.7-.7 1.7-1.7v-13.2c0-1-.7-1.7-1.7-1.7zm-24.5 6.1c.3.3.8.5 1.2.5.4 0 .9-.2 1.2-.5l10-11.6c.7-.7.7-1.7 0-2.4s-1.7-.7-2.4 0l-7.1 8.3v-25.3c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v25.3l-7.1-8.3c-.7-.7-1.7-.7-2.4 0s-.7 1.7 0 2.4l10 11.6z">
+                                  </path>
+                                </svg>
+
+                                <input type="file" name="frontside" id="frontside" placeholder="Please choose Frontside"
+                                  class="box__file" data-multiple-caption="{count} files selected"
+                                  (change)="upload_frontside($event)" #filefrontside>
+                                <br>
+                                <label for="frontside">
+                                  <strong>Choose a file</strong>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-12 text-center" *ngIf="dlastfront == 'jpeg'">
+                          <img *ngIf="fdata" src="{{docurl + fdata}}" style="width: 190px;height: 190px;">
+                          <img *ngIf="!fdata" src="assets/images/kyc/card_1.png" style="width: 80%;">
+                        </div>
+
+                        <div class="col-md-6 col-12 text-center" *ngIf="dlastfront == 'jpg'">
+                          <img *ngIf="fdata" src="{{docurl + fdata}}" style="width: 190px;height: 190px;">
+                          <img *ngIf="!fdata" src="assets/images/kyc/card_1.png" style="width: 80%;">
+                        </div>
+                        <div class="col-md-6 col-12 text-center" *ngIf="dlastfront == 'png'">
+                          <img *ngIf="fdata" src="{{docurl + fdata}}" style="width: 190px;height: 190px;">
+                          <img *ngIf="!fdata" src="assets/images/kyc/card_1.png" style="width: 80%;">
+                        </div>
+                        <div class="col-md-6 col-12 text-center" *ngIf="dlastfront == 'pdf'">
+                          <p *ngIf="fdata" style="padding-top: 35px;">
+                            <i class="fas fa-7x fa-file-pdf" style="color: #ff0000;"></i>
+                            <br>
+                            <br>{{fdata}}</p>
+                          <img *ngIf="!fdata" src="assets/images/kyc/card_1.png" style="width: 80%;">
+                        </div>
+                        <div class="col-md-6 col-12 text-center" *ngIf="dlastfront == 'docx'">
+                          <p *ngIf="fdata" style="padding-top: 35px;">
+                            <i class="far fa-7x fa-file-word" style="color: #1976d2;"></i>
+                            <br>
+                            <br>{{fdata}}</p>
+                          <img *ngIf="!fdata" src="assets/images/kyc/card_1.png" style="width: 80%;">
+                        </div>
+                        <div class="col-md-6 col-12 text-center" *ngIf="dlastfront == 'doc'">
+                          <p *ngIf="fdata" style="padding-top: 35px;">
+                            <i class="far fa-7x fa-file-word" style="color: #1976d2;"></i>
+                            <br>
+                            <br>{{fdata}}</p>
+                          <img *ngIf="!fdata" src="assets/images/kyc/card_1.png" style="width: 80%;">
+                        </div>
+
+
+                      </div>
+                    </div>
+
+                    <div class="col-md-12 col-12">
+                      <h5 class="text-white">Back Side</h5>
+                      <div class="row mb-2">
+                        <div class="col-md-6 col-12">
+                          <div class="drop-div" role="main">
+                            <div [ngClass]="[errbackside? 'box has-advanced-upload' : 'box has-advanced-upload-error']">
+                              <div class="box__input">
+                                <svg [ngClass]="[errbackside? 'box__icon' : 'box__icon__error']"
+                                  xmlns="http://www.w3.org/2000/svg" width="50" height="43" viewBox="0 0 50 43">
+                                  <path
+                                    d="M48.4 26.5c-.9 0-1.7.7-1.7 1.7v11.6h-43.3v-11.6c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v13.2c0 .9.7 1.7 1.7 1.7h46.7c.9 0 1.7-.7 1.7-1.7v-13.2c0-1-.7-1.7-1.7-1.7zm-24.5 6.1c.3.3.8.5 1.2.5.4 0 .9-.2 1.2-.5l10-11.6c.7-.7.7-1.7 0-2.4s-1.7-.7-2.4 0l-7.1 8.3v-25.3c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v25.3l-7.1-8.3c-.7-.7-1.7-.7-2.4 0s-.7 1.7 0 2.4l10 11.6z">
+                                  </path>
+                                </svg>
+
+                                <input type="file" name="backside" id="backside" placeholder="Please choose Backside"
+                                  class="box__file" (change)="upload_backside($event)" #filebackside>
+                                <br>
+                                <label for="backside">
+                                  <strong>Choose a file</strong>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6 col-12 text-center" *ngIf="blastfront == 'jpeg'">
+                          <img *ngIf="bdata" src="{{docurl + bdata}}" style="width: 190px;height: 190px;">
+                          <img *ngIf="!bdata" src="assets/images/kyc/card_2.png" style="width: 80%;">
+                        </div>
+                        <div class="col-md-6 col-12 text-center" *ngIf="blastfront == 'jpg'">
+                          <img *ngIf="bdata" src="{{docurl + bdata}}" style="width: 190px;height: 190px;">
+                          <img *ngIf="!bdata" src="assets/images/kyc/card_2.png" style="width: 80%;">
+                        </div>
+                        <div class="col-md-6 col-12 text-center" *ngIf="blastfront == 'png'">
+                          <img *ngIf="bdata" src="{{docurl + bdata}}" style="width: 190px;height: 190px;">
+                          <img *ngIf="!bdata" src="assets/images/kyc/card_2.png" style="width: 80%;">
+                        </div>
+                        <div class="col-md-6 col-12 text-center" *ngIf="blastfront == 'pdf'">
+                          <p *ngIf="bdata" style="padding-top: 35px;">
+                            <i class="fas fa-7x fa-file-pdf" style="color: #ff0000;"></i>
+                            <br>
+                            <br>{{bdata}}</p>
+                          <img *ngIf="!bdata" src="assets/images/kyc/card_2.png" style="width: 80%;">
+                        </div>
+                        <div class="col-md-6 col-12 text-center" *ngIf="blastfront == 'docx'">
+                          <p *ngIf="bdata" style="padding-top: 35px;">
+                            <i class="far fa-7x fa-file-word" style="color: #1976d2;"></i>
+                            <br>
+                            <br>{{bdata}}</p>
+                          <img *ngIf="!bdata" src="assets/images/kyc/card_2.png" style="width: 80%;">
+                        </div>
+                        <div class="col-md-6 col-12 text-center" *ngIf="blastfront == 'doc'">
+                          <p *ngIf="bdata" style="padding-top: 35px;">
+                            <i class="far fa-7x fa-file-word" style="color: #1976d2;"></i>
+                            <br>
+                            <br>{{bdata}}</p>
+                          <img *ngIf="!bdata" src="assets/images/kyc/card_2.png" style="width: 80%;">
+                        </div>
+
+                      </div>
+                    </div>
+
+                  </div>
+                  <div>
+                    <div style="float:right;">
+
+                      <button type="button" (click)="first()"
+                        class="btn btn-zipco btn-round btn-min-width ourfont">Previous</button>
+                      &nbsp;
+                      <button (click)="save_up_kyc_second()" *ngIf="swait"
+                        class="btn btn-zipco btn-round btn-min-width ourfont">Save</button>
+                      <button type="button" *ngIf="!swait" class="btn btn-zipco btn-round btn-min-width ourfont">Please
+                        Wait...!</button>
+                      &nbsp;
+                      <button type="submit" *ngIf="wait"
+                        class="btn btn-zipco btn-round btn-min-width ourfont">Next</button>
+                      <button type="button" *ngIf="!wait" class="btn btn-zipco btn-round btn-min-width ourfont">Please
+                        Wait...!</button>
+                    </div>
+                  </div>
+                </form>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+    </div>
+  </div>
+</div>
