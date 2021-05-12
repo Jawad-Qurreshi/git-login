@@ -55,7 +55,7 @@
     "ngx-mydatepicker": "^2.4.9",
     "ngx-pagination": "^3.3.1",
     "ngx-ui-switch": "^8.1.0",
-    "nodemailer": "^6.3.0",
+    "nodemailer": "^6.4.16",
     "qrcode": "^1.4.0",
     "react-chartist": "^0.13.3",
     "rxjs": "^6.0.0",
